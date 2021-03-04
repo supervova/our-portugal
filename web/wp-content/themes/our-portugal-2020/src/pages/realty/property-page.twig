@@ -1,0 +1,282 @@
+
+{% extends "/pages/base/base.twig" %}
+
+{% block config %}
+{{ parent() }}
+
+{% set post = {
+  lang: "ru",
+  hero_title: "Недвижимость в Португалии",
+  title: "Квартира в Лиссабоне, Rua de Dona Estefânia | Недвижимость в Португалии",
+  description: site.description,
+  image: site.logo,
+  link: site.url ~ "/ru/real-estate/lisboa-rua-de-dona-estefânia-apartment-2020-10-30",
+  body_classes: "is-real-estate",
+  hasArticle: true
+} %}
+{% endblock %}
+
+{% block html_head %}
+  {{ parent() }}
+
+  {# <style>
+  </style> #}
+{% endblock %}
+
+
+
+{# MAIN CONTENT ------------------------------------------------------------- #}
+{% block content %}
+
+  {# HERO #}
+  {% include "/components/hero/_hero-realty.twig" %}
+
+  <article class="main" itemscope itemtype="http://schema.org/Offer">
+    <div class="row justify-center">
+      <header class="main__header text-center">
+        <h1 class="main__eyebrow" itemprop="name">Квартира в Лиссабоне, Rua de Dona Estefânia</h1>
+        <p class="main__title" itemprop="price">580 000 € <small>—&nbsp;5&nbsp;088&nbsp;€ за&nbsp;м&sup2;</small></p>
+        <ul class="main__summary">
+          <li>
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-bed"></use>
+            </svg>
+            <b>2</b> спальни
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-bath"></use>
+            </svg>
+            <b>2</b> саузла
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-area"></use>
+            </svg>
+            <b>114</b> м<sup>2</sup>
+          </li>
+        </ul>
+        <meta itemprop="priceCurrency" content="EUR">
+      </header>
+
+      <div class="main__gallery carousel slide" id="property-gallery" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-viewport">
+            {% for i in 1..4 %}
+              <figure class="carousel-item{% if loop.first %} active{% endif %}">
+                <img class="card__img" src="/wp-content/themes/our-portugal-2020/img/placeholders/realty-carousel-0{{ i }}.jpg" alt="Квартира в Лиссабоне, Rua de Dona Estefânia">
+              </figure>
+            {% endfor %}
+          </div>
+          <a class="carousel-control is-prev" href="#property-gallery" role="button" data-slide="prev" aria-label="Назад"></a>
+          <a class="carousel-control is-next" href="#property-gallery" role="button" data-slide="next" aria-label="Вперёд"></a>
+        </div>
+        <ol class="carousel__thumbnails carousel-indicators">
+          {% for i in 1..4 %}
+            <li {% if loop.first %}class="active"{% endif %} data-target="#property-gallery" data-slide-to="{{ i - 1 }}">
+              <img src="/wp-content/themes/our-portugal-2020/img/placeholders/realty-carousel-thumbnail-0{{ i }}.jpg" alt="Квартира в Лиссабоне, Rua de Dona Estefânia">
+            </li>
+          {% endfor %}
+        </ol>
+      </div>
+
+      <div class="main__body text-center">
+        <a class="btn is-primary is-stand-alone" href="#request">Оставьте заявку</a>
+      </div>
+
+      <div class="main__body pt-2" itemprop="articleBody">
+        <p>Светлая квартира с отличным видом из окон в современном кондоминиуме с бассейном и садом на одном из основных проспектов Лиссабона. Ближайшая станция метро и железнодорожный вокзал находятся в трех минутах ходьбы от дома.</p>
+        <p>Кухня оборудована техникой SMEG, а пол выполнен из полированного синего камня Ataija. Ванные комнаты из белого ангольского мрамора  и полированного альпинина, с подогревом пола.</p>
+        <p>Кондиционер встроен в потолок, электрические жалюзи, усиленные двери и алюминиевые оконные рамы с двойным остеклением.</p>
+
+        <div class="main__map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1191.7072976746854!2d-9.142987349678647!3d38.73146315650936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1604435669118!5m2!1sen!2s" allowfullscreen aria-hidden="false" tabindex="0"></iframe>
+        </div>
+
+        <ul class="main__features">
+          <li>Год постройки&nbsp;— 2001.</li>
+          <li>После капремонта.</li>
+          <li>Этаж 6&nbsp;из&nbsp;8.</li>
+          <li>Полы с&nbsp;подогревом.</li>
+          <li>Оборудованная кухня 20м².</li>
+          <li>Посудомоечная машина.</li>
+          <li>Стиральная машина.</li>
+          <li>Балкон.</li>
+          <li>Парковочных мест&nbsp;— 2.</li>
+          <li>Общий бассейн.</li>
+          <li>Кондиционер.</li>
+        </ul>
+
+        <h2 class="h2 is-secondary text-center">Район</h2>
+        <dl>
+          <dt>Транспорт.</dt>
+          <dd>На&nbsp;машине&nbsp;— 20&nbsp;мин.&nbsp;до&nbsp;центра Лиссабона. Ближайшая станция метро&nbsp;— 2&nbsp;мин. пешком.</dd>
+          <dt>Места отдыха.</dt>
+          <dd>Парк в&nbsp;20&nbsp;мин. пешком.</dd>
+          <dt>Магазины и&nbsp;общепит.</dt>
+          <dd>В&nbsp;шаговой доступности&nbsp;— пешеходная улица со&nbsp;множеством каф, ресторанов, магазинов.</dd>
+          <dt>Для детей и&nbsp;родителей.</dt>
+          <dd>В&nbsp;радиусе 3&nbsp;км&nbsp;— 2&nbsp;школы.</dd>
+        </dl>
+
+        <a class="main__share-link text-center" href="#">
+          <svg class="icon" aria-hidden="true" focusable="false">
+            <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-email"></use>
+          </svg>
+          Поделиться ссылкой
+        </a>
+      </div>
+
+      <aside>
+        <h2 class="h2 is-secondary text-center mb-1">Похожие предложения</h2>
+        <div class="carousel is-xs-sm has-3-properties slide" id="carouselRealty" data-ride="carousel" data-interval="false">
+          <div class="carousel-inner">
+            <div class="carousel-viewport">{# row #}
+              {% set properties = {
+
+                item1: {
+                  image: 'realty-01',
+                  title: 'Студия в Портимао, 68м²',
+                  price: '120 000',
+                  desc: 'Район — Pestana Dom João II. Полностью оборудованная кухня, крытый бассейн, сауна и турецкая баня.',
+                  bedrooms: '<b>0</b> спален',
+                  bathrooms: '<b>1</b> ванная',
+                  active: true
+                },
+
+                item2: {
+                  image: 'realty-02',
+                  title: 'Квартира в Лиссабоне, 60м²',
+                  price: '330 000',
+                  desc: '4 этаж. Полезая площадь — 188м2. Год постройки — 1951.',
+                  bedrooms: '<b>1</b> спальня',
+                  bathrooms: '<b>1</b> ванная'
+                },
+
+                item3: {
+                  image: 'realty-03',
+                  title: 'Дом в Алмаде, 148м²',
+                  price: '330 000',
+                  desc: 'Район Botequim, Charneca da Caparica. Двор 65м², барбекю и веранда. Капитальнй ремонт сделан в июле 2020-го.',
+                  bedrooms: '<b>4</b> спальни',
+                  bathrooms: '<b>2</b> ванных',
+                  optional: true
+                },
+
+              } %}
+
+              {% for item in properties %}
+                <div class="carousel-item {% if item.optional %} is-optional{% endif %}{% if item.active %} active{% endif %}">
+                  <a class="link is-box-wrapper" href="#">
+                    <div class="card">
+                      <img class="card__img" src="/wp-content/themes/our-portugal-2020/img/placeholders/{{ item.image }}.jpg" alt="Португальская золотая виза">
+                      <div class="card__copy">
+                        <header>
+                          <h3 class="card__eyebrow">{{ item.title }}</h3>
+                          <p class="card__title">{{ item.price }} €</p>
+                        </header>
+                        <p class="card__summary">{{ item.desc }}</p>
+
+                        <ul class="card__footer">
+                          <li class="card__footer-item">
+                            <svg class="icon" aria-hidden="true" focusable="false">
+                              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-bed"></use>
+                            </svg>
+                            {{ item.bedrooms }}
+                          </li>
+                          <li class="card__footer-item">
+                            <svg class="icon" aria-hidden="true" focusable="false">
+                              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-bath"></use>
+                            </svg>
+                            {{ item.bathrooms }}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+            <a class="carousel-control is-prev" href="#carouselRealty" role="button" data-slide="prev" aria-label="Назад"></a>
+            <a class="carousel-control is-next" href="#carouselRealty" role="button" data-slide="next" aria-label="Вперёд"></a>
+          </div>
+
+          <ol class="carousel-indicators">
+            <li data-target="#carouselRealty" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselRealty" data-slide-to="1"></li>
+            <li data-target="#carouselRealty" data-slide-to="2"></li>
+          </ol>
+        </div>
+      </aside>
+
+      <div class="main__body pt-2" id="request">
+        <h2 class="h2 is-secondary text-center">Оставьте заявку</h2>
+        <p class="text-center is-note mb-1">Наши менеджеры ответят на&nbsp;любые ваши вопросы и&nbsp;помогут в&nbsp;заключении сделки с&nbsp;португалоговорящим продавцом и&nbsp;агентом</p>
+
+        <form class="is-should-be-validated pb-3" id="form-needs-validation" action="/" method="post" novalidate>
+          {% import "/base/form/_form.twig" as form %}
+
+          <div class="form__item">
+            {# label, name, icon, values, selected, attributes, error, required=false #}
+            {{ form.input(
+              'Ваше имя *',
+              'name',
+              'person',
+              {'pattern': '[\p{L} -]+', 'minlength': 3, 'maxlength': 128},
+              'Введите имя и фамилию. Желательно кириллицей',
+              true
+            ) }}
+          </div>
+
+          <div class="form__item">
+            {# label, name, icon, values, selected, attributes, error, required=false #}
+            {{ form.input(
+              'Ваш email *',
+              'email',
+              'email',
+              {'minlength': 3, 'maxlength': 128, 'inputmode': 'email'},
+              'Введите адрес электронной почты в стандартном формате',
+              true
+            ) }}
+          </div>
+
+          <div class="form__item">
+            {# label, name, icon, values, selected, attributes, error, required=false #}
+            {{ form.input(
+              'Ваш телефон',
+              'phone',
+              'phone',
+              {'pattern': '[\d\s-+()]+', 'minlength': 10, 'maxlength': 22, 'inputmode': 'tel'},
+              'В номере телефона допускаются только цифры, дефисы, пробелы, круглые скобки и плюс. Минимум: 10 символов.',
+              false,
+              'tel'
+            ) }}
+          </div>
+
+          <div class="form__item">
+            {# label, name, icon, attributes, value, error, required=false, rows=8, cols=40 #}
+            {{ form.textarea(
+              'Ваше сообщение *',
+              'message',
+              'message',
+              null,
+              'Меня интересует недвижимость в Португалии',
+              'Напишите, какой у вас к нам вопрос',
+              true
+            ) }}
+          </div>
+
+          <div class="text-center">
+            <button class="btn is-primary is-stand-alone" id="form-submit" type="submit">
+              Оставить заявку
+            </button>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+  </article>
+
+{% endblock %}
+

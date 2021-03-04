@@ -1,0 +1,122 @@
+{#
+Usage
+
+{% import "/base/form/_form.twig" as form %}
+
+<div class="form__item col-sm-4">
+  {{ form.input('Имя пользователя', 'username', {'pattern': '[\p{L} -]+', 'required': true}) }}
+  <!-- Possible attributes: pattern, minlength, maxlength, required, inputmode -->
+</div>
+
+{{ form.input('Пароль', 'password', null, 'password') }}
+
+{{ form.select('my-select', {'A': 'Alpha', 'B': 'Beta', 'C': 'Charlie'}) }}
+#}
+
+{# INPUT #}
+{% macro input(label, name, icon, attributes, error, required=false, type='text', suffix=false, prefix=false, value='') %}
+
+  <label class="form__label is-icon" for="{{ 'form-' ~ name }}">
+    <span class="sr-only">{{ label }}</span>
+    <svg class="icon" aria-hidden="true" focusable="false">
+      <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-{{ icon }}"></use>
+    </svg>
+  </label>
+  {% if prefix %}<span class="form__control-prefix">{{ prefix }}</span>{% endif %}
+  {% if suffix %}<span class="form__control-suffix">{{ suffix }}</span>{% endif %}
+  <input class="form__control" id="{{ 'form-' ~ name }}" name="{{ name }}" value="{{ value }}" type="{{ type }}" {% for key, value in attributes %} {{ key }}="{{ value }}" {% endfor %} placeholder="{{ label }}" {{ required ? ' required' : '' }}>
+  {% if error %}
+    <div class="form__alert" role="alert">
+      <div>{{ error }}</div>
+    </div>
+  {% endif %}
+
+{% endmacro %}
+
+{# TEXTAREA #}
+{% macro textarea(label, name, icon, attributes, value, error, required=false, rows=8, cols=40) %}
+
+  <label class="form__label is-icon is-for-textarea" for="{{ 'form-' ~ name }}">
+    <span class="sr-only">{{ label }}</span>
+    <svg class="icon" aria-hidden="true" focusable="false">
+      <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-{{ icon }}"></use>
+    </svg>
+  </label>
+  <textarea class="form__control is-textarea" id="{{ 'form-' ~ name }}" name="{{ name }}" rows="{{ rows }}" cols="{{ cols }}" {% for key, value in attributes %} {{ key }}="{{ value }}" {% endfor %} {{ required ? ' required' : '' }}>{{ value }}</textarea>
+  {% if error %}
+    <div class="form__alert" role="alert">
+      <div>{{ error }}</div>
+    </div>
+  {% endif %}
+
+{% endmacro %}
+
+{# SELECT #}
+{% macro select(label, name, icon, values, selected, attributes, error, required=false) %}
+
+  <label class="form__label is-icon" for="{{ 'form-' ~ name }}">
+    <span class="sr-only">{{ label }}</span>
+    <svg class="icon" aria-hidden="true" focusable="false">
+      <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-{{ icon }}"></use>
+    </svg>
+  </label>
+  <select class="form__control is-select" id="{{ 'form-' ~ name }}" name="{{ name }}" {% for key, value in attributes %} {{ key }}="{{ value }}" {% endfor %} {{ required ? 'required' : '' }}>
+  {% for key, name in values %}
+    <option value="{{ key }}" {% if selected == key %} selected {% endif %}>{{ name }}</option>
+  {% endfor %}
+  </select>
+  {% if error %}
+    <div class="form__alert" role="alert">
+      <div>{{ error }}</div>
+    </div>
+  {% endif %}
+
+{% endmacro %}
+
+{% macro selectHasOptgroups(name, id, options, selected, required, includeBlank) %}
+  <select name="{{ name }}" id="{{ id }}" {{ required ? 'required' : '' }}>
+    {% if includeBlank %}
+      <option value=""></option>
+    {% endif %}
+    {% for key, value in options %}
+      {% if value is iterable %}
+        <optgroup label="{{ key }}">
+          {% for key, value in options %}
+            <option value="{{ key }}" {{ key == selected ? 'selected' : '' }}>{{ value }}</option>
+          {% endfor %}
+        </optgroup>
+      {% else %}
+      {% endif %}
+    {% endfor %}
+  </select>
+{% endmacro %}
+
+{# NUMBER. It cannot have attributes pattern, minlength, maxlength #}
+{% macro number(label, name, value, min, max, attributes=null) %}
+
+  {% if label %}
+  <label class="form__label is-text" for="{{ 'form-' ~ name }}">
+    {{ label }}
+  </label>
+  {% endif %}
+  <input class="form__number" id="{{ 'form-' ~ name }}" name="{{ name }}" type="number" value="{{ value }}" inputmode="numeric"{% if min is not null %} min="{{ min }}"{% endif %}{% if max %} max="{{ max }}"{% endif %}>
+
+{% endmacro %}
+
+{# CHECKBOX #}
+{% macro checkbox(label, name, checked) %}
+  <label class="form__check">
+    <input class="form__check-input" id="{{ 'form-' ~ name }}" name="{{ name }}" type="checkbox" value="{{ label }}" {% if checked %} checked="checked"{% endif %}>
+    <span class="form__label is-text">{{ label }}</span>
+  </label>
+{% endmacro %}
+
+{# RADIO #}
+{% macro radio(name, values, value) %}
+  {% for key, label in values %}
+    <label class="form__check">
+      <input class="form__check-input" id="{{ 'form-' ~ name ~ loop.index }}" name="{{ name }}" type="radio" value="{{ key }}" {% if value == key %} checked="checked"{% endif %}>
+      <span class="form__label is-text">{{ label }}</span>
+    </label>
+  {% endfor %}
+{% endmacro %}

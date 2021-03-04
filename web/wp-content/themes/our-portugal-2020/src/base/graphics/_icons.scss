@@ -1,0 +1,24 @@
+.icon {
+  display: inline-block;
+
+  // Можно окрасить иконку в цвет текста (currentColor) или назначить свой цвет
+  fill: $color-primary-tint2;
+
+  // Prevent the icon from shrinking inside a flex container.
+  flex-shrink: 0;
+  overflow: hidden;
+
+  // Vertical-align: middle не всегда
+  // выравнивает по визуальному центру, надо
+  // экспериментировать с цифровыми значениями
+  vertical-align: -.6rem;
+  transition: fill $duration-sm;
+
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.icon.is-lg {
+  width: 3.6rem;
+  height: 3.6rem;
+}

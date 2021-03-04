@@ -1,0 +1,230 @@
+
+{% extends "/pages/base/base.twig" %}
+
+{% block config %}
+{{ parent() }}
+
+{% set post = {
+    lang: "ru",
+    title: "Недвижимость в Португалии",
+    description: site.description,
+    image: site.logo,
+    link: site.url ~ "/ru/real-estate",
+    body_classes: "is-real-estate"
+} %}
+{% endblock %}
+
+{% block html_head %}
+  {{ parent() }}
+
+  {# <style>
+  </style> #}
+{% endblock %}
+
+{# MAIN CONTENT ------------------------------------------------------------- #}
+{% block content %}
+
+  {# HERO #}
+  {% include "/components/hero/_hero-realty.twig" %}
+
+  {# GRID #}
+  <section class="section has-top-widgets">
+
+    {# Command Bar #}
+    <div class="command-bar" id="realty-command-bar">
+      <span class="command-bar__total"><span class="d-none d-sm-inline">Всего — </span><span data-command-bar-counter>617</span> предложений</span>
+      <div class="dropdown is-leftward-xs" data-dropdown>
+        <button class="dropdown__label" id="sort-properties" type="button" aria-controls="sort-properties-list" aria-expanded="false" data-dropdown-toggle>
+          <svg class="icon" aria-hidden="true" focusable="false">
+            <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-sort"></use>
+          </svg>
+          По цене<span class="d-none d-sm-inline"> в порядке убывания</span>
+        </button>
+        <ul class="dropdown__menu" id="sort-properties-list" role="listbox" aria-labelledby="sort-properties" data-dropdown-menu>
+          <li role="option">
+            <label class="dropdown__item">
+              <input class="form__check-input" name="sort" type="radio" value="price" data-label="По цене&lt;span class=&quot;d-none d-sm-inline&quot;&gt; в порядке убывания&lt;/span&gt;" checked>
+              По цене
+            </label>
+          </li>
+          <li role="option">
+            <label class="dropdown__item">
+              <input class="form__check-input" name="sort" type="radio" value="date" data-label="По дате&lt;span class=&quot;d-none d-sm-inline&quot;&gt; добавления&lt;/span&gt;">
+              По дате добавления
+            </label>
+          </li>
+        </ul>
+      </div>
+      <button class="collapsible-panel-toggle d-none d-mdl-inline-block" id="show-map" type="button" aria-controls="map" aria-expanded="false" data-collapsible-panel-toggle>
+        <svg class="icon" aria-hidden="true" focusable="false">
+          <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-map"></use>
+        </svg>
+        Показать карту
+      </button>
+
+      <a class="btn is-outline d-none d-mdl-inline-flex" href="/ru/real-estate/add" >+ Разместить объявление</a>
+    </div>
+
+    <div class="collapsible-panel has-map" id="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.476586881502!2d-9.14202437428345!3d38.72178793664211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19331a61e4f33b%3A0x400ebbde49036d0!2z0JvQuNGB0YHQsNCx0L7QvSwg0J_QvtGA0YLRg9Cz0LDQu9C40Y8!5e0!3m2!1sru!2s!4v1604008027017!5m2!1sru!2s" allowfullscreen aria-hidden="false" tabindex="0"></iframe>
+    </div>
+
+    <div class="grid has-12">
+      {% set properties = {
+
+          item1: {
+            image: 'realty-01',
+            title: 'Студия в Портимао, 68м²',
+            price: '120 000',
+            desc: 'Район — Pestana Dom João II. Полностью оборудованная кухня, крытый бассейн, сауна и турецкая баня.',
+            bedrooms: '<b>0</b> спален',
+            bathrooms: '<b>1</b> ванная',
+            active: true
+          },
+
+          item2: {
+            image: 'realty-02',
+            title: 'Квартира в Лиссабоне, 60м²',
+            price: '330 000',
+            desc: '4 этаж. Полезая площадь — 188м2. Год постройки — 1951.',
+            bedrooms: '<b>1</b> спальня',
+            bathrooms: '<b>1</b> ванная'
+          },
+
+          item3: {
+            image: 'realty-03',
+            title: 'Дом в Алмаде, 148м²',
+            price: '330 000',
+            desc: 'Район Botequim, Charneca da Caparica. Двор 65м², барбекю и веранда. Капитальнй ремонт сделан в июле 2020-го.',
+            bedrooms: '<b>4</b> спальни',
+            bathrooms: '<b>2</b> ванных',
+            optional: true
+          },
+
+          item4: {
+            image: 'realty-01',
+            title: 'Студия в Портимао, 68м²',
+            price: '120 000',
+            desc: 'Район — Pestana Dom João II. Полностью оборудованная кухня, крытый бассейн, сауна и турецкая баня.',
+            bedrooms: '<b>0</b> спален',
+            bathrooms: '<b>1</b> ванная',
+            active: true
+          },
+
+          item5: {
+            image: 'realty-02',
+            title: 'Квартира в Лиссабоне, 60м²',
+            price: '330 000',
+            desc: '4 этаж. Полезая площадь — 188м2. Год постройки — 1951.',
+            bedrooms: '<b>1</b> спальня',
+            bathrooms: '<b>1</b> ванная'
+          },
+
+          item6: {
+            image: 'realty-03',
+            title: 'Дом в Алмаде, 148м²',
+            price: '330 000',
+            desc: 'Район Botequim, Charneca da Caparica. Двор 65м², барбекю и веранда. Капитальнй ремонт сделан в июле 2020-го.',
+            bedrooms: '<b>4</b> спальни',
+            bathrooms: '<b>2</b> ванных',
+            optional: true
+          },
+
+          item7: {
+            image: 'realty-01',
+            title: 'Студия в Портимао, 68м²',
+            price: '120 000',
+            desc: 'Район — Pestana Dom João II. Полностью оборудованная кухня, крытый бассейн, сауна и турецкая баня.',
+            bedrooms: '<b>0</b> спален',
+            bathrooms: '<b>1</b> ванная',
+            active: true
+          },
+
+          item8: {
+            image: 'realty-02',
+            title: 'Квартира в Лиссабоне, 60м²',
+            price: '330 000',
+            desc: '4 этаж. Полезая площадь — 188м2. Год постройки — 1951.',
+            bedrooms: '<b>1</b> спальня',
+            bathrooms: '<b>1</b> ванная'
+          },
+
+          item9: {
+            image: 'realty-03',
+            title: 'Дом в Алмаде, 148м²',
+            price: '330 000',
+            desc: 'Район Botequim, Charneca da Caparica. Двор 65м², барбекю и веранда. Капитальнй ремонт сделан в июле 2020-го.',
+            bedrooms: '<b>4</b> спальни',
+            bathrooms: '<b>2</b> ванных',
+            optional: true
+          },
+
+          item10: {
+            image: 'realty-01',
+            title: 'Студия в Портимао, 68м²',
+            price: '120 000',
+            desc: 'Район — Pestana Dom João II. Полностью оборудованная кухня, крытый бассейн, сауна и турецкая баня.',
+            bedrooms: '<b>0</b> спален',
+            bathrooms: '<b>1</b> ванная',
+            active: true
+          },
+
+          item11: {
+            image: 'realty-02',
+            title: 'Квартира в Лиссабоне, 60м²',
+            price: '330 000',
+            desc: '4 этаж. Полезая площадь — 188м2. Год постройки — 1951.',
+            bedrooms: '<b>1</b> спальня',
+            bathrooms: '<b>1</b> ванная'
+          },
+
+          item12: {
+            image: 'realty-03',
+            title: 'Дом в Алмаде, 148м²',
+            price: '330 000',
+            desc: 'Район Botequim, Charneca da Caparica. Двор 65м², барбекю и веранда. Капитальнй ремонт сделан в июле 2020-го.',
+            bedrooms: '<b>4</b> спальни',
+            bathrooms: '<b>2</b> ванных',
+            optional: true
+          },
+
+      } %}
+
+      {% for item in properties %}
+        <a class="link is-box-wrapper" href="#">
+          <div class="card">
+            <figure class="card__img-alert"></figure>
+            {# <img class="card__img" src="/wp-content/themes/our-portugal-2020/img/placeholders/{{ item.image }}.jpg" alt="Португальская золотая виза"> #}
+            <div class="card__copy">
+              <header>
+                <h3 class="card__eyebrow">{{ item.title }}</h3>
+                <p class="card__title">{{ item.price }} €</p>
+              </header>
+              <p class="card__summary">{{ item.desc }}</p>
+
+              <ul class="card__footer">
+                <li class="card__footer-item">
+                  <svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-bed"></use>
+                  </svg>
+                  {{ item.bedrooms }}
+                </li>
+                <li class="card__footer-item">
+                  <svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-bath"></use>
+                  </svg>
+                  {{ item.bathrooms }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+
+    {% include "/components/pagination/_pagination.twig" %}
+
+  </section>
+
+{% endblock %}
+

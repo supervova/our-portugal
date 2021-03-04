@@ -1,0 +1,158 @@
+// MARKUP
+// .card
+//   .card__pic
+//     img[src='' alt='']
+//   .card__copy
+//     h2 Product
+//     p Content
+//     a.link.is-cta[href='']>svg+{Buy}
+
+.card {
+  background-color: $color-bg-normal;
+  border-radius: $border-radius;
+  box-shadow:
+    $box-shadow-contour,
+    $box-shadow-z2;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: $size-line;
+  overflow: hidden;
+  position: relative;
+
+  .grid & {
+    @include media-breakpoint-up(md) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.card__header {
+  max-width: 28rem - 6.4rem;
+
+  @include media-breakpoint-up(md) {
+    max-width: 33.6rem - 6.4rem;
+  }
+
+  @include media-breakpoint-up(mdl) {
+    max-width: 30.4rem - 6.4rem;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    max-width: 40rem - 6.4rem;
+  }
+}
+
+.card__img,
+.card__img-alert {
+  height: $size-line * 9;
+}
+
+.card__img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.card__img-alert {
+  position: relative;
+
+  &::before {
+    background-image: url('/wp-content/uploads/2020/09/post-carousel-02.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    content: '';
+    filter: blur(.8rem);
+    position: absolute;
+    top: -1rem;
+    bottom: -1rem;
+    left: -1rem;
+    right: -1rem;
+  }
+
+  &::after {
+    color: $color-ink-inverse-normal;
+    content: 'No photo';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+  [lang='ru'] &::after,
+  [lang='ru-RU'] &::after {
+    content: 'Нет фото';
+  }
+}
+
+.card__copy {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-top: $size-line;
+  padding-bottom: $size-1;
+  padding-left: var(--padding-x-box);
+  padding-right: var(--padding-x-box);
+}
+
+.card__eyebrow {
+  @extend %text-truncate;
+
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  letter-spacing: .1rem;
+  line-height: var(--line-height-small);
+  text-transform: uppercase;
+  padding-top: 1.2rem;
+  padding-bottom: 2.1rem;
+}
+
+.card__title {
+  font-family: $font-family-accent;
+  font-size: var(--font-size-h1);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: var(--line-height-h1);
+  margin-top: -($size-2);
+  margin-bottom: -($size-2);
+  padding-top: var(--padding-top-h1);
+  padding-bottom: var(--padding-bottom-h1);
+
+  .link.is-box-wrapper:hover & {
+    color: $color-ink-link;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-top: -($size-line + $size-1);
+  }
+}
+
+.card__summary {
+  @include multiline-truncate();
+
+  color: $color-ink-2ry;
+}
+
+.card__footer {
+  display: flex;
+  margin-top: auto !important;
+  list-style: none;
+  padding: $size-line 0 ($size-line + .2rem);
+}
+
+.card__footer-item:not(:last-child) {
+  padding: 0;
+}
+
+.card__footer-item + .card__footer-item {
+  margin-left: $size-2;
+}
+
+// -----------------------------------------------------------------------------
+// ACRYLIC MATERIAL
+// -----------------------------------------------------------------------------
+
+// https://caniuse.com/#search=backdrop-filter
+
+.card.is-acrylic {
+  backdrop-filter: blur(1rem);
+}

@@ -1,0 +1,36 @@
+<header class="header">
+  <nav class="navbar">
+    <a href="/" class="navbar__logo" rel="home" aria-label="{{ fn('pll_e', 'Главная страница веб-сайта') }}">
+      <picture>
+        <source media="(max-width: 767px)" srcset="/wp-content/themes/our-portugal-2020/img/components/logo/logo-sm.svg">
+        <source media="(min-width: 768px)" srcset="/wp-content/themes/our-portugal-2020/img/components/logo/logo.svg">
+        <img src="/wp-content/themes/our-portugal-2020/img/components/logo/logo.svg" alt="{{ fn('pll_e', 'Логотип «Нашей Португалии»') }}">
+      </picture>
+    </a>
+
+    <button class="navbar__toggler" id="navbar-toggler" aria-label="{{ fn('pll_e', 'Открыть меню') }}">
+      <svg class="icon is-hamburger" aria-hidden="true" focusable="false">
+        <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-hamburger"></use>
+      </svg>
+      <svg class="icon is-close" aria-hidden="true" focusable="false">
+        <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-close"></use>
+      </svg>
+    </button>
+
+    <div class="navbar__menu">
+      <a class="link is-phone" href="tel:{{ global.phone|replace({' ': ''}) }}" tabindex="-1">
+        <svg class="icon" aria-hidden="true" focusable="false">
+          <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-phone"></use>
+        </svg>
+        {{ global.phone }}
+      </a>
+      <ul class="navbar__section-links" id="navbar-section-links">
+        {% if global.main_menu %}
+          {% for item in global.main_menu.items %}
+            <li><a class="navbar__menu-link {{ item.classes|join(' ') }}" href="{{ item.link }}">{{ item.title }}</a></li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+</header>

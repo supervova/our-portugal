@@ -1,0 +1,53 @@
+{% set body_classes = 'is-blog' %}
+
+{% extends "base/base.twig" %}
+
+{% block content %}
+  {# HERO #}
+  <header class="hero">
+    <div class="hero__content">
+      <h1 class="hero__title">{{ title }}</h1>
+    </div>
+    <div class="ribbon" role="presentation"></div>
+  </header>
+
+  {# BODY #}
+  <div class="main has-top-widgets pb-3">
+    <div class="row justify-center">
+      <div class="col-md-10 col-mdl-8 col-xxl-6">
+        <header class="main__header has-button">
+          <button class="main__eyebrow-categories is-for-index" id="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer">
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-tag"></use>
+            </svg>
+            Рубрики
+            <svg class="icon is-chevron" aria-hidden="true" focusable="false">
+              <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-chevron-xs"></use>
+            </svg>
+          </button>
+        </header>
+
+        <ul class="list-view is-main-feed">
+          {% for post in posts %}
+            {% include 'partial/teaser.twig' %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="sidebar has-categories">
+        {% include 'partial/categories.twig' %}
+      </div>
+    </div>
+
+    {% include 'partial/pagination.twig' with {pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2})} %}
+  </div>
+
+  <!-- googleoff: all-->
+  <!-- noindex-->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    {% include 'partial/categories.twig' %}
+  </div>
+   <!-- /noindex-->
+  <!-- googleon: all-->
+  <div class="backdrop" id="backdrop"></div>
+{% endblock %}

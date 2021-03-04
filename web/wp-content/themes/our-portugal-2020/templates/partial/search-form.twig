@@ -1,0 +1,10 @@
+<form class="form is-search is-compact" action="{{ site.link }}" method="get" role="search">
+  <div class="form__item">
+    <input class="form__control" name="s" type="text" value="{{ fn('get_search_query') }}" aria-label="Поиск по блогу" placeholder="Поиск по блогу" autocapitalize="off" autocomplete="off" spellcheck="false">
+    <button class="btn is-submit" type="submit" aria-label="Искать">
+      <svg class="icon" aria-hidden="true" focusable="false">
+        <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-search"></use>
+      </svg>
+    </button>
+  </div>
+</form>

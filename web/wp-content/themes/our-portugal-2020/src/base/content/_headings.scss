@@ -1,0 +1,125 @@
+/* stylelint-disable selector-list-comma-newline-after, scss/percent-placeholder-pattern */
+
+// EYEBROW
+
+// Markup: use p.eyebrow, h1-h2, and p.subtitle within header
+// https://go.shr.lc/3782CWT
+
+// <header>
+//   <p class="eyebrow">Chapter 2</p>
+//   <h1>The Battle</h1>
+//   <p class="subtitle">Once more unto the breach</p>
+// </header>
+
+// ⚠️ role="doc-subtitle" is not supported by most screen readers
+
+.eyebrow,
+%eyebrow {
+  color: $color-ink-normal;
+  display: block;
+  font-family: $font-family-base;
+  font-size: var(--font-size-small);
+  font-weight: normal;
+  line-height: var(--line-height-small);
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  margin: 0;
+  padding-top: var(--padding-top-small);
+  padding-bottom: var(--padding-bottom-small);
+}
+
+// -----------------------------------------------------------------------------
+
+// H1 & H2
+
+h1, .h1, %h1,
+h2, .h2, %h2 {
+  // OpenType kerning
+  font-family: $font-family-accent;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+
+// H1 and hero titles
+h1, .h1, %h1 {
+  color: $color-ink-title;
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-h1);
+  line-height: var(--line-height-h1);
+  margin: 0;
+  padding-top: var(--padding-top-h1);
+  padding-bottom: var(--padding-bottom-h1);
+
+  @include media-breakpoint-up(mdl) {
+    letter-spacing: -.1rem;
+  }
+}
+
+.hero__title,
+%hero-title {
+  font-size: var(--font-size-hero-title);
+  font-weight: var(--font-weight-hero-title);
+  line-height: var(--line-height-hero-title);
+  margin: 0;
+  padding-top: var(--padding-top-hero-title);
+  padding-bottom: var(--padding-bottom-hero-title);
+}
+
+// .subtitle.is-heroic
+
+// Heading 2
+h2, .h2, %h2 {
+  color: $color-ink-title;
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-h2);
+  line-height: var(--line-height-h2);
+  margin: 0;
+  padding-top: var(--padding-top-h2);
+  padding-bottom: var(--padding-bottom-h2);
+
+  &:not(:first-child):not([class]) {
+    margin-top: var(--margin-top-subhead);
+  }
+}
+
+.h2.is-highlight {
+  color: $color-ink-highlight;
+}
+
+.h2.is-secondary,
+.h2.is-tertiary {
+  font-family: $font-family-base;
+  font-weight: normal;
+}
+
+.h2.is-tertiary {
+  color: $color-ink-2ry;
+}
+
+// -----------------------------------------------------------------------------
+
+// SUBTITLES
+
+.subtitle {
+  @extend %h2;
+}
+
+// -----------------------------------------------------------------------------
+
+// SUBHEADS
+
+h3, .h3, %h3,
+h4, h5, h6 {
+  color: $color-ink-title;
+  font-family: $font-family-base;
+  font-feature-settings: normal;
+  font-size: 100%;
+  font-weight: 500;
+  line-height: var(--line-height-base);
+  margin: 0;
+  padding-bottom: var(--padding-bottom-base);
+  padding-top: var(--padding-top-base);
+
+  &:not(:first-child):not([class]) {
+    margin-top: var(--margin-top-subhead);
+  }
+}

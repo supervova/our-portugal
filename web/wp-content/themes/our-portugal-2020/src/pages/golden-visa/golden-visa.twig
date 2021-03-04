@@ -1,0 +1,268 @@
+{% extends "/pages/base/base.twig" %}
+
+{% block config %}
+  {{ parent() }}
+
+  {% set post = {
+    lang: "ru",
+    title: "Золотая виза Португалии",
+    subtitle: "ВНЖ за инвестиции",
+    description: "Программа Golden Visa («Золотая виза») позволяет переехать в Португалию на ПМЖ и получить гражданство через 6 лет.",
+    image: site.logo,
+    link: site.url,
+    body_classes: "is-visa"
+  } %}
+{% endblock %}
+
+{% block html_head %}
+  {{ parent() }}
+
+  {# <style>
+    </style> #}
+{% endblock %}
+
+{# MAIN CONTENT ------------------------------------------------------------- #}
+{% block content %}
+
+  {# HERO #}
+  {% include "/components/hero/_hero.twig" %}
+
+  <!--
+
+
+    CUT IN CMS
+
+
+  -->
+  <div class="section is-visa-lead is-next-to-header" role="region">
+    <p>«Золотая виза»&nbsp;— это не&nbsp;виза в&nbsp;традиционном понимании. Это вид на&nbsp;жительство (ВНЖ) или постоянное место жительства (ПМЖ), полученное на&nbsp;льготных условиях через участие в&nbsp;государственной инвестиционной программе.</p>
+    <figure class="has-primary-img is-sm is-270-rotated">
+      <img src="/wp-content/themes/our-portugal-2020/img/pages/golden-visa/city.jpg" alt="Португальская золотая виза">
+    </figure>
+  </div>
+
+  {# BENEFITS #}
+  <section class="section is-visa-benefits">
+    <h2>Преимущества «золотого паспорта» Португалии</h2>
+    <p>В&nbsp;странах бывшего СССР «золотую визу» часто называют «золотым паспортом». Формально просторечное название неточно. Но&nbsp;оно прекрасно передает преимущества европейского паспорта и&nbsp;ВНЖ Португалии, который можно получить по&nbsp;программе «золотой визы» и&nbsp;который является первым шагом к&nbsp;основному документу гражданина Португалии.</p>
+    <ul class="list is-checklist mt-1">
+      <li>Безвизовый въезд и&nbsp;перемещение по&nbsp;Шенгенской зоне</li>
+      <li>Социальная и&nbsp;политическая безопасность</li>
+      <li>Возможность налогового планирования</li>
+      <li>Новые возможности для развития бизнеса</li>
+      <li>Требования по&nbsp;проживанию в&nbsp;стране&nbsp;— 7&nbsp;дней в&nbsp;течение календарного года</li>
+      <li>Все члены семьи могут получить ВНЖ в&nbsp;течение 6-8 месяцев с&nbsp;правом на&nbsp;работу</li>
+      <li>Возможность получить ПМЖ и&nbsp;гражданство через 5&nbsp;лет</li>
+    </ul>
+  </section>
+
+  {# PROCESS #}
+  <section class="section is-visa-process">
+    <h2 class="h2 is-secondary">Процесс получения золотой визы Португалии</h2>
+    <div class="row is-comfort justify-center">
+
+    {% set steps = {
+
+        item1: {
+          icon: 'briefcase',
+          title: 'Подготовительный этап',
+          copy: 'Подготовка необходимых документов и&nbsp;заявления.<br>Решение касательно варианта инвестирования'
+        },
+
+        item2: {
+          icon: 'plane',
+          title: '<span class="nowrap">1-я</span> поездка в&nbsp;Португалию',
+          copy: 'Получить номер налогоплательщика.<br>Открыть банковский счет.<br>Подписать подтверждение заказа на&nbsp;покупку'
+        },
+
+        item3: {
+          icon: 'note',
+          title: 'После одобрения покупки',
+          copy: 'Заполнить заявление.<br>Встреча в&nbsp;иммиграционном бюро для подачи заявления и&nbsp;биометрических данных'
+        },
+
+        item4: {
+          icon: 'checkmark',
+          title: 'Выдача «золотой визы»',
+          copy: 'Предварительная регистрация на&nbsp;получение разрешения.<br>Перевод средств инвестирования и&nbsp;сборов, применимых на&nbsp;данном этапе'
+        },
+
+        item5: {
+          icon: 'europe',
+          title: 'Европейский паспорт',
+          copy: 'Заявление на&nbsp;получение гражданства.<br>Подтерждение минимального пребывания в&nbsp;Португалии на&nbsp;протяжение 5&nbsp;лет.<br>Экзамен на&nbsp;знание языка'
+        }
+
+    } %}
+
+    {% for item in steps %}
+      <div class="col-sm-6 col-mdl-4">
+        <div class="feature">
+          <figure class="feature__icon">
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-{{ item.icon }}"></use>
+            </svg>
+          </figure>
+          <h3 class="feature__title">{{ item.title }}</h3>
+          <p class="feature__copy">{{ item.copy }}</p>
+        </div>
+      </div>
+    {% endfor %}
+
+
+    </div>
+  </section>
+
+  {# HOWTO #}
+  <section class="section is-visa-how-to">
+    <h2 class="text-md-center mb-md-1">Как подать заявление на&nbsp;получение португальской «золотой&nbsp;визы»</h2>
+    <div class="row align-items-center">
+      <div class="picture">
+        <figure class="has-primary-img">
+          <img src="/wp-content/themes/our-portugal-2020/img/pages/golden-visa/sunset.jpg" alt="Португальская золотая виза">
+        </figure>
+      </div>
+      <div class="col-md-6 col-xxl-5 offset-md-1">
+        <p>Хотя этот процесс не&nbsp;особо сложный, он&nbsp;все&nbsp;же предполагает сбор необходимой документации&nbsp;— как в&nbsp;Португалии, так и&nbsp;на&nbsp;родине. Вы&nbsp;самостоятельно сможете подать заявление на&nbsp;оформление «золотой визы», но&nbsp;желательно также предварительно проконсультироваться с&nbsp;экспертами в&nbsp;этой области. Сотрудники «Нашей Португалии» являются квалифицированными специалистами в&nbsp;сфере недвижимости, готовыми поделиться своим видением дела, а&nbsp;также нужными контактами, к&nbsp;примеру, адвокатских контор, банков и&nbsp;др.</p>
+        <a class="btn is-primary" href="/ru/contact-us">Связаться с&nbsp;нами</a>
+      </div>
+    </div>
+  </section>
+
+  {# DETAILS #}
+  <div class="section is-visa-details">
+    <figure class="has-ribbon">
+      <img src="/wp-content/themes/our-portugal-2020/img/pages/golden-visa/family.png" alt="Португальский золотой паспорт для всей семьи">
+    </figure>
+    <div class="tabbed-section is-expanded-lg col-sm-9 col-mdl-6 col-lg-12" data-tabbed>
+      <ul class="tabbed-section__tabs" id="tab" role="tablist">
+        {% set tabs = {
+
+            item1: {
+              id: 'requirements',
+              label: 'Условия',
+            },
+
+            item2: {
+              id: 'family',
+              label: 'Семья',
+              default: true
+            },
+
+            item3: {
+              id: 'options',
+              label: 'Варианты',
+            },
+
+        } %}
+
+        {% for item in tabs %}
+          <li class="tabbed-section__tab">
+            <a class="tabbed-section__tab-link{% if item.default %} is-active{% endif %}" id="{{ 'tab-details-' ~ item.id }}" href="{{ '#' ~ item.section }}" role="tab" aria-controls="{{ 'pane-details-' ~ item.id }}" aria-selected="{% if item.default %}true{% else %}false{% endif %}">
+              {{ item.label }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <div class="tabbed-section__content row is-loose">
+        {% set panes = {
+
+          item1: {
+            id: 'requirements',
+            title: 'Условия и&nbsp;требования',
+            content: '
+            <ul>
+              <li>Инвестиции в&nbsp;недижимость должны поступать в&nbsp;Португалию извне и&nbsp;не&nbsp;выводиться в&nbsp;течение 5&nbsp;лет.</li>
+              <li>Действительный документ легального въезда и&nbsp;пребывания в&nbsp;Португалии.</li>
+              <li>Отсутстие ограничений в&nbsp;португальской службе иммиграции и&nbsp;Шенгенской службы.</li>
+              <li>Отсутстие судимости.</li>
+              <li>Минимум 7&nbsp;дней пребывания в&nbsp;Португалии в&nbsp;течение первого года.</li>
+              <li>Минимум 14&nbsp;дней пребывания в&nbsp;Португалии для каждого из&nbsp;следующих периодов 2&nbsp;лет.</li>
+            </ul>
+            <a class="link is-cta" href="/ru/citizenship-law">
+              Закон о&nbsp;гражданстве
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-chevron-in-circle-sm"></use>
+              </svg>
+            </a>
+
+            ',
+            secondary: true
+          },
+
+          item2: {
+            id: 'family',
+            title: 'Португальская программа «золотой визы» для семьи',
+            content: '
+              <p class="lead list-caption">Программа также распространяется на&nbsp;семьи заявителей:</p>
+              <ul>
+              <li>супруг или супруга;</li>
+              <li>несовершеннолетние дети;</li>
+              <li>несовершеннолетние усыновленные дети;</li>
+              <li>совершеннолетние дети находящиеся на&nbsp;содержании родителей;</li>
+              <li>родители супруга либо супруги;</li>
+              <li>несовершеннолетние иждивенцы&nbsp;— братья или сестры, находившиеся под опекой обладателя золотой визы;</li>
+              <li>несовершеннолетние братья или сестры главного заявителя.</li>
+              </ul>
+              <p>Члены семьи располагают теми же правами, что и заявитель (вид на жительство, а также возможность получить гражданство страны).</p>
+            ',
+            default: true
+          },
+
+          item3: {
+            id: 'options',
+            title: 'Варианты инвестиций',
+            content: '
+            <p class="lead list-caption">Инвестиции в&nbsp;недвижимость</p>
+            <ul>
+              <li>500&nbsp;000&nbsp;€ в&nbsp;любой тип недвижимости</li>
+              <li>350&nbsp;000&nbsp;€ в&nbsp;недвижимость, которая подлежит реконструкции и&nbsp;была построена более 30&nbsp;лет назад</li>
+            </ul>
+
+            <p class="lead list-caption">Инвестиции в&nbsp;экономику страны</p>
+            <ul>
+              <li>от&nbsp;1&nbsp;000&nbsp;000&nbsp;€</li>
+            </ul>
+
+            <p class="lead list-caption">Создание рабочих мест</p>
+            <ul>
+              <li>от&nbsp;10&nbsp;рабочих мест на&nbsp;территории Португалии</li>
+            </ul>
+            ',
+            secondary: true
+          },
+
+        } %}
+
+        {% for item in panes %}
+        <section class="tabs__pane col-lg-4{% if item.default %} is-active{% endif %}" id="{{ 'pane-details-' ~ item.id }}" role="tabpanel" aria-labelledby="{{ 'tab-details-' ~ item.id }}">
+          <h2{% if item.secondary %} class="h2 is-secondary"{% endif %}>{{ item.title }}</h2>
+          {{ item.content }}
+        </section>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+  {# CTA #}
+  <footer class="cta">
+    <h2 class="cta__title">Португальская «золотая виза» сама себя не&nbsp;получит</h2>
+    <p class="h2 is-tertiary">Начинать нужно самому</p>
+    <div class="buttons">
+      <a class="btn is-primary" href="/ru/contact-us">Связаться с&nbsp;нами</a>
+      <a class="btn is-outline" href="/ru/calculate">Рассчитать стоимость</a>
+    </div>
+  </footer>
+
+  <!--
+
+
+    / CUT IN CMS
+
+
+  -->
+{% endblock %}
+
+

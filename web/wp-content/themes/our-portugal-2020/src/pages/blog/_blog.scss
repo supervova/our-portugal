@@ -1,0 +1,7 @@
+.is-post .main__body h2:not(.main__comments-title) {
+  @extend %h3;
+}
+
+.list-view.is-main-feed {
+  padding-top: .8rem;
+}

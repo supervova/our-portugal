@@ -1,0 +1,137 @@
+
+{% extends "/pages/base/base.twig" %}
+
+{% block config %}
+{{ parent() }}
+
+{% set post = {
+  lang: "ru",
+  title: "Связаться с нами",
+  description: site.description,
+  image: site.logo,
+  link: site.url ~ "/ru/real-estate/add",
+  body_classes: "is-contacts"
+} %}
+{% endblock %}
+
+{% block html_head %}
+  {{ parent() }}
+
+  {# <style>
+  </style> #}
+{% endblock %}
+
+
+{# MAIN CONTENT ------------------------------------------------------------- #}
+{% block content %}
+
+  {# HEADER #}
+  <header class="hero is-empty">
+    <div class="hero__content">
+      <h1 class="hero__title">Обратная связь</h1>
+    </div>
+    <div class="ribbon" role="presentation"></div>
+  </header>
+
+  <article class="main">
+    <div class="row justify-center">
+      <div class="col has-form col-md-8 col-mdl-7 col-xxl-6">
+        <h2>Нужна консультация? Напишите&nbsp;нам</h2>
+        <p class="note">Вы&nbsp;уже решили перехать Португалию? Пока только обдумываете возможности? Расскажите вкратце о&nbsp;своих планах, и&nbsp;мы&nbsp;свяжемся с&nbsp;вами в&nbsp;течениие 24&nbsp;часов&nbsp;&mdash; предложим варианты.</p>
+        <form class="is-should-be-validated pb-3" id="form-needs-validation" action="/" method="post" novalidate>
+          {% import "/base/form/_form.twig" as form %}
+
+          <div class="form__item">
+            {# label, name, icon, values, selected, attributes, error, required=false #}
+            {{ form.input(
+              'Ваше имя *',
+              'name',
+              'person',
+              {'pattern': '[\p{L} -]+', 'minlength': 3, 'maxlength': 128},
+              'Введите имя и фамилию. Желательно кириллицей',
+              true
+            ) }}
+          </div>
+
+          <div class="form__item">
+            {# label, name, icon, values, selected, attributes, error, required=false #}
+            {{ form.input(
+              'Ваш email *',
+              'email',
+              'email',
+              {'minlength': 3, 'maxlength': 128, 'inputmode': 'email'},
+              'Введите адрес электронной почты в стандартном формате',
+              true
+            ) }}
+          </div>
+
+          <div class="form__item">
+            {# label, name, icon, values, selected, attributes, error, required=false #}
+            {{ form.input(
+              'Ваш телефон',
+              'phone',
+              'phone',
+              {'pattern': '[\d\s-+()]+', 'minlength': 10, 'maxlength': 22, 'inputmode': 'tel'},
+              'В номере телефона допускаются только цифры, дефисы, пробелы, круглые скобки и плюс. Минимум: 10 символов.',
+              false,
+              'tel'
+            ) }}
+          </div>
+
+          <div class="form__item">
+            {# label, name, icon, attributes, value, error, required=false, rows=8, cols=40 #}
+            {{ form.textarea(
+              'Ваше сообщение *',
+              'message',
+              'message',
+              null,
+              'Ваше сообщение *',
+              'Напишите, какой у вас к нам вопрос',
+              true
+            ) }}
+          </div>
+
+          <button class="btn is-primary" id="form-submit" type="submit">
+            Оставить заявку
+          </button>
+        </form>
+      </div>
+      <div class="col is-contacts-sidebar">
+        <h2 class="h2 is-secondary mb-md-n4s">Или позвоните</h2>
+        <p class="h2 is-secondary is-highlight">{{ site.phone }}</p>
+        <p class="note">или напишите в&nbsp;мессенджер</p>
+        <div class="buttons justify-center">
+          <a class="btn is-messenger-cta" href="https://t.me/{{ site.telegtam }}">
+            <span>
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-telegram"></use>
+              </svg>
+            </span>
+            Telegram
+          </a>
+          <a class="btn is-messenger-cta" href="https://api.whatsapp.com/send?phone={{ site.phone|replace({' ': '', '+': ''}) }}&text=%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D1%8E%D1%81%D1%8C%20%D0%BF%D0%BE%D1%80%D1%82%D1%83%D0%B3%D0%B0%D0%BB%D1%8C%D1%81%D0%BA%D0%BE%D0%B9%20%C2%AB%D0%B7%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9%20%D0%B2%D0%B8%D0%B7%D0%BE%D0%B9%C2%BB">
+            <span>
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-whatsapp"></use>
+              </svg>
+            </span>
+            WhatsApp
+          </a>
+          <a class="btn is-messenger-cta" href="https://m.me/{{ site.facebook }}">
+            <span>
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-fb-messenger"></use>
+              </svg>
+            </span>
+            Facebook
+          </a>
+        </div>
+        <figure class="has-primary-img is-sm is-270-rotated d-none d-mdl-flex">
+          <img src="/wp-content/themes/our-portugal-2020/img/pages/forms/tram.jpg" alt="Португальская золотая виза">
+        </figure>
+      </div>
+    </div>
+  </article>
+
+{% endblock %}
+

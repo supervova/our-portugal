@@ -1,0 +1,35 @@
+{# {% include 'teaser-post' with {'headline': 'h2'} %} #}
+
+{% set headline = 'h3' %}
+
+<li class="list-item">
+  {% block content %}
+    <a class="list-item__block-link" href="{{ post.link }}">
+      {% if post.thumbnail.src %}
+        <figure class="list-item__figure">
+          <img src="{{ post.thumbnail.src|resize(120, 160) }}" alt="{{ post.title }}">
+        </figure>
+      {% endif %}
+
+      <div class="list-item__body">
+        <header class="list-item__header">
+          {% if post.terms %}
+            <span class="list-item__eyebrow">
+              {% if post.terms[0].name != 'Русский' %}
+                {{ post.terms[0].name }}
+              {% elseif post.terms[1].name %}
+                {{ post.terms[1].name }}
+              {% endif %}
+            </span>
+          {% endif %}
+          <{{ headline }} class="list-item__title"><span>{{ post.title }}</span></{{ headline }}>
+        </header>
+        <p>{{ post.preview.length(20).read_more(false) }}</p>
+        {# <p>{{ post.preview.length(20) }}</p> #}
+        {# m is numeric month with leading zero #}
+        <time datetime="{{ post.post_date|date('c') }}">{{ post.post_date|date('d M Y') }}</time>
+      </div>
+    </a>
+  {% endblock %}
+</li>
+

@@ -1,0 +1,28 @@
+<header class="hero">
+  <div class="hero__content">
+
+    {% if fn('is_singular', 'real-estate' ) %}
+      <p class="hero__title">{{ fn('pll_e', 'Недвижимость в Португалии') }}</p>
+    {% else %}
+      <h1 class="hero__title">{{ fn('pll_e', 'Недвижимость в Португалии') }}</h1>
+    {% endif %}
+
+    <div class="row justify-center">
+      <div class="col-lg-10 col-xl-8">
+        <form class="form is-search" id="form-search" action="{{site.link}}" method="get" role="search">
+          <div class="form__item">
+            <input class="form__control" id="s" name="s" type="text" value="{{ fn( 'get_search_query' ) }}" aria-label="Поиск недвижимости на сайте «Наша Португалия»" placeholder="Поиск в каталоге" autocapitalize="off" autocomplete="off" spellcheck="false">
+            <button class="btn is-submit" type="submit" aria-label="Искать">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-search"></use>
+              </svg>
+            </button>
+          </div>
+          <input type="hidden" name="post_type" value="real-estate">
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <div class="ribbon" role="presentation"></div>
+</header>

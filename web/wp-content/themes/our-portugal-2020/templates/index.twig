@@ -1,0 +1,36 @@
+{% extends "base/base.twig" %}
+
+{% block content %}
+  {# HERO #}
+  <header class="hero">
+    <div class="hero__content">
+      <h1 class="hero__title">{{ title }}</h1>
+    </div>
+    <div class="ribbon" role="presentation"></div>
+  </header>
+
+  {# BODY #}
+  <div class="main">
+    <div class="main__inner">
+      <div class="main__body">
+        {% if posts[0] %}
+          <ul class="list-view">
+            {% for post in posts %}
+              {% include 'partial/teaser.twig' %}
+            {% endfor %}
+          </ul>
+        {% else %}
+          <figure class="border is-extended">
+            <span class="border__addon is-nothing">
+              🤷🏼
+            </span>
+            <img src="{{ site.theme.link }}/img/pages/404.jpg" alt="{{ fn('pll__', 'Ничего не найдено') }}">
+          </figure>
+          <p class="text-center">{{ fn('pll__', 'Ничего не найдено. Возможно, вы найдете то, что ищите, если воспользуетесь основной навигацией.') }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {% include 'partial/pagination.twig' with {pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2})} %}
+{% endblock %}

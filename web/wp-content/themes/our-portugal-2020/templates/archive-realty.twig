@@ -1,0 +1,68 @@
+{% set body_classes = 'is-real-estate' %}
+
+{% extends "base/base.twig" %}
+
+{% block content %}
+  {# HERO #}
+  {% include 'partial/hero-realty.twig' %}
+
+  {# GRID #}
+  <section class="section has-top-widgets">
+
+    {# Command Bar #}
+    <div class="command-bar" id="realty-command-bar">
+      <span class="command-bar__total"><span class="d-none d-sm-inline">Всего — </span><span data-command-bar-counter>{{ posts_count }}</span> предложений</span>
+      {# <div class="dropdown is-leftward-xs" data-dropdown>
+        <button class="dropdown__label" id="sort-properties" type="button" aria-controls="sort-properties-list" aria-expanded="false" data-dropdown-toggle>
+          <svg class="icon" aria-hidden="true" focusable="false">
+            <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-sort"></use>
+          </svg>
+          По цене<span class="d-none d-sm-inline"> в порядке убывания</span>
+        </button>
+        <ul class="dropdown__menu" id="sort-properties-list" role="listbox" aria-labelledby="sort-properties" data-dropdown-menu>
+          <li role="option">
+            <label class="dropdown__item">
+              <input class="form__check-input" name="sort" type="radio" value="price" data-label="По цене&lt;span class=&quot;d-none d-sm-inline&quot;&gt; в порядке убывания&lt;/span&gt;" checked>
+              По цене
+            </label>
+          </li>
+          <li role="option">
+            <label class="dropdown__item">
+              <input class="form__check-input" name="sort" type="radio" value="date" data-label="По дате&lt;span class=&quot;d-none d-sm-inline&quot;&gt; добавления&lt;/span&gt;">
+              По дате добавления
+            </label>
+          </li>
+        </ul>
+      </div> #}
+      {# <button class="collapsible-panel-toggle d-none d-mdl-inline-block" id="show-map" type="button" aria-controls="map" aria-expanded="false" data-collapsible-panel-toggle>
+        <svg class="icon" aria-hidden="true" focusable="false">
+          <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-map"></use>
+        </svg>
+        Показать карту
+      </button> #}
+
+      <a class="btn is-outline d-none d-mdl-inline-flex" href="{{ site.url }}/wp-admin/post-new.php?post_type=real-estate" >+ Разместить объявление</a>
+    </div>
+
+    <div class="collapsible-panel has-map" id="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.476586881502!2d-9.14202437428345!3d38.72178793664211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19331a61e4f33b%3A0x400ebbde49036d0!2z0JvQuNGB0YHQsNCx0L7QvSwg0J_QvtGA0YLRg9Cz0LDQu9C40Y8!5e0!3m2!1sru!2s!4v1604008027017!5m2!1sru!2s" allowfullscreen aria-hidden="false" tabindex="0"></iframe>
+    </div>
+
+    {% if posts[0] %}
+      <div class="grid has-12">
+        {% for post in posts %}
+          {% include 'partial/teaser-real-estate.twig' %}
+        {% endfor %}
+      </div>
+      {% include 'partial/pagination.twig' with {pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2})} %}
+    {% else %}
+      <figure class="border m-auto">
+        <span class="border__addon is-nothing">
+          🤷🏼
+        </span>
+        <img src="{{ site.theme.link }}/img/pages/404.jpg" alt="{{ fn('pll__', 'Ничего не найдено') }}">
+      </figure>
+      <p class="text-center">{{ fn('pll__', 'Ничего не найдено. Возможно, вы найдете то, что ищите, если воспользуетесь основной навигацией.') }}</p>
+    {% endif %}
+  </section>
+{% endblock %}

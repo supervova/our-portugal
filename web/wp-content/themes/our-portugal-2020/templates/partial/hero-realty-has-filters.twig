@@ -1,0 +1,193 @@
+<header class="hero">
+  <div class="hero__content">
+    <h1 class="hero__title">{{ fn('pll_e', 'Недвижимость в Португалии') }}</h1>
+
+    <div class="row justify-center">
+      <div class="col-lg-10 col-xl-8">
+        <form class="form is-search" id="form-search" action="/search" method="get">
+          <div class="form__item">
+            <input class="form__control" type="text" aria-label="Поиск недвижимости на сайте «Наша Португалия»" placeholder="Введите город" autocapitalize="off" autocomplete="off" spellcheck="false">
+            <button class="btn is-submit" type="submit" aria-label="Искать">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-search"></use>
+              </svg>
+            </button>
+          </div>
+          <input type="hidden" value>
+          {# <button class="btn is-reset" type="reset" disabled aria-label="Очистить"></button>
+          <button class="btn is-close" aria-label="Cancel Search"></button> #}
+          <div class="form__filter-bar row">
+            {% set
+              filters = {
+
+                demand: {
+                  label: 'Купить',
+                  id: 'search-filter-demand',
+                  name: 'demand',
+                  type: 'radio',
+                  options: {
+
+                    option1: {
+                      label: 'Купить',
+                      value: 'buy',
+                      checked: true
+                    },
+
+                    option2: {
+                      label: 'Снять',
+                      value: 'rent',
+                    }
+                  },
+                },
+
+                type: {
+                  label: 'Тип',
+                  id: 'search-filter-type',
+                  type: 'checkbox',
+                  options: {
+
+                    option1: {
+                      label: 'Квартира',
+                      value: 'apartment',
+                      checked: true
+                    },
+
+                    option2: {
+                      label: 'Таунхаус',
+                      value: 'townhouse',
+                      checked: true
+                    },
+
+                    option3: {
+                      label: 'Дом',
+                      value: 'townhouse',
+                      checked: true
+                    }
+                  },
+                  centerXs: true,
+                },
+
+                price: {
+                  label: 'Цена',
+                  id: 'search-filter-price',
+                  name: 'price',
+                  type: 'radio',
+                  options: {
+
+                    option1: {
+                      label: 'до 200 тыс. €',
+                      value: '200',
+                    },
+
+                    option2: {
+                      label: 'до 300 тыс. €',
+                      value: '300',
+                    },
+
+                    option3: {
+                      label: 'до 400 тыс. €',
+                      value: '400',
+                    },
+
+                    option4: {
+                      label: 'до 500 тыс. €',
+                      value: '500',
+                    },
+
+                    option5: {
+                      label: 'любая',
+                      value: 'any',
+                      checked: true
+                    },
+                  },
+                  leftXs: true,
+                },
+
+                rooms: {
+                  label: 'Комнат',
+                  id: 'search-filter-rooms',
+                  type: 'checkbox',
+                  options: {
+
+                    option1: {
+                      label: '1',
+                      value: '1',
+                      checked: true
+                    },
+
+                    option2: {
+                      label: '2',
+                      value: '2',
+                      checked: true
+                    },
+
+                    option3: {
+                      label: '3',
+                      value: '3',
+                      checked: true
+                    },
+
+                    option4: {
+                      label: '4',
+                      value: '4'
+                    },
+
+                    option5: {
+                      label: '5',
+                      value: '5'
+                    },
+
+                    option6: {
+                      label: '6+',
+                      value: '6+'
+                    }
+                  },
+                  leftXsSm: true,
+                  optional: true
+                },
+              }
+            %}
+
+            {% for item in filters %}
+              <div
+                class="
+                  form__filter dropdown
+                  {% if item.optional %} d-none d-sm-block{% endif %}
+                  {% if item.leftXs %} is-leftward-xs{% endif %}
+                  {% if item.leftXsSm %} is-leftward-xs-sm{% endif %}
+                  {% if item.centerXs %} is-centered-xs{% endif %}
+                "
+                data-dropdown
+              >
+                <button class="dropdown__label" id="{{ item.id }}" type="button" aria-controls="{{ item.id ~ '-list' }}" aria-expanded="false" data-dropdown-toggle>
+                  {{ item.label }}
+                  {# <span data-dropdown-label-base>{{ item.label }}</span> #}
+                  {# <span cdata-dropdown-selected>{{ item.default }}</span> #}
+                </button>
+                <ul class="dropdown__menu" id="{{ item.id ~ '-list' }}" role="listbox" aria-labelledby="{{ item.id }}" data-dropdown-menu>
+                  {% for option in item.options %}
+                    <li role="option">
+                      <label class="dropdown__item">
+                        <input
+                          class="form__check-input"
+                          {% if item.name %}name="{{ item.name }}"{% endif %}
+                          type="{{ item.type }}"
+                          value="{{ option.value }}"
+                          {% if item.name == 'demand' %}data-label="{{ option.label }}"{% endif %}
+                          {% if option.checked %} checked{% endif %}
+                        >
+                        {{ option.label }}
+                      </label>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endfor %}
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <div class="ribbon" role="presentation"></div>
+</header>

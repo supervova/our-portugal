@@ -1,0 +1,29 @@
+{% set body_classes = "is-404" %}
+
+{% extends "base/base.twig" %}
+
+{% block content %}
+  {# HERO #}
+  <header class="hero">
+    <div class="hero__content">
+      <h1 class="hero__title">{{ fn('pll_e', 'Страница не найдена') }}</h1>
+    </div>
+    <div class="ribbon" role="presentation"></div>
+  </header>
+
+  {# BODY #}
+  <div class="main">
+    <div class="main__inner">
+      <div class="main__body">
+        <figure class="border is-extended">
+          <span class="border__addon is-nothing">
+            🤷🏼
+          </span>
+          <img src="{{ site.theme.link }}/img/pages/404.jpg" alt="{{ fn('pll__', 'Вы ошиблись адресом') }}">
+        </figure>
+        <p class="text-center">{{ fn('pll__', 'Извините, такой страницы у нас нет. Посмотрите в главном меню — может, там найдёте нужный материал.') }}</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

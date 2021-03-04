@@ -1,0 +1,167 @@
+/* stylelint-disable property-no-unknown */
+
+// -----------------------------------------------------------------------------
+// SECTION OPTIONS
+// -----------------------------------------------------------------------------
+// #region
+
+// content-visibility to boost rendering performance
+// https://web.dev/content-visibility/
+
+.section {
+  content-visibility: auto;
+  padding-top: ($size-line * 2);
+  padding-left: var(--padding-x-section);
+  padding-right: var(--padding-x-section);
+}
+
+.section:not(:last-child),
+.section:not(.is-last) {
+  padding-bottom: ($size-line * 2);
+}
+
+
+.section.has-2-cols {
+  display: flex;
+  justify-content: space-between;
+}
+
+.section.has-2-cols > * {
+  width: calc(50% - 1.2rem);
+}
+
+// FULL BLEED
+
+// Markup
+// .section.is-full-bleed
+//   .container
+//     Content...
+
+// figure.section.is-full-bleed
+//   img(src='https://source.unsplash.com/e_DmszdpETY/1200x600',
+//     srcset='https://source.unsplash.com/e_DmszdpETY/2400x1200 2400w,\
+//     https://source.unsplash.com/e_DmszdpETY/1200x600 1200w,\
+//     https://source.unsplash.com/e_DmszdpETY/600x300 600w',\
+//     sizes='100vw', alt='low-angle photography of trees')
+//   figcaption Photo by Jonathan Borba on Unsplash
+
+.section.is-full-bleed {
+  margin-left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+}
+
+// FULL BLEED ALT
+
+// .main {
+//   display: grid;
+//   grid-template-columns:
+//     1fr
+//     min(65ch, 100%)
+//     1fr;
+// }
+
+// .main > * {
+//   grid-column: 2;
+// }
+
+// .section.is-full-bleed {
+//   grid-column: 1 / 4;
+//   margin-left: auto;
+//   margin-right: auto;
+//   width: 100%;
+//   // constrain the width for very-large monitors
+//   max-width: 1440px;
+// }
+
+// SECONDARY BACKGROUND
+.section.is-alt {
+  background-color: $color-bg-accent;
+}
+
+// HIGHLIGHT
+
+.section.is-highlight {
+  background-color: $color-primary;
+
+  h2,
+  p {
+    color: $color-ink-accent-normal;
+  }
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// NEXT TO HERO
+// -----------------------------------------------------------------------------
+// #region
+
+.hero + .section {
+  margin-top: -($size-line * 5);
+}
+
+.hero + .section.has-top-widgets,
+.hero + .main.has-top-widgets {
+  position: relative;
+  z-index: 1;
+}
+
+.section.is-next-to-header {
+  clip-path:
+    polygon(
+      46% 0,      /* middle top */
+      46% 12%,    /* middle bottom */
+      100% 6%,     /* top right */
+      100% 100%,  /* bottom right */
+      0 100%,     /* bottom left */
+      0 8%        /* top left */
+    );
+  content-visibility: visible;
+  margin-top: -($size-line * 9);
+  padding-top: ($size-line * 5);
+
+  @include media-breakpoint-up(md) {
+    clip-path:
+      polygon(
+        46% 0,      /* middle top */
+        46% 12%,    /* middle bottom */
+        100% 0,     /* top right */
+        100% 100%,  /* bottom right */
+        0 100%,     /* bottom left */
+        0 8%        /* top left */
+      );
+  }
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// ELEMENTS
+// -----------------------------------------------------------------------------
+// #region
+
+.section__title a {
+  color: inherit;
+
+  &::after {
+    background: rgba(0, 0, 0, 0) url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill-opacity%3D%22.38%22%20fill-rule%3D%22evenodd%22%20d%3D%22M9.11289944%2C3.20970461%20L9.20710678%2C3.29289322%20L17.2071068%2C11.2928932%20C17.5675907%2C11.6533772%2017.5953203%2C12.2206082%2017.2902954%2C12.6128994%20L17.2071068%2C12.7071068%20L9.20710678%2C20.7071068%20L9.11289944%2C20.7902954%20C8.72060824%2C21.0953203%208.15337718%2C21.0675907%207.79289322%2C20.7071068%20C7.43240926%2C20.3466228%207.40467972%2C19.7793918%207.70970461%2C19.3871006%20L7.79289322%2C19.2928932%20L15.085%2C12%20L7.79289322%2C4.70710678%20C7.40236893%2C4.31658249%207.40236893%2C3.68341751%207.79289322%2C3.29289322%20C8.15337718%2C2.93240926%208.72060824%2C2.90467972%209.11289944%2C3.20970461%20Z%22%2F%3E%3C%2Fsvg%3E') no-repeat;
+    display: inline-block;
+    content: '';
+    margin-left: $size-1;
+    opacity: 0;
+    transition: opacity $duration;
+    transform: translateY(-.1rem);
+    vertical-align: middle;
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  &:hover {
+    color: $color-ink-link;
+    text-decoration: none;
+
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+// #endregion

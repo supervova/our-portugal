@@ -1,0 +1,85 @@
+// -----------------------------------------------------------------------------
+// LANGUAGE SWITCHER
+// -----------------------------------------------------------------------------
+// #region
+
+.language-switcher {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: .2rem 0 0;
+
+  .hero__content & {
+    @include media-breakpoint-up(md) {
+      display: none;
+    }
+  }
+
+  .navbar__menu & {
+    display: none;
+
+    @include media-breakpoint-up(md) {
+      display: flex;
+      transform: translateY(-.6rem);
+    }
+
+    @include media-breakpoint-up(mdl) {
+      transform: translateY(-.3rem);
+    }
+  }
+}
+
+.language-switcher li + li {
+  margin-left: $size-1;
+}
+
+.language-switcher__link {
+  border-radius: $border-radius-lg;
+  color: $color-primary-lightest;
+  display: block;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  line-height: 1;
+  text-shadow: 0 1px 0 $color-ink-border;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 1.2rem $size-2 1.2rem 1.2rem;
+  position: relative;
+  transition:
+    background $duration-sm,
+    color $duration-sm;
+
+  &:hover,
+  &:focus,
+  &.is-active {
+    background-color: $color-primary-shade1;
+    color: $color-ink-inverse-normal;
+    filter: none;
+    text-decoration: none;
+  }
+
+  &.is-active {
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+// Light circle below icon
+.language-switcher__link::before {
+  background-color: $color-primary-lightest;
+  border-radius: 50%;
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: .4rem;
+  transform: translateY(-50%);
+  width: $size-5;
+  height: $size-5;
+
+}
+
+.language-switcher__link .icon {
+  margin-right: $size-2;
+  position: relative;
+  z-index: 1;
+}

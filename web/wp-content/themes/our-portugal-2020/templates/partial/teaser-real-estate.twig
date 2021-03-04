@@ -1,0 +1,64 @@
+<a class="link is-box-wrapper" href="{{ post.link }}">
+  <div class="card">
+    {% if post.thumbnail.src %}
+      <img class="card__img" src="{{ post.thumbnail.src|resize(400, 216) }}" alt="{{ post.title }}">
+    {% else %}
+      <figure class="card__img-alert"></figure>
+    {% endif %}
+
+    <div class="card__copy">
+      <header class="card__header">
+        <h3 class="card__eyebrow" title="{{ post.title }}">
+        {# {{ post.title }} #}
+          {% if post.meta('property_type') == 'appartment' %}
+            Квартира
+          {% elseif post.meta('property_type') == 'house' %}
+            Дом
+          {% elseif post.meta('property_type') == 'townhose' %}
+            Таунхаус
+          {% elseif post.meta('property_type') == 'duplex' %}
+            Дуплекс
+          {% endif %}
+          {{ post.meta('property_area') }} м<sup>2</sup>&nbsp;в
+          {% if post.meta('property_locality') %}
+            {{ post.meta('property_locality', { format_value: false }) }}
+          {% else %}
+            {{ post.meta('property_district', { format_value: false }) }}
+          {% endif %}
+        </h3>
+        <p class="card__title">{{ post.property_price|number_format(0, ',', ' ') }}&nbsp;€</p>
+      </header>
+
+      <p class="card__summary">{{ post.preview.length(20).read_more(false) }}</p>
+
+      <ul class="card__footer">
+        <li class="card__footer-item">
+          <svg class="icon" aria-hidden="true" focusable="false">
+            <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-bed"></use>
+          </svg>
+            <b>{{ post.property_bedrooms }}</b>
+            {% if post.property_bedrooms == 1 %}
+              спальня
+            {% elseif post.property_bedrooms > 1 and post.property_bedrooms < 5 %}
+              спальни
+            {% else %}
+              спален
+            {% endif %}
+        </li>
+        <li class="card__footer-item">
+          <svg class="icon" aria-hidden="true" focusable="false">
+            <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-bath"></use>
+          </svg>
+          <b>{{ post.property_bathrooms }}</b>
+          {% if post.property_bathrooms == 1 %}
+            санузел
+          {% elseif post.property_bathrooms > 1 and post.property_bathrooms < 5 %}
+            санузла
+          {% else %}
+            санузлов
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,47 @@
+{# Alt: https://stackoverflow.com/questions/51708313/displaying-sub-categories-using-timber #}
+
+{% include 'partial/search-form.twig' %}
+
+<nav class="categories">
+  {% if global.term.portugal %}
+    <h3 class="categories__heading">
+      <svg class="icon" aria-hidden="true" focusable="false">
+        <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-portugal"></use>
+      </svg>
+      Португалия
+    </h3>
+    <ul>
+      {% for topic in global.term.portugal.children %}
+        <li><a class="categories__link" href="{{ topic.link }}">{{ topic.name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if global.term.vacation %}
+    <h3 class="categories__heading">
+      <svg class="icon" aria-hidden="true" focusable="false">
+        <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-beach"></use>
+      </svg>
+      Отдых
+    </h3>
+    <ul>
+      {% for topic in global.term.vacation.children %}
+        <li><a class="categories__link" href="{{ topic.link }}">{{ topic.name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if global.term.life %}
+    <h3 class="categories__heading">
+      <svg class="icon" aria-hidden="true" focusable="false">
+        <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-home"></use>
+      </svg>
+      Жизнь
+    </h3>
+    <ul>
+      {% for topic in global.term.life.children %}
+        <li><a class="categories__link" href="{{ topic.link }}">{{ topic.name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</nav>

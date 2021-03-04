@@ -1,0 +1,24 @@
+.cta {
+  text-align: center;
+  padding-top: $size-line * 2;
+  padding-bottom: ($size-line * 2) + $size-2;
+  padding-left: var(--padding-x-section);
+  padding-right: var(--padding-x-section);
+}
+
+.cta__title {
+  margin-bottom: -$size-2;
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: -$size-4;
+  }
+}
+
+.cta .buttons {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cta .btn {
+  margin-bottom: $size-1;
+}

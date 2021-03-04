@@ -1,0 +1,54 @@
+//- data-атрибуты — для аналитики и скрипта: data-analytics-region,
+//- data-anim-scroll-group, data-state и т.д.
+//- вместо атрибутов role использовать семантические теги: nav, footer etc
+//- исключения:
+//-   - role='navigation' если используется ul, не вложенный в nav
+//-   - role='region' для раздела без заголовка, размеченного div'ом
+//-   - role='button' для a-элементов, выполняющих функции кнопок
+//-   - role='combobox' + aria-autocomplete='list' + aria-expanded='false' -
+//-     для комбобоксов
+//- самые популярные aria-атрибуты:
+//-   aria-hidden='true' — для иконок и др. декоративных графических элементов
+//-   aria-label и aria-labelledby — для «обёрток» виджетов
+
+//- \((.*?)\) ➜ [$1] - заменить круглые скобки pug'а на квадратные emmet'а
+
+//- Запрет индексирования
+// noindex
+//- Официальная техника Яндекса
+// /noindex
+//- В ссылку можно добавить атрибут rel="nofollow".
+//- a(href='url' rel='nofollow') label
+
+// googleoff: all
+//- Такой синтаксис запрета индекации Googl'ом использует Apple. Но не знаю,
+//- работают ли техника, или это рудимент из прошлого
+// googleon: all
+
+doctype html
+html(lang='{{ page.lang }}' prefix='og: http://ogp.me/ns#')
+head
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  title {{ site.title }}
+  meta(name='description' content='{{ site.description }}')
+
+body
+  .wrapper
+    header.header
+      nav.navbar
+    main
+      header.hero
+        .hero__content
+        .ribbon
+      article.main
+        .row.justify-center
+          header.main__header
+            h1.main__eyebrow
+            p.main__title(itemprop='price')
+            ul.main__summary
+          .main__gallery.carousel.slide
+    footer
+
+
+

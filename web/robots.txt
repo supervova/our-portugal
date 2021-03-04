@@ -1,0 +1,28 @@
+# www.robotstxt.org/
+
+User-agent: *
+
+# WordPress specific rules
+
+Disallow: *&s=              # поиск
+Disallow: */*/feed/*/
+Disallow: */*/trackback
+Disallow: */embed           # все встраивания
+Disallow: */feed            # все фиды
+Disallow: */page/           # все виды пагинации
+Disallow: */trackback
+Disallow: *?attachment_id=  # страница вложения. Вообще-то на ней редирект...
+Disallow: /*?*
+Disallow: /?                # все параметры запроса на главной
+Disallow: /author/          # архив автора
+Disallow: /cgi-bin          # классика...
+Disallow: /search           # поиск
+Disallow: /tag
+Disallow: /trackback
+Disallow: /wp-              # все файлы WP: /wp-admin/, /wp-includes etc
+
+Allow: */uploads            # открываем uploads
+Allow: /*/*.js              # внутри /wp- (/*/ - для приоритета)
+Allow: /*/*.css             # внутри /wp- (/*/ - для приоритета)
+
+Host: ourportugal.ru

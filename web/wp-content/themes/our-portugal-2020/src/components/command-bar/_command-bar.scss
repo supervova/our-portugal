@@ -1,0 +1,22 @@
+.command-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -.4rem;
+  padding-top: 0;
+  padding-bottom: $size-line;
+}
+
+.command-bar__total {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.command-bar .dropdown__label,
+.command-bar .collapsible-panel-toggle {
+  color: $color-ink-2ry;
+}
+
+.command-bar .icon {
+  fill: $color-ink-icon;
+}

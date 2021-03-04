@@ -1,0 +1,243 @@
+// stylelint-disable selector-no-qualifying-type
+
+$table-background:                      $color-bg-normal;
+$table-accent-bg:                       $color-bg-accent;
+$table-hover-bg:                        hsla(0, 0%, 0%, .03);
+
+$table-fixed-column-width:              14.4rem;
+$table-fixed-column-width-md:           24rem;
+
+// MIXINS
+// responsive-table-wrapper();
+// table-has-fixed-col()
+// table-stack()
+// table-bordered()
+// table-borderless()
+
+@import 'mixins';
+
+// -----------------------------------------------------------------------------
+// BASE
+// -----------------------------------------------------------------------------
+
+// #region
+
+.table {
+  background-color: $table-background;
+  font-feature-settings: 'lnum' 1, 'tnum' 1;
+  font-variant-numeric: lining-nums tabular-nums;
+  margin-top: var(--margin-top-table);
+  margin-bottom: var(--margin-top-bottom);
+
+  // The table’s layout ignores the content and instead uses the table’s width,
+  // any specified width of columns, and border and cell spacing values.
+  // The column values used are based on widths defined on columns or cells
+  // for the first row of the table. Turn off it by adding ,is-auto class
+  table-layout: fixed;
+  width: 100%;
+  max-width: 100%;
+
+  // Simple CSS for scrollable table on mobile. Turn off it by adding ,is-auto
+  // min-width: 768px;
+}
+
+caption {
+  // caption-side: bottom;
+  color: inherit;
+  font-weight: bolder;
+  text-align: left;
+  padding-top: 0;
+  padding-bottom: $size-1;
+  padding-left: calc(var(--padding-x-cell) / 2);
+}
+
+th,
+td {
+  border-top: $border-width solid $color-ink-border;
+  text-align: left;
+  padding-top: calc(var(--padding-y-cell) - #{$border-width});
+  padding-right: var(--padding-x-cell);
+  padding-bottom: var(--padding-y-cell);
+  padding-left: var(--padding-x-cell);
+  vertical-align: top;
+
+  &:first-child {
+    padding-left: calc(var(--padding-x-cell) / 2);
+  }
+
+  &:last-child {
+    padding-right: calc(var(--padding-x-cell) / 2);
+  }
+
+  // Remove margin from the last-child
+  > :last-child { margin-bottom: 0; }
+}
+
+thead th {
+  border-top-color: $transparent;
+  color: $color-ink-2ry;
+  font-weight: normal;
+  vertical-align: bottom;
+
+  &[colspan] {
+    text-align: center;
+  }
+}
+
+.table__th-vertical {
+  border-right: $border-width solid $color-ink-border;
+
+  tbody & {
+    background: $color-bg-normal;
+  }
+}
+
+// #endregion
+
+// -----------------------------------------------------------------------------
+// Hover effect and zebra striping (deprecated)
+// -----------------------------------------------------------------------------
+
+// #region
+
+// tbody tr:nth-of-type(odd) {
+//   background-color: $table-accent-bg;
+// }
+
+tbody tr:hover {
+  background-color: $table-hover-bg;
+  transition: background-color $duration-sm;
+}
+
+// #endregion
+
+// -----------------------------------------------------------------------------
+// Responsive table
+// -----------------------------------------------------------------------------
+
+// #region
+
+// Markup
+// <div class="has-responsive-table">
+//   <table></table>
+// </div>
+
+.has-responsive-table {
+  @include responsive-table-wrapper();
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+  @include media-breakpoint-down($breakpoint) {
+    .has-responsive-table#{$infix} {
+      @include responsive-table-wrapper();
+    }
+  }
+}
+
+[class^='has-responsive-table'] th,
+[class^='has-responsive-table'] td {
+  &:first-child {
+    padding-left: calc(var(--padding-x-cell) * 2);
+  }
+
+  &:last-child {
+    padding-right: calc(var(--padding-x-cell) * 2);
+  }
+}
+
+// #endregion
+
+// -----------------------------------------------------------------------------
+// HELPERS & VARIATIONS
+// -----------------------------------------------------------------------------
+
+// #region
+
+// Turn off table-layout and min-width
+.table.is-auto {
+  table-layout: auto;
+  min-width: 0;
+}
+
+// Add more white space to the data
+.table.is-loose tbody th,
+.table.is-loose tbody td {
+  padding: $size-3 $size-1;
+}
+
+// If a table contains mostly numeric data, it is better to avoid line breaks.
+.table.has-small-cell-values {
+  white-space: nowrap;
+}
+
+.table__num {
+  text-align: right;
+}
+
+.table .text-truncate {
+  display: block;
+}
+
+// Reduce cell to the width of its content, if space is available
+.table__shrinked-cell {
+  width: 1%;
+}
+
+// Row numbers
+tbody {
+  // Start the counter
+  tr {
+    counter-increment: row-number;
+  }
+}
+
+.table__row-number {
+  // Add the counter number
+  &::after {
+    content: counter(row-number);
+  }
+}
+
+// SORTABLE
+.table .is-sortable {
+  cursor: pointer;
+}
+
+.table .is-sortable span {
+  display: inline-block;
+  position: relative;
+}
+
+.table .is-sortable:hover,
+.table .is-sortable[aria-sort='descending'],
+.table .is-sortable[aria-sort='ascending'] {
+  span::after {
+    background: rgba(0, 0, 0, 0) url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%3E%3Cpath%20fill-opacity%3D%22.38%22%20fill-rule%3D%22evenodd%22%20d%3D%22M10.7902954%2C6.61289944%20L10.7071068%2C6.70710678%20L7.70710678%2C9.70710678%20C7.34662282%2C10.0675907%206.77939176%2C10.0953203%206.38710056%2C9.79029539%20L6.29289322%2C9.70710678%20L3.29289322%2C6.70710678%20L3.20970461%2C6.61289944%20C2.90467972%2C6.22060824%202.93240926%2C5.65337718%203.29289322%2C5.29289322%20C3.65337718%2C4.93240926%204.22060824%2C4.90467972%204.61289944%2C5.20970461%20L4.70710678%2C5.29289322%20L7%2C7.585%20L9.29289322%2C5.29289322%20C9.68341751%2C4.90236893%2010.3165825%2C4.90236893%2010.7071068%2C5.29289322%20C11.0675907%2C5.65337718%2011.0953203%2C6.22060824%2010.7902954%2C6.61289944%20Z%22%2F%3E%3C%2Fsvg%3E') no-repeat;
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -$size-2;
+    transform: translateY(-50%);
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+}
+
+.table .is-sortable:hover span::after,
+.table .is-sortable[aria-sort='descending'] span::after {
+  transform: translateY(-50%);
+}
+
+.table .is-sortable[aria-sort='ascending'] span::after {
+  transform:
+    translateY(-50%)
+    scaleY(-1);
+}
+
+
+
+
+
+// #endregion

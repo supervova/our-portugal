@@ -1,0 +1,71 @@
+// Form
+.col.has-form {
+  // col-md-8 col-mdl-7 col-xxl-6
+  text-align: center;
+
+  @include media-breakpoint-up(md) {
+    flex: 0 0 auto;
+    width: percentage(10/12);
+  }
+
+  @include media-breakpoint-up(mdl) {
+    text-align: left;
+    width: percentage(7/12);
+  }
+
+  @include media-breakpoint-up(xxl) {
+    width: 50%;
+  }
+}
+
+// SIDEBARS
+
+.col.is-contacts-sidebar,
+.col.is-calculation-sidebar {
+  text-align: center;
+  padding-bottom: $size-line * 3;
+  flex: 0 0 auto;
+
+  @include media-breakpoint-up(md) {
+    flex: 0 0 auto;
+    width: percentage(10/12);
+  }
+
+  @include media-breakpoint-up(mdl) {
+    margin-left: percentage(1/12);
+    width: percentage(4/12);
+  }
+
+  @include media-breakpoint-up(xxl) {
+    width: percentage(3/12);
+  }
+}
+
+// Contacts
+
+.col.is-contacts-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.col.is-contacts-sidebar > figure {
+  margin-top: auto;
+}
+
+// Calculation sidebar
+
+.col.is-calculation-sidebar {
+  color: $color-ink-2ry;
+
+  @include media-breakpoint-up(mdl) {
+    padding-top: $size-line;
+    text-align: left;
+  }
+}
+
+.col.is-calculation-sidebar ul {
+  @include media-breakpoint-down(mdl) {
+    list-style: none;
+  }
+}
+

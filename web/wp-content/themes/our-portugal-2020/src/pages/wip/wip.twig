@@ -1,0 +1,76 @@
+
+{% extends "/pages/base/base.twig" %}
+
+{% block config %}
+{{ parent() }}
+
+{% set
+  post = {
+    lang: "ru",
+    description: site.description,
+    image: site.logo,
+    link: site.url,
+    body_classes: "is-home"
+  }
+%}
+{% endblock %}
+
+{% block html_head %}
+  {{ parent() }}
+
+  {# <style>
+  </style> #}
+{% endblock %}
+
+
+
+{# MAIN CONTENT ------------------------------------------------------------- #}
+{% block content %}
+
+<div class="section">
+  <div class="row justify-center">
+    {% set
+      filters = {
+
+        item1: {
+          label: 'Купить',
+          name: 'action',
+          type: 'radio',
+          options: {
+
+            option1: {
+              label: 'Купить',
+              value: 'buy',
+              checked: true
+            },
+
+            option2: {
+              label: 'Снять',
+              link: 'rent',
+            }
+          },
+          id: '',
+        },
+
+
+      }
+    %}
+
+    {% for item in filters %}
+      <div class="form__filter dropdown is-dropup" data-dropdown>
+        <button class="dropdown__toggle" type="button" aria-expanded="false" data-dropdown-toggle>{{ item.label }}</button>
+        <ul class="dropdown__menu" data-dropdown-menu>
+          {% for option in item.options %}
+            <li><label class="dropdown__item"><input{% if item.name %} name="{{ item.name }}"{% endif %} type="{{ item.type }}" value="{{ option.value }}"{% if option.checked %} checked{% endif %}>{{ option.label }}</label></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

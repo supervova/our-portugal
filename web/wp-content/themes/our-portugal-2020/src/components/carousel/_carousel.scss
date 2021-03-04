@@ -1,0 +1,362 @@
+// BS5 based
+// The widget retains the original class names written in param-case
+
+$carousel-control-width: 5.2rem;
+$carousel-control-width-md: 6.8rem;
+
+.carousel {
+  position: relative;
+  padding-top: $size-line;
+  padding-bottom: $size-line * 3;
+
+  // touch-action should ideally be pan-y (to allow for users to scroll
+  // vertically) even when their scroll action started on a carousel, but for
+  // compatibility with Firefox BS is preventing all actions instead by default
+  // touch-action: pan-y;
+}
+
+.carousel-inner {
+  position: relative;
+}
+
+.carousel-viewport {
+  @extend %border;
+
+  display: flex;
+  border-radius: $border-radius;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.carousel-item {
+  backface-visibility: hidden;
+  display: none;
+  margin-bottom: 0;
+  margin-right: -100%;
+  position: relative;
+  transition: transform $duration-md $easing;
+  width: 100%;
+}
+
+.carousel-item.active, // the current slide
+.carousel-item-next,
+.carousel-item-prev {
+  display: block;
+}
+
+// The .carousel-item-left and .carousel-item-right is used to indicate where
+// the active slide is heading.
+// .carousel-item-next.carousel-item-left and .carousel-item-prev.carousel-item-right
+// is the upcoming slide in transition.
+.carousel-item-next:not(.carousel-item-left),
+.active.carousel-item-right {
+  transform: translateX(100%);
+}
+
+.carousel-item-prev:not(.carousel-item-right),
+.active.carousel-item-left {
+  transform: translateX(-100%);
+}
+
+
+// PREV / NEXT
+
+.carousel-control {
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: .5;
+  position: absolute;
+  bottom: -$carousel-control-width - $size-1;
+  transition: opacity $duration-xs;
+  width: $carousel-control-width;
+  height: $carousel-control-width;
+  z-index: 1000;
+
+  // Hover/focus state
+  &:hover,
+  &:focus {
+    opacity: .8;
+    outline: 0;
+  }
+
+  @include media-breakpoint-up(md) {
+    top: calc(50% - #{$carousel-control-width-md / 2});
+    bottom: auto;
+    width: $carousel-control-width-md;
+    height: $carousel-control-width-md;
+  }
+}
+
+.carousel-control.is-prev {
+  background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2252%22%20height%3D%2252%22%20viewBox%3D%220%200%2052%2052%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M25.987407%2C48%20C13.7973669%2C48%204%2C38.1774471%204%2C25.987407%20C4%2C13.7973669%2013.7973669%2C4%2025.962221%2C4%20C38.152261%2C4%2047.974814%2C13.7973669%2048%2C25.987407%20C48%2C38.1774471%2038.1774471%2C48%2025.987407%2C48%20Z%22%2F%3E%3Cpath%20fill%3D%22%23000%22%20fill-opacity%3D%22.76%22%20d%3D%22M26.0239282%2C2%20C12.8634098%2C2%202%2C12.8634098%202%2C26%20C2%2C39.1365902%2012.8634098%2C50%2026%2C50%20C39.1365902%2C50%2050%2C39.1365902%2050%2C26%20C50%2C12.8634098%2039.1605184%2C2%2026.0239282%2C2%20Z%20M26.037779%2C4%20C38.2026331%2C4%2048%2C13.7973669%2048%2C25.987407%20C48%2C38.1774471%2038.2026331%2C48%2026.012593%2C48%20C13.8225529%2C48%204%2C38.1774471%204%2C25.987407%20C4.02518603%2C13.7973669%2013.847739%2C4%2026.037779%2C4%20Z%20M23.8871006%2C17.2097046%20L23.7928932%2C17.2928932%20L15.7928932%2C25.2928932%20C15.4324093%2C25.6533772%2015.4046797%2C26.2206082%2015.7097046%2C26.6128994%20L15.7928932%2C26.7071068%20L23.7928932%2C34.7071068%20L23.8871006%2C34.7902954%20C24.2793918%2C35.0953203%2024.8466228%2C35.0675907%2025.2071068%2C34.7071068%20C25.5675907%2C34.3466228%2025.5953203%2C33.7793918%2025.2902954%2C33.3871006%20L25.2071068%2C33.2928932%20L18.916%2C27%20L38%2C27%20C38.5522847%2C27%2039%2C26.5522847%2039%2C26%20C39%2C25.4477153%2038.5522847%2C25%2038%2C25%20L18.916%2C25%20L25.2071068%2C18.7071068%20C25.5976311%2C18.3165825%2025.5976311%2C17.6834175%2025.2071068%2C17.2928932%20C24.8466228%2C16.9324093%2024.2793918%2C16.9046797%2023.8871006%2C17.2097046%20Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+  left: 0;
+
+  @include media-breakpoint-up(md) {
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2268%22%20height%3D%2268%22%20viewBox%3D%220%200%2068%2068%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20cx%3D%2234%22%20cy%3D%2234%22%20r%3D%2228%22%20fill%3D%22%23FFF%22%2F%3E%3Cpath%20fill%3D%22%23000%22%20fill-opacity%3D%22.76%22%20d%3D%22M34.0319043%2C2%20C16.4845464%2C2%202%2C16.4845464%202%2C34%20C2%2C51.5154536%2016.4845464%2C66%2034%2C66%20C51.5154536%2C66%2066%2C51.5154536%2066%2C34%20C66%2C16.4845464%2051.5473579%2C2%2034.0319043%2C2%20Z%20M34.0480824%2C6%20C49.5306239%2C6%2062%2C18.4693761%2062%2C33.9839725%20C62%2C49.498569%2049.5306239%2C62%2034.0160275%2C62%20C18.501431%2C62%206%2C49.498569%206%2C33.9839725%20C6.03205495%2C18.4693761%2018.533486%2C6%2034.0480824%2C6%20Z%20M31.2130012%2C21.4689537%20L31.0857864%2C21.5857864%20L20.0857864%2C32.5857864%20C19.3458457%2C33.3257272%2019.3069014%2C34.5012114%2019.9689537%2C35.2869988%20L20.0857864%2C35.4142136%20L31.0857864%2C46.4142136%20L31.2130012%2C46.5310463%20C31.9987886%2C47.1930986%2033.1742728%2C47.1541543%2033.9142136%2C46.4142136%20C34.6541543%2C45.6742728%2034.6930986%2C44.4987886%2034.0310463%2C43.7130012%20L33.9142136%2C43.5857864%20L26.329%2C36%20L49%2C36%20C50.1045695%2C36%2051%2C35.1045695%2051%2C34%20C51%2C32.8954305%2050.1045695%2C32%2049%2C32%20L26.329%2C32%20L33.9142136%2C24.4142136%20C34.6952621%2C23.633165%2034.6952621%2C22.366835%2033.9142136%2C21.5857864%20C33.1742728%2C20.8458457%2031.9987886%2C20.8069014%2031.2130012%2C21.4689537%20Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    left: $size-2;
+  }
+
+  @include media-breakpoint-up(mdl) {
+    left: -($carousel-control-width-md + $size-2);
+  }
+}
+
+.carousel-control.is-next {
+  background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2252%22%20height%3D%2252%22%20viewBox%3D%220%200%2052%2052%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M25.987407%2C48%20C13.7973669%2C48%204%2C38.1774471%204%2C25.987407%20C4%2C13.7973669%2013.7973669%2C4%2025.962221%2C4%20C38.152261%2C4%2047.974814%2C13.7973669%2048%2C25.987407%20C48%2C38.1774471%2038.1774471%2C48%2025.987407%2C48%20Z%22%2F%3E%3Cpath%20fill%3D%22%23000%22%20fill-opacity%3D%22.76%22%20d%3D%22M25.9760718%2C2%20C39.1365902%2C2%2050%2C12.8634098%2050%2C26%20C50%2C39.1365902%2039.1365902%2C50%2026%2C50%20C12.8634098%2C50%202%2C39.1365902%202%2C26%20C2%2C12.8634098%2012.8394816%2C2%2025.9760718%2C2%20Z%20M25.962221%2C4%20C13.7973669%2C4%204%2C13.7973669%204%2C25.987407%20C4%2C38.1774471%2013.7973669%2C48%2025.987407%2C48%20C38.1774471%2C48%2048%2C38.1774471%2048%2C25.987407%20C47.974814%2C13.7973669%2038.152261%2C4%2025.962221%2C4%20Z%20M28.1128994%2C17.2097046%20L28.2071068%2C17.2928932%20L36.2071068%2C25.2928932%20C36.5675907%2C25.6533772%2036.5953203%2C26.2206082%2036.2902954%2C26.6128994%20L36.2071068%2C26.7071068%20L28.2071068%2C34.7071068%20L28.1128994%2C34.7902954%20C27.7206082%2C35.0953203%2027.1533772%2C35.0675907%2026.7928932%2C34.7071068%20C26.4324093%2C34.3466228%2026.4046797%2C33.7793918%2026.7097046%2C33.3871006%20L26.7928932%2C33.2928932%20L33.084%2C27%20L14%2C27%20C13.4477153%2C27%2013%2C26.5522847%2013%2C26%20C13%2C25.4477153%2013.4477153%2C25%2014%2C25%20L33.084%2C25%20L26.7928932%2C18.7071068%20C26.4023689%2C18.3165825%2026.4023689%2C17.6834175%2026.7928932%2C17.2928932%20C27.1533772%2C16.9324093%2027.7206082%2C16.9046797%2028.1128994%2C17.2097046%20Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+  right: 0;
+
+  @include media-breakpoint-up(md) {
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2268%22%20height%3D%2268%22%20viewBox%3D%220%200%2068%2068%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20cx%3D%2234%22%20cy%3D%2234%22%20r%3D%2228%22%20fill%3D%22%23FFF%22%2F%3E%3Cpath%20fill%3D%22%23000%22%20fill-opacity%3D%22.76%22%20d%3D%22M33.9680957%2C2%20C51.5154536%2C2%2066%2C16.4845464%2066%2C34%20C66%2C51.5154536%2051.5154536%2C66%2034%2C66%20C16.4845464%2C66%202%2C51.5154536%202%2C34%20C2%2C16.4845464%2016.4526421%2C2%2033.9680957%2C2%20Z%20M33.9519176%2C6%20C18.4693761%2C6%206%2C18.4693761%206%2C33.9839725%20C6%2C49.498569%2018.4693761%2C62%2033.9839725%2C62%20C49.498569%2C62%2062%2C49.498569%2062%2C33.9839725%20C61.967945%2C18.4693761%2049.466514%2C6%2033.9519176%2C6%20Z%20M36.7869988%2C21.4689537%20L36.9142136%2C21.5857864%20L47.9142136%2C32.5857864%20C48.6541543%2C33.3257272%2048.6930986%2C34.5012114%2048.0310463%2C35.2869988%20L47.9142136%2C35.4142136%20L36.9142136%2C46.4142136%20L36.7869988%2C46.5310463%20C36.0012114%2C47.1930986%2034.8257272%2C47.1541543%2034.0857864%2C46.4142136%20C33.3458457%2C45.6742728%2033.3069014%2C44.4987886%2033.9689537%2C43.7130012%20L34.0857864%2C43.5857864%20L41.671%2C36%20L19%2C36%20C17.8954305%2C36%2017%2C35.1045695%2017%2C34%20C17%2C32.8954305%2017.8954305%2C32%2019%2C32%20L41.671%2C32%20L34.0857864%2C24.4142136%20C33.3047379%2C23.633165%2033.3047379%2C22.366835%2034.0857864%2C21.5857864%20C34.8257272%2C20.8458457%2036.0012114%2C20.8069014%2036.7869988%2C21.4689537%20Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    right: $size-2;
+  }
+
+  @include media-breakpoint-up(mdl) {
+    right: -($carousel-control-width-md + $size-2);
+  }
+}
+
+// INDICATORS
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  // Use the .carousel-control's width as margin so we don't overlay those
+  margin-left: $carousel-control-width;
+  margin-right: $carousel-control-width;
+  padding: 0;
+  position: absolute;
+  bottom: $size-3;
+  left: 0;
+  right: 0;
+  z-index: 2;
+
+  li {
+    background-clip: padding-box;
+    background-color: $color-ink-3ry;
+    // Use transparent borders to increase the hit area by 10px on top and bottom.
+    border: $size-1 solid transparent;
+    border-radius: 50%;
+    box-sizing: content-box;
+    cursor: pointer;
+    flex: 0 1 auto;
+    margin-left: $carousel-indicator-spacer;
+    margin-right: $carousel-indicator-spacer;
+    padding: 0;
+    transition: color $duration-xs;
+    width: $size-1;
+    height: $size-1;
+  }
+
+  .active {
+    background-color: $color-primary-tint1;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-right: $carousel-control-width-md;
+    margin-left: $carousel-control-width-md;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// TRANSFORMERS
+// -----------------------------------------------------------------------------
+
+// Such widgets on phones behave like carousels, and become a static row
+// of content blocks on larger screens larger
+
+
+.carousel.is-xs-sm {
+  padding-top: 0;
+
+  // No more border radius
+  .carousel-viewport {
+    border-radius: 0;
+
+    // No more common border
+    &::after {
+      display: none;
+    }
+  }
+
+  // Visible slides should stretch their children
+  .carousel-item.active,
+  .carousel-item-next,
+  .carousel-item-prev {
+    display: flex;
+  }
+
+  // ...And children should try
+  .carousel-item > .link.is-box-wrapper,
+  .card {
+    flex-grow: 1;
+  }
+
+  // TRANSFORM ON TABLET
+  @include media-breakpoint-up(md) {
+    // No space for indicators
+    padding-bottom: 0;
+
+    // Container becomes a row
+    .carousel-viewport {
+      margin-left: -$size-1;
+      margin-right: -$size-1;
+      overflow: visible;
+    }
+
+    // Slides become columns
+    .carousel-item {
+      margin-right: 0;
+      padding-left: $size-1;
+      padding-right: $size-1;
+      transition: none;
+    }
+
+    // ...And visible
+    .carousel-item:not(.is-optional) {
+      display: flex;
+    }
+
+    // Indicators and buttons, on the other hand, hide
+    .carousel-indicators,
+    .carousel-control {
+      display: none;
+    }
+  }
+
+  @include media-breakpoint-up(mdl) {
+    // The optional slide appears on landscape tablets
+    .carousel-item.is-optional {
+      display: flex;
+    }
+  }
+}
+
+
+// HEIGHTS
+// hight is required for BS carousel
+
+.has-3-properties .card {
+  height: 20 * $size-line;
+
+  @include media-breakpoint-up(sm) {
+    height: 19 * $size-line;
+  }
+
+  @include media-breakpoint-up(md) {
+    height: auto;
+  }
+}
+
+// WIDTHS
+
+.has-3-properties .carousel-item {
+  // Transform on tablet
+  @include media-breakpoint-up(md) {
+    width: 50%;
+  }
+
+  @include media-breakpoint-up(mdl) {
+    width: 33.333%;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// .main__gallery
+// -----------------------------------------------------------------------------
+
+.main__gallery {
+  padding-top: 0;
+  // Minus thumbnails bottom margin
+  padding-bottom: $size-line * 2 - $size-2;
+}
+
+
+.carousel-item > img {
+  object-fit: cover;
+  width: 100%;
+  height: $size-line * 8;
+
+  @include media-breakpoint-up(sm) {
+    height: $size-line * 15;
+  }
+
+  @include media-breakpoint-up(md) {
+    height: $size-line * 19;
+  }
+
+  @include media-breakpoint-up(mdl) {
+    height: $size-line * 22;
+  }
+}
+
+// Use it with .carousel-indicators: BS use the second class in JS
+.carousel__thumbnails {
+  flex-wrap: wrap;
+  margin: 0;
+  padding: $size-2 0 0;
+  position: static;
+
+  @include media-breakpoint-up(md) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.carousel__thumbnails li {
+  @extend %border;
+
+  background-color: $transparent;
+  border: 0;
+  border-radius: $border-radius;
+  box-shadow: none;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  margin-bottom: $size-2;
+  margin-left: 0;
+  margin-right: 0;
+  padding-bottom: 0 !important;
+  transition: box-shadow $duration-xs;
+  width: calc((100% - #{$size-2 * 3}) / 4);
+  height: auto;
+
+  // stylelint-disable selector-no-qualifying-type
+  &.active {
+    box-shadow:
+      0 0 0 .4rem #fff,
+      0 0 0 .5rem rgba(0, 0, 0, .12),
+      $box-shadow-z3,
+      $box-shadow-z2;
+  }
+
+  @include media-breakpoint-up(sm) {
+    width: calc((100% - #{$size-2 * 5}) / 6);
+  }
+}
+
+.carousel__thumbnails li + li {
+  margin-left: $size-2;
+}
+
+.carousel__thumbnails li > img {
+  object-fit: cover;
+  width: 100%;
+  height: $size-line * 2;
+
+  @include media-breakpoint-up(md) {
+    height: $size-line * 3;
+  }
+}
+
+.main__gallery .carousel-control {
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+}
+
+

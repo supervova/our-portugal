@@ -1,0 +1,25 @@
+  {#
+    TODO: Uncomment wp_footer and remove custom scripts on CMS integration stage
+  #}
+
+  {# WP SCRIPTS ------------------------------------------------------------- #}
+
+  {# {{ function('wp_footer') }} #}
+
+  {# CUSTOM SCRIPTS --------------------------------------------------------- #}
+
+  {# <script src="/wp-content/themes/our-portugal-2020/js/plugins.js"></script> #}
+  {# <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> #}
+  <script src="/wp-content/themes/our-portugal-2020/js/main.js"></script>
+
+  {# INLINE SCRIPTS --------------------------------------------------------- #}
+
+  {# Load Facebook SDK for JavaScript #}
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.7&appId={{ site_details.facebook_app_id }}";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>

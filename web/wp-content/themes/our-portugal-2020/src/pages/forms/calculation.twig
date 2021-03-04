@@ -1,0 +1,123 @@
+{% extends "/pages/base/base.twig" %}
+
+{% block config %}
+  {{ parent() }}
+
+  {% set post = {
+  lang: "ru",
+  title: "ВНЖ Португалии — расчёт",
+  description: site.description,
+  image: site.logo,
+  link: site.url ~ "/ru/real-estate/add",
+  body_classes: "is-contacts"
+} %}
+{% endblock %}
+
+{% block html_head %}
+  {{ parent() }}
+
+  {# <style>
+    </style> #}
+{% endblock %}
+
+
+{# MAIN CONTENT ------------------------------------------------------------- #}
+{% block content %}
+
+  {# HEADER #}
+  <header class="hero is-empty">
+    <div class="hero__content">
+      <h1 class="hero__title">ВНЖ Португалии — расчёт</h1>
+    </div>
+    <div class="ribbon" role="presentation"></div>
+  </header>
+
+  <article class="main">
+    <div class="row justify-center">
+      <div class="col has-form">
+        <h2>Индивидуальный расчёт стоимости оформления ВНЖ&nbsp;Португалии</h2>
+        <form class="is-should-be-validated pb-3" id="form-needs-validation" action="/" method="post" novalidate>
+          {% import "/base/form/_form.twig" as form %}
+
+          <div
+            class="form__item">
+            {# label, name, icon, values, selected, attributes, error, required=false #}
+            {{ form.input(
+              'Ваше имя *',
+              'name',
+              'person',
+              {'pattern': '[\p{L} -]+', 'minlength': 3, 'maxlength': 128},
+              'Введите имя и фамилию. Желательно кириллицей',
+              true
+            ) }}
+          </div>
+
+          <div
+            class="form__item">
+            {# label, name, icon, values, selected, attributes, error, required=false #}
+            {{ form.input(
+              'Ваш email *',
+              'email',
+              'email',
+              {'minlength': 3, 'maxlength': 128, 'inputmode': 'email'},
+              'Введите адрес электронной почты в стандартном формате',
+              true
+            ) }}
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3 mb-2s">
+              <div
+                class="form__item has-check">
+                {# label, name, value, checked #}
+                {{ form.checkbox(
+                  'Cупруг(а)',
+                  'garage'
+                ) }}
+              </div>
+            </div>
+            <div class="col mb-2s">
+              <div
+                class="form__item has-number">
+                {# label, name, value, min, max #}
+                {{ form.number(
+                  'Дети до 18',
+                  'children',
+                  0,
+                  0,
+                  10
+                ) }}
+              </div>
+            </div>
+            <div class="col mb-2s">
+              <div
+                class="form__item has-number">
+                {# label, name, value, min, max #}
+                {{ form.number(
+                  'Дети 18–26',
+                  'adult-children',
+                  0,
+                  0,
+                  10
+                ) }}
+              </div>
+            </div>
+          </div>
+
+          <button class="btn is-primary" id="form-submit" type="submit">
+            Заказать расчёт
+          </button>
+        </form>
+      </div>
+      <div class="col is-calculation-sidebar">
+        <p class="list-caption">Расчёт включает все расходы по&nbsp;оформлению для всех членов семьи:</p>
+        <ul>
+          <li>сдача биометрических данных; медицинская страховка;</li>
+          <li>налоговый номер и&nbsp;услуги налогового представителя; выдача &laquo;золотой визы&raquo;.</li>
+        </ul>
+        <p>Кроме того в&nbsp;отчет будут включены стоимость услуг сопровождения и&nbsp;график платежей. Документ мы&nbsp;пришлём на&nbsp;email в&nbsp;течение 24&nbsp;часов.</p>
+      </div>
+    </div>
+  </article>
+
+{% endblock %}

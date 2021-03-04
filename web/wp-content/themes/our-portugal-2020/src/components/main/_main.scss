@@ -1,0 +1,240 @@
+// stylelint-disable property-no-unknown
+
+.main,
+%main {
+  content-visibility: auto;
+  margin-top: -$size-line * 3;
+  padding-bottom: $size-line * 2;
+  padding-left: var(--padding-x-section);
+  padding-right: var(--padding-x-section);
+  scroll-behavior: smooth;
+}
+
+.main__inner,
+%main__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-right: calc(var(--bs-gutter-x) / -2);
+  margin-left: calc(var(--bs-gutter-x) / -2);
+
+  > * {
+    @include make-col-ready();
+  }
+}
+
+.main__header,
+.main__body,
+%main__body {
+  @include media-breakpoint-up(md) {
+    width: percentage(10/12);
+  }
+
+  @include media-breakpoint-up(mdl) {
+    width: percentage(8/12);
+  }
+
+  @include media-breakpoint-up(xxl) {
+    width: 50%;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// HEADER
+// -----------------------------------------------------------------------------
+
+.main__eyebrow {
+  @extend %eyebrow, %text-truncate;
+
+  .is-post & {
+    display: flex;
+    list-style: none;
+    padding-top: var(--padding-top-base);
+    padding-bottom: var(--padding-bottom-base);
+  }
+
+  li {
+    padding-bottom: 0;
+  }
+
+  li + li {
+    margin-left: $size-1;
+  }
+}
+
+.main__eyebrow-link {
+  display: inline-block;
+  padding-top: .7rem;
+}
+
+.main__eyebrow-categories {
+  appearance: none;
+  background: $transparent;
+  color: $color-ink-2ry;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  white-space: nowrap;
+  padding: 0 $size-1;
+
+  &:hover,
+  &:focus {
+    background-color: $black-min;
+    border-radius: $border-radius-sm;
+    outline: none;
+  }
+
+  .icon.is-chevron {
+    fill: $color-ink-3ry;
+    vertical-align: -.2rem;
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+}
+
+.main__eyebrow-categories.is-for-index {
+  margin-top: var(--padding-top-base);
+  margin-left: -1.2rem;
+
+  @include media-breakpoint-up(md) {
+    margin-top: calc(var(--padding-top-base) + #{$size-line});
+  }
+
+  @include media-breakpoint-up(mdl) {
+    display: none;
+  }
+}
+
+.main__title {
+  @extend %h1;
+}
+
+.main__title > small {
+  font-family: $font-family-base;
+  font-weight: 400;
+
+  @include media-breakpoint-up(md) {
+    font-size: 2.4rem;
+    line-height: (40 / 24);
+  }
+}
+
+.main__eyebrow + .main__title {
+  margin-top: var(--margin-top-h1-has-eyebrow);
+}
+
+.main__time {
+  display: block;
+  margin-top: -$size-1;
+}
+
+.main__summary {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: -$size-2 0 0;
+  padding-bottom: 1rem + $size-line;
+  padding-left: 0;
+
+  li {
+    @extend %text-truncate;
+  }
+
+  li + li {
+    margin-left: $size-1;
+  }
+}
+
+.main__header.has-button {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+// -----------------------------------------------------------------------------
+// BODY
+// -----------------------------------------------------------------------------
+
+// GALLERY
+
+.main__gallery,
+.main__carousel {
+  @include media-breakpoint-up(mdl) {
+    width: percentage(10/12);
+  }
+
+  @include media-breakpoint-up(xxl) {
+    width: percentage(8/12);
+  }
+}
+
+// MAP
+
+.main__map {
+  @extend %border;
+
+  display: block;
+  margin-top: $size-line;
+  margin-bottom: $size-line * 2;
+
+  > iframe {
+    margin-bottom: 0;
+    width: 100%;
+    height: $size-line * 14;
+  }
+}
+
+// FEATURES
+
+.main__features {
+  @extend %columns-sm-2;
+  margin-bottom: $size-line;
+  padding-bottom: 1rem;
+
+  > li {
+    margin-bottom: $size-1;
+    padding-bottom: 0;
+  }
+}
+
+// SHARE
+
+.main__share-link {
+  display: block;
+  margin-top: $size-line;
+  margin-bottom: $size-line;
+  padding-top: var(--padding-top-base);
+  padding-bottom: var(--padding-bottom-base);
+
+  > .icon {
+    fill: $color-ink-icon;
+  }
+}
+
+.main__body img {
+  border-radius: $border-radius;
+
+  &::after {
+    content: 'ccc';
+  }
+}
+
+// AUTHOR
+
+.main__byline {
+  color: $color-ink-2ry;
+  padding-top: var(--padding-top-base);
+  padding-bottom: var(--padding-bottom-base);
+}
+
+
+// COMMENTS
+.main__comments {
+  padding-top: $size-line * 2;
+}
+
+.main__comments-title {
+  font-weight: normal;
+}
+
+

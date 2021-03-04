@@ -1,0 +1,31 @@
+code,
+pre {
+  font-family: $font-family-monospace;
+  font-size: var(--font-size-base);
+}
+
+code {
+  display: inline-block;
+  color: $color-ink-code;
+  padding: $size-1 $size-2;
+}
+
+pre {
+  // We deliberately don't use `-webkit-overflow-scrolling: touch;` due to a
+  // gnarly iOS Safari bug: https://bugs.webkit.org/show_bug.cgi?id=158342
+  // -webkit-overflow-scrolling: touch;
+  background-color: $color-bg-inverse;
+  border-radius: $border-radius-sm;
+  color: $color-ink-inverse-normal;
+  white-space: pre-line;
+  word-wrap: normal; // IE11
+  overflow-wrap: normal; // modern browsers
+  padding: $size-2;
+  tab-size: 2;
+
+  > code {
+    color: currentColor;
+    white-space: pre-wrap;
+    padding: 0;
+  }
+}

@@ -1,0 +1,147 @@
+.hero {
+  --zindex: 1;
+  background: rgba(0, 0, 0, 0) no-repeat;
+  background-image:
+    linear-gradient($color-primary, $color-primary),
+    url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221408%22%20height%3D%2284%22%20viewBox%3D%220%200%201408%2084%22%3E%3Cpolygon%20fill%3D%22%230073E6%22%20fill-rule%3D%22evenodd%22%20points%3D%220%200%201408%200%201408%207%20696%2082%20655%2041%200%2084%22%2F%3E%3C%2Fsvg%3E');
+  background-position:
+    center bottom 228px,
+    center bottom 144px;
+  background-repeat: no-repeat;
+  background-size:
+    100% calc(100% - 228px),
+    auto;
+  position: relative;
+  z-index: var(--zindex);
+}
+
+// RIBBON
+.ribbon {
+  pointer-events: none;
+  transform: translateY(-$size-line * 5);
+  height: $size-line * 8;
+
+  &::before,
+  &::after {
+    opacity: 1;
+    background-position: center top;
+    background-repeat: no-repeat;
+    content: '';
+    position: absolute;
+    bottom: -($size-line * 3);
+    height: $size-line * 8;
+  }
+
+  // BICOLOR RIBBON
+  &::before {
+    background-image: url('/wp-content/themes/our-portugal-2020/img/components/hero/bicolor-ribbon.svg');
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    z-index: 1;
+  }
+
+  // RED RIBBON
+  &::after {
+    background-image: url('/wp-content/themes/our-portugal-2020/img/components/hero/red-ribbon.svg');
+    left: 0;
+    width: 100%;
+    z-index: 2;
+  }
+}
+
+// Allow clocks through empty hero
+.hero.is-empty {
+  padding-top: $size-line;
+  pointer-events: none;
+}
+
+.hero__content {
+  color: $color-ink-inverse-normal;
+  text-align: center;
+  padding-top: 0;
+  padding-bottom: $size-line * 2;
+  padding-left: var(--padding-x-section);
+  padding-right: var(--padding-x-section);
+
+  @include media-breakpoint-up(md) {
+    padding-bottom: $size-line * 3;
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+
+// USP
+
+.hero__title {
+  color: $color-ink-inverse-normal;
+  font-family: $font-family-accent;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+
+  @include media-breakpoint-up(mdl) {
+    letter-spacing: -.1rem;
+  }
+}
+
+.hero__subtitle,
+.hero__title small {
+  @extend %h2;
+
+  color: $color-primary-lightest;
+  display: block;
+  margin-top: -$size-1;
+
+  @include media-breakpoint-up(md) {
+    margin-top: -$size-2;
+  }
+}
+
+.hero__summary {
+  margin-top: -$size-1;
+
+  @include media-breakpoint-only(md) {
+    margin-top: 0;
+    max-width: 32rem;
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+// CTA
+
+.hero__cta {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: $size-1 0 0;
+
+  li:first-child {
+    margin-right: $size-1;
+  }
+
+  @include media-breakpoint-up(md) {
+    justify-content: flex-start;
+  }
+}
+
+// -----------------------------------------------------------------------------
+
+// VARIATIONS
+
+// Hero sizes are set with <body> classes
+
+// .has-hidden-hero: h194 - blog, forum, indexes
+// default: h400 — Golden visa, Add property, Contact Us, Cost calculation
+// .has-lg-hero: h504 — Realty section
+// .has-xl-hero — Home
+
+.has-xl-hero .hero__content {
+  padding-bottom: $size-line * 17;
+
+  @include media-breakpoint-up(md) {
+    text-align: left;
+    padding-top: $size-line * 3;
+    padding-bottom: $size-line * 7;
+  }
+}

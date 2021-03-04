@@ -1,0 +1,49 @@
+<footer id="footer" class="footer">
+  <nav>
+    <ul class="footer__nav">
+      <li class="footer__copyright">
+        <span>&copy; {{ "now"|date('Y') }} <b>Наша Португалия</b></span>
+      </li>
+
+      {% if global.footer_menu %}
+        {% for item in global.footer_menu.items %}
+          <li><a class="footer__nav-link" href="{{ item.link }}">{{ item.title }}</a></li>
+        {% endfor %}
+      {% endif %}
+
+      <li class="d-none d-mdl-inline-block">
+        <a class="footer__nav-link" href="https://super-mark.ru/" target="_blank" rel="noopener noreferrer">
+          Дизайн и&nbsp;разработка&nbsp;— SuperMark
+        </a>
+      </li>
+    </ul>
+    <ul class="footer__social-links">
+      {% set social_links = {
+
+          item1: {
+            label: 'Facebook',
+            link: 'https://www.facebook.com/ourPortugal'
+          },
+          item2: {
+            label: 'Instagram',
+            link: 'https://www.instagram.com/ourPortugal'
+          },
+          item3: {
+            label: 'YouTube',
+            link: 'https://www.youtube.com/user/ourPortugal'
+          }
+      } %}
+
+      {% for item in social_links %}
+        <li>
+          <a class="footer__social-link" href="{{ item.link }}" aria-label="{{ item.label }}">
+            <svg class="icon is-lg" aria-hidden="true" focusable="false">
+              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-{{ item.label|lower }}-lg"></use>
+            </svg>
+          </a>
+        </li>
+      {% endfor %}
+
+    </ul>
+  </nav>
+</footer>

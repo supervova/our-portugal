@@ -1,0 +1,100 @@
+/*!
+Theme Name:   Our Portugal
+Description:  Our Portugal website theme
+Author        Vladimir Nikishin (@supervova)
+Author URI:   https://super-mark.ru
+Text Domain:  our-portugal
+Version:      1.0.0
+*/
+
+@import 'base/functions';
+@import 'base/variables';
+@import 'base/mixins';
+
+// BS
+@import './node_modules/bootstrap/scss/functions';
+@import './node_modules/bootstrap/scss/variables';
+@import './node_modules/bootstrap/scss/mixins';
+@import './node_modules/bootstrap/scss/grid';
+@import './node_modules/bootstrap/scss/utilities';
+
+// Only use the utilities we need
+$enable-negative-margins: true;
+$utilities: map-get-multiple(
+  $utilities,
+  (
+    'align-items',
+    'display',
+    'margin-top',
+    'negative-margin-top',
+    'margin-bottom',
+    'negative-margin-bottom',
+    'margin-x',
+    'padding-x',
+    'padding-top',
+    'padding-bottom',
+    'padding-right',
+    'padding-left'
+    // 'order','flex','flex-direction','flex-grow','flex-shrink','flex-wrap','justify-content','align-content','align-self','margin', 'margin-y', 'margin-right', 'margin-left','negative-margin','negative-margin-x','negative-margin-y','negative-margin-right', 'negative-margin-left','padding','padding-x','padding-y',
+  ));
+
+@import './node_modules/bootstrap/scss/utilities/api';
+
+// Base
+@import 'base/normalize';
+@import 'base/content/body';
+@import 'base/content/headings';
+@import 'base/graphics/icons';
+@import 'base/content/media';
+@import 'base/buttons';
+@import 'base/form/form';
+@import 'base/form/checks-radios';
+@import 'base/form/search';
+@import 'base/form/labels';
+@import 'base/form/select';
+@import 'base/form/number';
+@import 'base/form/file';
+@import 'base/form/validation';
+@import 'base/table/table';
+@import 'base/layout';
+@import 'base/content/lists-advanced';
+@import 'base/animation';
+
+// Components
+@import 'components/alert/alert';
+@import 'components/backdrop/backdrop';
+@import 'components/card/card';
+@import 'components/carousel/carousel';
+@import 'components/collapsible-panel/collapsible-panel';
+@import 'components/command-bar/command-bar';
+@import 'components/cta/cta';
+@import 'components/tabs/tabs';
+@import 'components/dropdown/dropdown';
+@import 'components/feature/feature';
+@import 'components/footer/footer';
+@import 'components/hero/hero';
+@import 'components/kpi/kpi';
+@import 'components/language-switcher/language-switcher';
+@import 'components/list-view/list-view';
+@import 'components/main/main';
+@import 'components/navbar/navbar';
+@import 'components/pagination/pagination';
+@import 'components/section/section';
+@import 'components/sidebar/categories';
+@import 'components/sidebar/drawer';
+@import 'components/sidebar/sidebar';
+@import 'components/slider/slider';
+@import 'components/tabs/tabs';
+@import 'components/recent-posts/recent-posts';
+
+// Pages
+@import 'pages/home/home';
+@import 'pages/golden-visa/golden-visa';
+@import 'pages/blog/blog';
+@import 'pages/forum/forum';
+@import 'pages/forms/custom';
+
+// Helpers & Print
+@import 'util/layout';
+@import 'util/content';
+@import 'base/print';

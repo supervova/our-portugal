@@ -1,0 +1,171 @@
+{% extends "base/base.twig" %}
+
+{% block content %}
+
+{{ post.content }}
+
+<section class="section is-realty is-alt text-center">
+  <h2 class="text-center mb-1">Каталог недвижимости</h2>
+  <div class="carousel is-xs-sm has-3-properties slide" id="carouselRealty" data-ride="carousel" data-interval="false">
+    <div class="carousel-inner">
+      <div class="carousel-viewport">
+        {% for post in realty_teaser %}
+          <div class="carousel-item{% if loop.first %} active{% endif %}">
+            {% include 'partial/teaser-real-estate.twig' %}
+          </div>
+        {% endfor %}
+      </div>
+      <a class="carousel-control is-prev" href="#carouselRealty" role="button" data-slide="prev" aria-label="Назад"></a>
+      <a class="carousel-control is-next" href="#carouselRealty" role="button" data-slide="next" aria-label="Вперёд"></a>
+    </div>
+    <ol class="carousel-indicators">
+      <li data-target="#carouselRealty" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselRealty" data-slide-to="1"></li>
+      <li data-target="#carouselRealty" data-slide-to="2"></li>
+    </ol>
+  </div>
+  <a class="link is-cta mx-auto" href="/realty">
+    Все предложения
+    <svg class="icon" aria-hidden="true" focusable="false">
+      <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-chevron-in-circle-sm"></use>
+    </svg>
+  </a>
+</section>
+<div class="section">
+  <div class="row justify-center">
+    <section class="col-md-8 col-mdl-6 pr-mdl-2s">
+      <h2 class="section__title mb-n2s"><a href="/ru/blog">Блог о Португалии</a></h2>
+      <ul class="list-view pt-0">
+        {% for post in posts %}
+          {% include 'partial/teaser.twig' %}
+        {% endfor %}
+      </ul>
+    </section>
+    {# <section class="d-none d-mdl-block col-mdl-6 pl-mdl-2s">
+      <h2 class="section__title mb-n1"><a href="/ru/forum">Форум о Португалии</a></h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="table__topic-icon" scope="col"></th>
+            <th class="table__question" scope="col">Вопросы</th>
+            <th class="table__count" scope="col">Ответы</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="table__topic-icon">
+              <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-checkmark"></use>
+            </svg>
+            </td>
+            <td class="table__question">
+              <a href="#">Виза Португалия</a>
+            </td>
+            <td class="table__count">0</td>
+          </tr>
+          <tr>
+            <td class="table__topic-icon">
+              <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-plane"></use>
+            </svg>
+            </td>
+            <td class="table__question">
+              <a href="#">Можно лететь в Португалию???</a>
+            </td>
+            <td class="table__count">1</td>
+          </tr>
+          <tr>
+            <td class="table__topic-icon">
+              <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-beach"></use>
+            </svg>
+            </td>
+            <td class="table__question">
+              <a href="#">Серфинг - нужны советы)</a>
+            </td>
+            <td class="table__count">1</td>
+          </tr>
+          <tr>
+            <td class="table__topic-icon">
+              <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-car"></use>
+            </svg>
+            </td>
+            <td class="table__question">
+              <a href="#">Проездной</a>
+            </td>
+            <td class="table__count">6</td>
+          </tr>
+          <tr>
+            <td class="table__topic-icon">
+              <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-plane"></use>
+            </svg>
+            </td>
+            <td class="table__question">
+              <a href="#">Стоит ли ехать в конце апреля??</a>
+            </td>
+            <td class="table__count">6</td>
+          </tr>
+          <tr>
+            <td class="table__topic-icon">
+              <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-bag"></use>
+            </svg>
+            </td>
+            <td class="table__question">
+              <a href="#">Доставка шариков в Лиссабоне</a>
+            </td>
+            <td class="table__count">0</td>
+          </tr>
+          <tr>
+            <td class="table__topic-icon">
+              <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-cafe"></use>
+            </svg>
+            </td>
+            <td class="table__question">
+              <a href="#">Кафе послушать фаду</a>
+            </td>
+            <td class="table__count">2</td>
+          </tr>
+          <tr>
+            <td class="table__topic-icon">
+              <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-map"></use>
+            </svg>
+            </td>
+            <td class="table__question">
+              <a href="#">Douro Valley (Долину Дору)</a>
+            </td>
+            <td class="table__count">0</td>
+          </tr>
+          <tr>
+            <td class="table__topic-icon">
+              <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-car"></use>
+            </svg>
+            </td>
+            <td class="table__question">
+              <a href="#">Бесплатная парковка</a>
+            </td>
+            <td class="table__count">4</td>
+          </tr>
+          <tr>
+            <td class="table__topic-icon">
+              <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-coin"></use>
+            </svg>
+            </td>
+            <td class="table__question">
+              <a href="#">Лайфхак: как перевести деньги за границу без комиссии</a>
+            </td>
+            <td class="table__count">5</td>
+          </tr>
+        </tbody>
+      </table>
+      <a href="/ru/forum/new-topic" class="btn is-outline">Задать вопрос</a>
+    </section> #}
+  </div>
+</div>
+{% endblock %}

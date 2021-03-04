@@ -1,0 +1,236 @@
+{% extends "/pages/base/base.twig" %}
+
+{% block config %}
+  {{ parent() }}
+
+  {% set post = {
+  lang: "ru",
+  title: "Форум о Португалии",
+  description: site.description,
+  image: site.logo,
+  link: site.url ~ "/ru/forum",
+  body_classes: "is-forum"
+} %}
+{% endblock %}
+
+{% block html_head %}
+  {{ parent() }}
+
+  {# <style>
+    </style> #}
+{% endblock %}
+
+
+{# MAIN CONTENT ------------------------------------------------------------- #}
+{% block content %}
+
+  {# HEADER #}
+  <header class="hero is-empty">
+    <div class="ribbon" role="presentation"></div>
+  </header>
+
+  <div class="main pb-3">
+    <div class="row justify-center">
+      <div class="col-mdl-10 col-xxl-8">
+        <header class="main__header has-button">
+          <h1>Форум: ваши вопросы о&nbsp;Португалии</h1>
+        </header>
+        <p class="note col-mdl-10">
+          Если у&nbsp;вас есть вопросы о&nbsp;жизни и&nbsp;отдыхе в&nbsp;Португалии&nbsp;&mdash; спрашивайте здесь. Если вы&nbsp;знаете ответ на&nbsp;вопрос другого посетителя&nbsp;&mdash; поделитесь знаниями.
+        </p>
+        <div class="row">
+          <div class="col-6">
+          <a href="/ru/forum/new-topic" class="btn is-primary">Задать вопрос</a>
+          </div>
+          <div class="col-6 d-none d-sm-block">
+            <form class="form is-search is-compact" action="/search" method="get">
+              <div class="form__item">
+                <input class="form__control" type="text" aria-label="Поиск по форуму" placeholder="Поиск по форуму" autocapitalize="off" autocomplete="off" spellcheck="false">
+                <button class="btn is-submit" type="submit" aria-label="Искать">
+                  <svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-search"></use>
+                  </svg>
+                </button>
+              </div>
+              <input type="hidden" value>
+            </form>
+          </div>
+
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="table__topic-icon" scope="col"></th>
+              <th class="table__topic is-sortable" scope="col" aria-sort="none" aria-label="Сортировать по этой колонке">
+                <span>Темы</span>
+              </th>
+              <th class="table__question is-sortable" scope="col" aria-sort="none" aria-label="Сортировать по этой колонке">
+                <span>Вопросы</span>
+              </th>
+              <th class="table__count is-sortable" scope="col" aria-sort="none" aria-label="Сортировать по этой колонке" title="Ответы">
+                <span>Ответы</span>
+              </th>
+              <th class="table__update is-sortable" scope="col" aria-sort="ascending" aria-label="Сортировать по этой колонке">
+                <span>Обновл.</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% set topics = {
+                item1: {
+                  icon: 'checkmark',
+                  topic: 'Виза',
+                  question: 'Виза Португалия',
+                  update: '12.11.2020',
+                  answers: 0
+                },
+
+                item2: {
+                  icon: 'plane',
+                  topic: 'Авиасообщение',
+                  question: 'Можно лететь в Португалию???',
+                  update: '13.11.2020',
+                  answers: 1
+                },
+
+                item3: {
+                  icon: 'beach',
+                  topic: 'Море, пляжи',
+                  question: 'Серфинг - нужны советы)',
+                  update: '14.11.2020',
+                  answers: 1
+                },
+
+                item4: {
+                  icon: 'car',
+                  topic: 'Транспорт',
+                  question: 'Проездной',
+                  update: '15.11.2020',
+                  answers: 6
+                },
+
+                item5: {
+                  icon: 'plane',
+                  topic: 'Общее',
+                  question: 'Стоит ли ехать в конце апреля??',
+                  update: '16.11.2020',
+                  answers: 6
+                },
+
+                item6: {
+                  icon: 'bag',
+                  topic: 'Покупки',
+                  question: 'Доставка шариков в Лиссабоне',
+                  update: '17.11.2020',
+                  answers: 0
+                },
+
+                item7: {
+                  icon: 'cafe',
+                  topic: 'Кафе, рестораны',
+                  question: 'Кафе послушать фаду',
+                  update: '18.11.2020',
+                  answers: 2
+                },
+
+                item8: {
+                  icon: 'map',
+                  topic: 'Города и природа',
+                  question: 'Douro Valley (Долину Дору)',
+                  update: '19.11.2020',
+                  answers: 0
+                },
+
+                item9: {
+                  icon: 'car',
+                  topic: 'Транспорт',
+                  question: 'Бесплатная парковка',
+                  update: '20.11.2020',
+                  answers: 4
+                },
+
+                item10: {
+                  icon: 'coin',
+                  topic: 'Деньги',
+                  question: 'Лайфхак: как перевести деньги за границу без комиссии',
+                  update: '21.11.2020',
+                  answers: 5
+                },
+
+                item11: {
+                  icon: 'car',
+                  topic: 'Транспорт',
+                  question: 'Как покупать билеты',
+                  update: '22.11.2020',
+                  answers: 0
+                },
+
+                item12: {
+                  icon: 'cafe',
+                  topic: 'Кафе, рестораны',
+                  question: 'Ужин в Ольос-де-Агуа',
+                  update: '23.11.2020',
+                  answers: 2
+                },
+
+                item13: {
+                  icon: 'plane',
+                  topic: 'Авиасообщение',
+                  question: 'Кто летит в Лиссабон с 21 декабря',
+                  update: '24.11.2020',
+                  answers: 0
+                },
+
+                item14: {
+                  icon: 'map',
+                  topic: 'Города и природа',
+                  question: 'Отдых в Назаре',
+                  update: '25.11.2020',
+                  answers: 4
+                },
+
+                item15: {
+                  icon: 'plane',
+                  topic: 'Авиасообщение',
+                  question: 'Мадейра в декабре 2020 кто летит?',
+                  update: '26.11.2020',
+                  answers: 5
+                },
+              } %}
+
+            {% for item in topics %}
+              <tr>
+                <td class="table__topic-icon">
+                  <svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-{{ item.icon }}"></use>
+                  </svg>
+                </td>
+                <td class="table__topic">
+                  <a class="text-truncate" href="#">{{ item.topic }}</a>
+                </td>
+                <td class="table__question">
+                  <a href="#">{{ item.question }}</a>
+                </td>
+                <td class="table__count">{{ item.answers }}</td>
+                <td class="table__update">{{ item.update }}</td>
+              </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {% include "/components/pagination/_pagination.twig" %}
+  </div>
+
+  <!-- googleoff: all-->
+  <!-- noindex-->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    {% include '/pages/blog/_categories.twig' %}
+  </div>
+   <!-- /noindex-->
+  <!-- googleon: all-->
+  <div class="backdrop" id="backdrop"></div>
+
+{% endblock %}

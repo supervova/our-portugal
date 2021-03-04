@@ -1,0 +1,136 @@
+// MARKUP TIP: use inputmode attribute to conrol keyboard appearance on mobile
+// devices
+// <input type="text" inputmode="url">
+// <input type="text" inputmode="email">
+// <input type="text" inputmode="search">
+// <input type="text" inputmode="numeric">
+// <input type="text" inputmode="tel">
+
+// With input(inputmode="decimal") the keyboard appears on iOS the same as the
+// tel case, but replaces the +*# key with a simple decimal (.).
+// <input type="text" inputmode="decimal">
+
+fieldset + fieldset {
+  margin-top: $size-1;
+}
+
+// Input container
+.form__item {
+  position: relative;
+  padding-top: 0;
+  padding-bottom: var(--padding-bottom-form-group);
+}
+
+.form__bar,
+%form-bar {
+  background: $color-bg-accent;
+  border-radius: $border-radius;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $size-line * 2;
+
+  > .d-flex {
+    align-items: center;
+  }
+}
+
+// Input, text area, select
+.form__control,
+%form-control {
+  appearance: none;
+  background-clip: padding-box;
+  background-color: $color-bg-normal;
+  background-image: none;
+  border-radius: $border-radius;
+  border: $border-width solid $color-ink-border;
+  color: $color-ink-2ry;
+  display: block;
+  margin: 0;
+  overflow: visible;
+  padding-top: var(--padding-y-input);
+  padding-bottom: var(--padding-y-input);
+  transition: border-color $duration-xs;
+
+  &:focus {
+    color: $color-ink-normal;
+    border-color: $color-primary;
+    outline: 0;
+  }
+}
+
+.form__control {
+  padding-right: var(--padding-right-input);
+  padding-left: var(--padding-left-input);
+  width: 100%;
+
+  // Placeholder
+  &::placeholder {
+    color: $color-ink-2ry;
+    font-size: var(--font-size-small);
+    line-height: 2;
+    text-transform: uppercase;
+    // Override Firefox's unusual default opacity
+    opacity: 1;
+  }
+}
+
+// TEXTAREA
+.form__control.is-textarea {
+  @extend %label;
+
+  padding-top: 1.8rem;
+  padding-bottom: 2.8rem;
+
+  &::placeholder {
+    transform: translateY(-.5rem);
+  }
+}
+
+.form__actions {
+  padding-bottom: var(--padding-bottom-form-actions);
+}
+
+// -----------------------------------------------------------------------------
+// PREFIXES & SUFFIXES
+// -----------------------------------------------------------------------------
+
+.form__control-prefix,
+.form__control-suffix {
+  color: $color-ink-2ry;
+  position: absolute;
+  top: 1.3rem;
+  z-index: 1;
+}
+
+.form__control-prefix {
+  left: 1.2rem;
+
+  .row > .form__item & {
+    left: 1.2rem + $size-1;
+  }
+}
+
+.form__control-suffix {
+  right: 1.2rem;
+  opacity: 1;
+  transition: opacity $duration;
+
+  .row > .form__item & {
+    right: 1.2rem + $size-1;
+  }
+}
+
+
+
+// -----------------------------------------------------------------------------
+// MODIFIERS
+// -----------------------------------------------------------------------------
+
+.form__item.has-price .form__label .icon {
+  fill: $color-primary;
+}
+
+.page.is-contacts .is-should-be-validated {
+  padding-bottom: $size-line * 3;
+}

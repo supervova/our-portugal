@@ -1,0 +1,58 @@
+<form id="form-needs-validation" action="/" method="post" novalidate>
+  {% set fields = {
+
+    name: {
+      label: 'Ваше имя *',
+      name: 'name',
+      icon: 'person',
+      type: 'text',
+      special: {
+        minlength: 3,
+        maxlength: 128,
+        pattern: '[\p{L} -]+',
+      },
+      required: true,
+      alert: 'Введите имя и фамилию. Желательно кириллицей'
+    },
+
+    email: {
+      label: 'Ваш email *',
+      name: 'email',
+      icon: 'email',
+      type: 'email',
+      special: {
+        minlength: 3,
+        maxlength: 128,
+        pattern: '[\p{L} -]+',
+      },
+      required: true,
+      alert: 'Введите адрес электронной почты в стандартном формате'
+    },
+
+  } %}
+
+  {% for field in fields %}
+    <div class="form__item">
+      <label class="form__label is-icon" for="{{ 'form-' ~ field.name }}">
+        <span class="sr-only">{{ field.label }}</span>
+        <svg class="icon" aria-hidden="true" focusable="false">
+          <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-{{ field.icon }}"></use>
+        </svg>
+      </label>
+      <input
+        class="form__control"
+        id="{{ 'form-' ~ field.name }}"
+        name="{{ field.name }}"
+        type="{{ field.type }}"
+        value=""
+        {% for key, value in field.special %}
+          {{ key }}="{{ value }}"
+        {% endfor %}
+        {% if field.required %} required{% endif %}
+        placeholder="{{ field.label }}"
+      >
+      <div class="form__alert" role="alert"><div>{{ field.alert }}</div></div>
+    </div>
+  {% endfor %}
+
+</form>

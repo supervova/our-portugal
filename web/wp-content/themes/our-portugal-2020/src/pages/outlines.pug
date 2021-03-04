@@ -1,0 +1,295 @@
+//- HOME - home.twig
+main
+  //- CUT IN TEMPLATE
+  header.hero
+    .hero__content
+      .row
+        .col-md-8.col-lg-6
+          h1.hero__title
+          //- etc
+    .ribbon(role='presentation')
+  .section.has-kpi.is-next-to-header(role='region')
+    .row
+      .col-md-3.is-1
+        figure.kpi
+          span.kpi__value 800
+          span.kpi__caption
+            | километров
+            br
+            | береговой линии
+      .col-md-3.is-2
+        figure.kpi
+          span.kpi__value 300
+          span.kpi__caption
+            | солнечных
+            br
+            | дней в году
+      .col-md-3.is-3
+        figure.kpi
+          span.kpi__value 15
+          span.kpi__caption
+            | объектов Всемирного
+            br
+            | наследия ЮНЕСКО
+      .col-md-3.is-4
+        figure.kpi
+          span.kpi__value 1200
+          span.kpi__caption
+            | г. до н. — начало
+            br
+            | истории Лиссабона
+  //- etc
+
+  .section
+    .row.justify-center
+      section.col-md-8.col-mdl-6.pr-mdl-2s
+        h2.section__title.mb-n2s
+          a(href='/ru/blog') Блог о Португалии
+        ul.list-view.pt-0
+          li.list-item
+          //- etc
+
+      section.d-none.d-mdl-block.col-mdl-6.pl-mdl-2s
+        h2.section__title.mb-n1
+          a(href='/ru/forum') Форум о Португалии
+        table.table
+
+//- GOLDEN VISA - freestyle.twig
+main
+  header.hero
+    .hero__content
+      h1.hero__title Золотая виза Португалии
+      p.hero__subtitle ВНЖ за инвестиции
+    .ribbon(role='presentation')
+
+  //- CUT IN CMS
+  .section.is-visa-lead.is-next-to-header(role='region')
+    p «Золотая виза» — это не виза в традиционном понимании. Это вид на жительство (ВНЖ) или постоянное место жительства (ПМЖ), полученное на льготных условиях через участие в государственной инвестиционной программе.
+    //-etc
+  footer.cta
+
+//- FORM: CALCULATION - freestyle.twig
+main
+  header.hero
+    .hero__content
+      h1.hero__title ВНЖ Португалии — расчёт
+    .ribbon(role='presentation')
+  article.main
+    .row.justify-center
+      .col.has-form
+        h2 Индивидуальный расчёт стоимости оформления ВНЖ Португалии
+        form.is-should-be-validated.pb-3#form-needs-validation(action='/' method='post' novalidate)
+
+      .col.is-calculation-sidebar
+
+//- FORM: CONTACT US - freestyle.twig
+main
+  header.hero
+    .hero__content
+      h1.hero__title Обратная связь
+    .ribbon(role='presentation')
+  article.main
+    .row.justify-center
+      .col.has-form.col-md-8.col-mdl-7.col-xxl-6
+
+      .col.is-contacts-sidebar
+
+//- BLOG POST - single.twig
+main
+  header.hero.is-empty
+    .ribbon(role='presentation')
+  article.main.is-post(itemscope itemtype='http://schema.org/BlogPosting')
+    .row.justify-center
+      header.main__header
+        ul.main__eyebrow
+          li:a.main__eyebrow-link Море и пляжи
+          li:button Все рубрики блога
+        h1.main__title
+        time.main__time
+      .main__carousel
+
+      .main__body(itemprop='articleBody')
+
+  aside.section
+    .row.justify-center
+      .col-mdl-10.col-lg-8.col-xxl-6
+        h2.h2.is-secondary Ещё в блоге: свежие статьи
+        ul.list-view.pt-0
+          li.list-item
+          //- etc
+
+  .drawer#drawer(aria-hidden='true')
+  .backdrop#backdrop
+
+//- page.twig — тоже самое, что single.twig, но без шапки и панелей
+
+//- BLOG INDEX - blog.twig
+main
+  header.hero.is-empty
+    .ribbon(role='presentation')
+  .main.pb-3
+    .row.justify-center
+      .col-md-10.col-mdl-8.col-xxl-6
+        header.main__header.has-button
+          h1
+          button.main__eyebrow-categories Рубрики
+        ul.list-view.pt-0
+          li.list-tem
+          //- etc
+
+      .sidebar.has-categories
+        form.form.is-search.is-compact(action='/search' method='get')
+        nav.categories
+          h3.categories__heading Португалия
+          ul
+            li:a.categories__link(href='#') История
+            //- etc
+
+    nav.pagination(aria-label='Постраничная навигация')
+
+  .drawer#drawer(aria-hidden='true')
+    form.form.is-search.is-compact(action='/search' method='get')
+    nav.categories
+      h3.categories__heading Португалия
+      ul
+        li:a.categories__link(href='#') История
+        //- etc
+  .backdrop#backdrop
+
+//- REALTY: INDEX - realty.twig
+main
+  header.hero
+    .hero__content
+      h1.hero__title Недвижимость в Португалии
+      .row.justify-center
+        .col-lg-10.col-xl-8
+          form.form.is-search#form-search(action='/search' method='get')
+            .form__filter-bar.row
+    .ribbon(role='presentation')
+
+
+  section.section.has-top-widgets
+    .command-bar#realty-command-bar
+
+      a.btn.is-outline.d-none.d-mdl-inline-flex(href='/ru/real-estate/add') + Разместить объявление
+    .collapsible-panel.has-map#map
+      iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.476586881502!2d-9.14202437428345!3d38.72178793664211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19331a61e4f33b%3A0x400ebbde49036d0!2z0JvQuNGB0YHQsNCx0L7QvSwg0J_QvtGA0YLRg9Cz0LDQu9C40Y8!5e0!3m2!1sru!2s!4v1604008027017!5m2!1sru!2s' allowfullscreen aria-hidden='false' tabindex='0')
+
+    .grid.has-12
+      a.link.is-box-wrapper(href='#')
+        .card
+      //- etc
+
+      nav.pagination(aria-label='Постраничная навигация')
+
+//- REALTY: PROPERTY - property.twig
+main
+  header.hero
+    .hero__content
+      h1.hero__title Недвижимость в Португалии
+      .row.justify-center
+        .col-lg-10.col-xl-8
+          form.form.is-search#form-search(action='/search' method='get')
+            .form__filter-bar.row
+    .ribbon(role='presentation')
+
+
+  article.main(itemscope itemtype='http://schema.org/Offer')
+    .row.justify-center
+
+      //- Header: filled with custom fields
+      header.main__header.text-center
+        h1.main__eyebrow(itemprop='name') Квартира в Лиссабоне, Rua de Dona Estefânia
+        p.main__title(itemprop='price') 580 000 €
+          small — 5 088 € за м²
+        ul.main__summary
+
+      //- Custom field: GALLERY
+      .main__gallery.carousel.slide#property-gallery(data-ride='carousel')
+        .carousel-inner
+        //- etc
+
+      //- Template
+      .main__body.text-center
+        a.btn.is-primary.is-stand-alone(href='#request') Оставьте заявку
+
+      //- Still template
+      .main__body.pt-2(itemprop='articleBody')
+
+        //- Custom field: Overview
+        p Светлая квартира…
+
+        //- Custom field: Map
+        .main__map
+          iframe(src='https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1191.7072976746854!2d-9.142987349678647!3d38.73146315650936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1604435669118!5m2!1sen!2s' allowfullscreen aria-hidden='false' tabindex='0')
+
+        //- Custom field: features
+        ul.main__features
+
+        //- Custom field: Area
+        h2.h2.is-secondary.text-center Район
+
+
+      aside
+        h2.h2.is-secondary.text-center.mb-1 Похожие предложения
+        .carousel.is-xs-sm.has-3-properties.slide#carouselRealty(data-ride='carousel' data-interval='false')
+          .carousel-inner
+            .carousel-viewport
+              .carousel-item.active
+                //- card
+
+      //- Template with form
+      .main__body.pt-2#request
+        h2.h2.is-secondary.text-center Оставьте заявку
+        p.text-center.is-note.mb-1 Наши менеджеры ответят на любые ваши вопросы и помогут в заключении сделки с португалоговорящим продавцом и агентом
+        form.is-should-be-validated.pb-3#form-needs-validation(action='/' method='post' novalidate)
+
+//- REALTY: FRONT END FORM - front-end-form.twig
+main
+  header.hero
+    .hero__content
+      h1.hero__title Разместить объявление
+      ul.language-switcher
+    .ribbon(role='presentation')
+
+  article.main
+    .row.justify-center
+      .main__body#request
+        h2 Предложение
+        p.is-note.mb-1s Мы принимаем только объявления о продаже жилой недвидимости в Португалии. Перед публикацией объявления проходят модерацию.
+        form.is-should-be-validated.pb-3#form-needs-validation(action='/' method='post' novalidate)
+          fieldset
+          fieldset
+          fieldset
+
+          .pt-1.pb-2
+            button.btn.is-primary.is-stand-alone#form-submit(type='submit') Подать объявление
+
+//- FORUM: INDEX - forum.twig
+main
+  header.hero.is-empty
+    .ribbon(role='presentation')
+  .main.pb-3
+    .row.justify-center
+      .col-mdl-10.col-xxl-8
+        header.main__header.has-button
+          h1 Форум: ваши вопросы о Португалии
+        p.note.col-mdl-10 Если у вас есть вопросы о жизни и отдыхе в Португалии — спрашивайте здесь. Если вы знаете ответ на вопрос другого посетителя — поделитесь знаниями.
+        .row
+          .col-6
+            a.btn.is-primary(href='/ru/forum/new-topic') Задать вопрос
+          .col-6.d-none.d-sm-block
+            form.form.is-search.is-compact
+        table.table
+
+    nav.pagination(aria-label='Постраничная навигация')
+
+  .drawer#drawer(aria-hidden='true')
+    form.form.is-search.is-compact(action='/search' method='get')
+    nav.categories
+      h3.categories__heading Португалия
+      ul
+        li:a.categories__link(href='#') История
+        //- etc
+  .backdrop#backdrop
+

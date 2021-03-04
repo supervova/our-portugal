@@ -1,0 +1,123 @@
+.hero {
+  position: relative;
+
+  &::before,
+  &::after {
+    opacity: 1;
+    background-position: center top;
+    background-repeat: no-repeat;
+    content: '';
+    position: absolute;
+    bottom: -($size-line * 3);
+    height: 17.8rem;
+  }
+
+  // BICOLOR RIBBON
+  &::before {
+    background-image: url('/wp-content/themes/our-portugal-2020/img/components/hero/bicolor-ribbon.svg');
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    z-index: 1;
+  }
+
+  // RED RIBBON
+  &::after {
+    background-image: url('/wp-content/themes/our-portugal-2020/img/components/hero/red-ribbon.svg');
+    left: 0;
+    width: 100%;
+    z-index: 2;
+  }
+}
+
+.hero__content {
+  --main-hero-pic: url('/wp-content/themes/our-portugal-2020/img/components/hero/girl-on-beach.png');
+  --clip-path-xs:
+    polygon(
+      46% 90%,    /* middle top */
+      46% 98%,    /* middle bottom */
+      100% 93%,   /* bottom right */
+      100% 0,     /* top right */
+      0 0,        /* top left */
+      0 92%       /* bottom left */
+    );
+
+  --clip-path-md:
+    polygon(
+      46% 88%,    /* middle top */
+      46% 98%,    /* middle bottom */
+      100% 86%,   /* bottom right */
+      100% 0,     /* top right */
+      0 0,        /* top left */
+      0 95%       /* bottom left */
+    );
+
+  background-color: $color-primary;
+  background-image:
+    url('/wp-content/themes/our-portugal-2020/img/base/graphics/img-features/img-top.svg'),
+    var(--main-hero-pic),
+    url('/wp-content/themes/our-portugal-2020/img/base/graphics/img-features/img-base.svg');
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 395px 435px;
+  clip-path: var(--clip-path-xs);
+  color: $color-ink-inverse-normal;
+  text-align: center;
+  padding-top: 0;
+  padding-bottom: $size-line * 17;
+  padding-left: var(--padding-x-section);
+  padding-right: var(--padding-x-section);
+
+  @include media-breakpoint-up(md) {
+    background-position: right var(--padding-x-section) top;
+    clip-path: var(--clip-path-md);
+    text-align: left;
+    padding-top: $size-line * 3;
+    padding-bottom: $size-line * 7;
+  }
+
+  @include media-breakpoint-up(lg) {
+    background-position: right 64px top;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    --main-hero-pic: url('/wp-content/themes/our-portugal-2020/img/components/hero/girl-on-beach-xl.png');
+    background-size: 499px 549px;
+  }
+}
+
+// -----------------------------------------------------------------------------
+
+// USP
+
+.hero__title {
+  color: $color-ink-inverse-normal;
+}
+
+.hero__summary {
+  margin-top: -$size-1;
+
+  @include media-breakpoint-only(md) {
+    margin-top: 0;
+    max-width: 32rem;
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+// CTA
+
+.hero__cta {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: $size-1 0 0;
+
+  li:first-child {
+    margin-right: $size-1;
+  }
+
+  @include media-breakpoint-up(md) {
+    justify-content: flex-start;
+  }
+}

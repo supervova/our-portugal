@@ -1,0 +1,18 @@
+// RECENT
+.recent {
+  @extend %main;
+
+  padding-top: $size-line * 3;
+}
+
+.recent__inner {
+  @extend %main__inner;
+}
+
+.recent__body {
+  @extend %main__body;
+}
+
+.recent__body > .list-view {
+  margin-top: -1.5rem;
+}

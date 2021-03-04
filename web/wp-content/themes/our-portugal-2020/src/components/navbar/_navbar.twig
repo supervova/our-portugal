@@ -1,0 +1,64 @@
+<header class="header">
+  <nav class="navbar">
+    <a href="/" class="navbar__logo" rel="home" aria-label="Главная страница веб-сайта">
+      <picture>
+        <source media="(max-width: 767px)" srcset="/wp-content/themes/our-portugal-2020/img/components/logo/logo-sm.svg">
+        <source media="(min-width: 768px)" srcset="/wp-content/themes/our-portugal-2020/img/components/logo/logo.svg">
+        <img src="/wp-content/themes/our-portugal-2020/img/components/logo/logo.svg" alt="Логотип «Нашей Португалии»">
+      </picture>
+    </a>
+
+    <button class="navbar__toggler" id="navbar-toggler" aria-label="Открыть меню">
+      <svg class="icon is-hamburger" aria-hidden="true" focusable="false">
+        <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-hamburger"></use>
+      </svg>
+      <svg class="icon is-close" aria-hidden="true" focusable="false">
+        <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-close"></use>
+      </svg>
+    </button>
+
+    <div class="navbar__menu">
+      <a class="link is-phone" href="tel:{{ phone|replace({' ': ''}) }}" tabindex="-1">
+        <svg class="icon" aria-hidden="true" focusable="false">
+          <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-phone"></use>
+        </svg>
+        {{ site.phone }}
+      </a>
+      <ul class="navbar__section-links" id="navbar-section-links">
+        {% set
+          items = {
+
+            item1: {
+              label: 'ВНЖ и гражданство',
+              link: '/ru/golden-visa',
+              class: 'is-visa'
+            },
+
+            item2: {
+              label: 'Недвижимость',
+              link: '/ru/real-estate',
+              class: 'is-real-estate'
+            },
+
+            item3: {
+              label: 'Форум',
+              link: '/ru/forum',
+              class: 'is-forum'
+            },
+
+            item4: {
+              label: 'Блог',
+              link: '/ru/blog',
+              class: 'is-blog'
+            },
+
+          }
+        %}
+
+        {% for item in items %}
+          <li><a class="navbar__menu-link {{ item.class }}" href="{{ item.link }}">{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </nav>
+</header>

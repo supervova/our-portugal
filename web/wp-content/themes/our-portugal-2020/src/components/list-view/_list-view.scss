@@ -1,0 +1,123 @@
+// -----------------------------------------------------------------------------
+// LIST VIEW & LIST ITEMS / MEDIA OBJECTS
+// -----------------------------------------------------------------------------
+
+.list-view {
+  list-style: none;
+  padding-left: 0;
+}
+
+// -----------------------------------------------------------------------------
+// ITEMS
+
+// Markup
+// .list-item
+//   figure.list-item__figure
+//     img(src='', alt='')
+//   .list-item__body
+//     header
+//       .list-item__eyebrow
+//       h2.list-item__title
+//     p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+//     time(datetime='2020-12-20')
+
+
+.list-item,
+.list-item__block-link {
+  padding-bottom: 0;
+  @include media-breakpoint-up(sm) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.list-item {
+  margin-top: -$size-1;
+
+  @include media-breakpoint-up(sm) {
+    margin-top: $size-2;
+  }
+}
+
+// Block link context
+.list-item__block-link {
+  .list-item__figure {
+    filter: none;
+    transition: filter $duration-sm;
+  }
+
+  .list-item__body p {
+    color: $color-ink-2ry;
+  }
+
+  &:hover {
+    text-decoration: none;
+    filter: none;
+
+    .list-item__figure {
+      filter: brightness(1.2);
+    }
+
+    .list-item__title {
+      color: $color-ink-link;
+    }
+  }
+}
+
+.list-item__figure {
+  @extend %border;
+  display: none;
+
+  @include media-breakpoint-up(sm) {
+    display: block;
+    margin-bottom: 0;
+    margin-right: $size-line;
+    width: 12rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-right: $size-4;
+  }
+}
+
+.list-item__eyebrow {
+  display: block;
+  font-size: var(--font-size-small);
+  color: $color-ink-link;
+  letter-spacing: .1rem;
+  line-height: var(--line-height-small);
+  text-transform: uppercase;
+  margin-bottom: -$size-2;
+  padding-top: 1.3rem;
+  padding-bottom: 2rem;
+}
+
+.list-item__title {
+  @extend %h3;
+
+  // Table > table-cell trick is using for truncate. The flex option does not
+  // work (
+  display: table;
+  table-layout: fixed;
+  text-transform: uppercase;
+  margin-bottom: -$size-2;
+  width: 100%;
+
+  > span {
+    @extend %text-truncate;
+    display: table-cell;
+  }
+}
+
+.list-item__body {
+  flex: 1;
+}
+
+// line-clamp is a shorthand for the max-lines, block-ellipsis, and continue properties
+.list-item__body p {
+  @include multiline-truncate(3);
+
+  margin-bottom: calc(-1 * var(--padding-top-base));
+}
+
+

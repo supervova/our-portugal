@@ -1,0 +1,62 @@
+// http://wtfforms.com/
+// Other file input solutions
+// https://github.com/kartik-v/bootstrap-fileinput
+
+.form__file {
+  --height-form-file: #{$size-line * 2};
+
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: var(--height-form-file);
+
+  input {
+    opacity: 0;
+    margin: 0;
+    opacity: 0;
+    min-width: 100%;
+  }
+}
+
+.form__file-view {
+  @extend %form-control;
+
+  padding-left: 2rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  user-select: none;
+  height: var(--height-form-file);
+  z-index: 5;
+
+  // Label
+  &::after {
+    @extend %label;
+
+    content: 'Фотографии...';
+  }
+
+  // Button
+  &::before {
+    @extend %btn-type;
+
+    background-color: $color-primary-lightest;
+    border-radius: 0 $border-radius $border-radius 0;
+    color: $color-ink-2ry;
+    content: 'Выбрать файлы';
+    display: block;
+    padding: 1.5rem $size-2 0;
+    position: absolute;
+    top: -.1rem;
+    right: -.1rem;
+    height: var(--height-form-file);
+    z-index: 6;
+  }
+}
+
+// Focus
+.form__file input:focus-within ~ .form__file-view {
+  border-color: $color-primary;
+}

@@ -1,0 +1,73 @@
+// Menu subheads
+.categories__heading {
+  margin-bottom: -$size-2;
+  padding-left: $size-4;
+  position: relative;
+}
+
+.categories__heading .icon {
+  position: absolute;
+  top: var(--padding-top-base);
+  left: 0;
+}
+
+// List and Links
+
+.categories ul {
+  margin-bottom: 1.3rem;
+}
+
+.categories li {
+  padding-bottom: 0;
+  padding-left: 1.2rem;
+}
+
+.categories__link {
+  border-radius: $border-radius;
+  display: block;
+  padding: 1.3rem 2rem 1.1rem;
+  transition:
+    background $duration-sm,
+    color $duration-sm;
+
+  &:hover {
+    background-color: $table-hover-bg;
+    filter: none;
+    text-decoration: none;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// STATIC SIDEBAR
+// -----------------------------------------------------------------------------
+
+.sidebar {
+  @include media-breakpoint-up(mdl) {
+
+    .categories__heading {
+      padding-left: $size-2;
+    }
+
+    .categories__heading .icon {
+      display: none;
+    }
+
+    .categories ul {
+      list-style-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%225%22%20height%3D%227%22%20viewBox%3D%220%200%205%207%22%3E%3Ccircle%20fill%3D%22%23b8b8b8%22%20cx%3D%222.5%22%20cy%3D%222.5%22%20r%3D%222.5%22%20%2F%3E%3C%2Fsvg%3E%0A');
+      padding-left: $size-2;
+    }
+
+    li {
+      padding-left: 0;
+    }
+
+    .categories__link {
+      padding: .5rem 0 .3rem;
+
+      &:hover {
+        background-color: $transparent;
+        text-decoration: underline;
+      }
+    }
+  }
+}

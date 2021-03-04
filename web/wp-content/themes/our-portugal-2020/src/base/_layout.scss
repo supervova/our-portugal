@@ -1,0 +1,102 @@
+// -----------------------------------------------------------------------------
+// WRAPPER
+// -----------------------------------------------------------------------------
+
+.wrapper {
+  background-color: $color-bg-normal;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  @include media-breakpoint-up(md) {
+    box-shadow: $box-shadow-z4;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  // we iterate over the map $container-max-widths: save the key to the variable
+  // $breakpoint, and save the value to the variable $max-width
+  @each $breakpoint, $max-width in $container-max-widths {
+    // Get the same breakpoint key and look for it value in $grid-breakpoints
+    @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+      max-width: $max-width;
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------
+// FLEX ROWS
+// Masonry layout with ragged bottom for items of an uneven size
+// -----------------------------------------------------------------------------
+// #region
+
+.row.is-comfort {
+  margin-left: $grid-gutter-lg / -2;
+  margin-right: $grid-gutter-lg / -2;
+
+  > * {
+    padding-left: $grid-gutter-lg / 2;
+    padding-right: $grid-gutter-lg / 2;
+  }
+}
+
+.row.is-loose {
+  margin-left: $grid-gutter-xl / -2;
+  margin-right: $grid-gutter-xl / -2;
+
+  > * {
+    padding-left: $grid-gutter-xl / 2;
+    padding-right: $grid-gutter-xl / 2;
+  }
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// GRIDS
+// Masonry layout with ragged bottom for items of an uneven size
+// -----------------------------------------------------------------------------
+// #region
+
+.grid {
+
+  @include media-breakpoint-up(md) {
+    display: grid;
+  }
+}
+
+.grid.has-12 {
+  @include media-breakpoint-up(md) {
+    grid-gap: $size-2;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media-breakpoint-up(mdl) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// CSS COLUMNS
+// Masonry layout with ragged bottom for items of an uneven size
+// -----------------------------------------------------------------------------
+// #region
+
+.columns.is-sm-2,
+%columns-sm-2 {
+  @include media-breakpoint-up(md) {
+    columns: 2;
+    column-gap: $grid-gutter-width;
+  }
+}
+
+.columns.is-lg-3 {
+  @include media-breakpoint-up(mdl) {
+    columns: 3;
+  }
+}
+
+.columns.is-masonry > * {
+  break-inside: avoid-column;
+}
+// #endregion

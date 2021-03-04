@@ -1,0 +1,29 @@
+{% extends "base/base.twig" %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="row has-login">
+    <div class="col-sm-8 col-mdl-7 col-lg-5">
+      <div class="login">
+        {% if fn('get_locale') == 'pt-PT' %}
+          <img src="/wp-content/themes/our-portugal-2020/img/components/logo/logo.svg" alt="Логотип «Нашей Португалии»">
+        {% else %}
+          <img src="/wp-content/themes/our-portugal-2020/img/components/logo/logo-pt.svg" alt="Logótipo do projecto &quot;Nosso Portugal&quot;">
+        {% endif %}
+        {{ fn('wp_login_form') }}
+        <p class="login__info">
+          {{ post.content }}
+        </p>
+      </div>
+      <a class="photo-caption" href="https://unsplash.com/s/photos/portugal?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank" rel="noopener noreferrer">
+        Photo by&nbsp;Gleb Makarov on&nbsp;Unsplash
+      </a>
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

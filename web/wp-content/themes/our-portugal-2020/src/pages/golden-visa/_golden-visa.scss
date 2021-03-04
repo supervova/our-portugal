@@ -1,0 +1,178 @@
+// -----------------------------------------------------------------------------
+// LEAD
+// -----------------------------------------------------------------------------
+
+.section.is-visa-lead {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, .11) 27%,
+      rgba(255, 255, 255, .35) 45%,
+      rgba(255, 255, 255, .65) 59%,
+      rgba(255, 255, 255, .89) 75%,
+      #fff),
+    url('/wp-content/themes/our-portugal-2020/img/pages/golden-visa/sea.jpg');
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 230px, cover;
+  text-align: center;
+  position: relative;
+  min-height: 48rem;
+}
+
+.section.is-visa-lead p {
+  font-weight: 500;
+
+  @include media-breakpoint-up(sm) {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: percentage(10/12);
+  }
+
+  @include media-breakpoint-up(mdl) {
+    max-width: percentage(8/12);
+  }
+
+  @include media-breakpoint-up(lg) {
+    max-width: 50%;
+  }
+}
+
+.section.is-visa-lead .has-primary-img {
+  display: none;
+
+  @include media-breakpoint-up(lg) {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    right: var(--padding-x-section);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// BENEFITS
+// -----------------------------------------------------------------------------
+
+.section.is-visa-benefits {
+  text-align: center;
+  margin-top: -$size-line * 3;
+  position: relative;
+  z-index: 1;
+
+  @include media-breakpoint-up(lg) {
+    margin-top: -$size-line * 2;
+  }
+}
+
+.section.is-visa-benefits h2,
+.section.is-visa-benefits p {
+  @include media-breakpoint-up(sm) {
+    margin-left: auto;
+    margin-right: auto;
+    width: percentage(10/12);
+  }
+
+  @include media-breakpoint-up(mdl) {
+    width: percentage(8/12);
+  }
+
+  @include media-breakpoint-up(xxl) {
+    width: 50%;
+  }
+}
+
+.section.is-visa-benefits .is-checklist {
+  text-align: left;
+
+  @include media-breakpoint-up(sm) {
+    margin-left: auto;
+    margin-right: auto;
+    width: percentage(9/12);
+  }
+
+  @include media-breakpoint-up(mdl) {
+    width: 50%;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    width: percentage(5/12);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// PROCESS & HOW-TO
+// -----------------------------------------------------------------------------
+
+.section.is-visa-process {
+  text-align: center;
+
+  @include media-breakpoint-down(md) {
+    margin-top: -$size-line * 2;
+  }
+}
+
+.section.is-visa-how-to {
+  background: $color-bg-accent;
+}
+
+.section.is-visa-how-to .picture {
+  display: none;
+
+  @include media-breakpoint-up(md) {
+    display: flex;
+    justify-content: flex-end;
+    // overflow: hidden;
+    flex: 0 0 auto;
+    width: percentage(5/12);
+  }
+}
+
+.section.is-visa-how-to .has-primary-img {
+  min-width: 40rem;
+}
+
+// -----------------------------------------------------------------------------
+// DETAILS
+// -----------------------------------------------------------------------------
+
+// .section.is-visa-details {
+//   background-color: #282a2b;
+//   background-image: url('/wp-content/themes/our-portugal-2020/img/pages/golden-visa/family.jpg');
+//   background-position: center top;
+//   background-repeat: no-repeat;
+//   display: flex;
+//   justify-content: center;
+//   padding-top: $size-line * 24;
+//   padding-bottom: $size-line * 3;
+// }
+
+// .section.is-visa-details .tabbed-section {
+//   @include media-breakpoint-between(md, lg) {
+//     min-height: 58.4rem;
+//   }
+// }
+
+.section.is-visa-details {
+  background-color: $color-primary-lightest;
+  background-image:
+    linear-gradient($color-primary, $color-primary),
+    linear-gradient(rgba($color-primary-lightest, .64), rgba($color-primary-lightest, .64)),
+    linear-gradient(rgba($color-primary-lightest, .64), rgba($color-primary-lightest, .64)),
+    url(/wp-content/themes/our-portugal-2020/img/pages/golden-visa/sea-02.jpg);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-blend-mode: color, normal, screen, normal;
+  padding: 0 0 ($size-line * 2);
+}
+
+.section.is-visa-details .tabbed-section {
+  margin: 0 auto;
+  padding-top: $size-line * 2;
+  padding-left: var(--padding-x-section);
+  padding-right: var(--padding-x-section);
+
+  @include media-breakpoint-between(sm, lg) {
+    min-height: 63.2rem;
+  }
+}
+

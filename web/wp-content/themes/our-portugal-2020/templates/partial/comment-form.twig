@@ -1,0 +1,55 @@
+<div class="comment__form">
+  <h3>{{ fn('pll_e', 'Ваш комментарий') }}</h3>
+  <form class="form is-comment" action="{{ site.site_url ~ '/wp-comments-post.php' }}" method="post">
+    <input name="comment_post_ID" value="{{ post.id }}" type="hidden">
+    <input name="comment_parent" value="{{ comment.ID|default('0') }}" type="hidden">
+    {% if user %}
+      <input type="hidden" name="email" value="{{ user.email }}">
+      <input type="hidden" name="author" value="{{ user.name }}">
+      <input type="hidden" name="url" value="{{ user.link }}">
+    {% else %}
+      <div class="form__item">
+        <label class="form__label is-icon" for="form-author">
+          <span class="sr-only">{{ fn('pll_e', 'Ваше имя *') }}</span>
+          <svg class="icon" aria-hidden="true" focusable="false">
+            <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-person"></use>
+          </svg>
+        </label>
+        <input class="form__control" id="form-author" name="author" type="text" pattern="[\p{L} -]+" minlength="3" maxlength="128" placeholder="Ваше имя *" required>
+        <div class="form__alert" role="alert">
+          <div>Введите имя и фамилию. Желательно кириллицей</div>
+        </div>
+      </div>
+
+      <div class="form__item">
+        <label class="form__label is-icon" for="form-email">
+          <span class="sr-only">Ваш email *</span>
+          <svg class="icon" aria-hidden="true" focusable="false">
+            <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-email"></use>
+          </svg>
+        </label>
+        <input class="form__control" id="form-email" name="email" type="email" minlength="3" maxlength="128" inputmode="email" placeholder="Ваш email *" required>
+        <div class="form__alert" role="alert">
+          <div>Введите адрес электронной почты в стандартном формате</div>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="form__item">
+      <label class="form__label is-icon is-for-textarea" for="form-message">
+        <span class="sr-only">Ваше сообщение *</span>
+        <svg class="icon" aria-hidden="true" focusable="false">
+          <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-message"></use>
+        </svg>
+      </label>
+      <textarea class="form__control is-textarea" id="form-message" name="comment" required>Ваше сообщение *</textarea>
+      <div class="form__alert" role="alert">
+        <div>Вы забыли написать комментарий</div>
+      </div>
+    </div>
+
+    <button type="submit" name="Submit" class="btn">{{ fn('pll_e', 'Отправить') }}</button>
+    <button type="reset">{{ fn('pll_e', 'Отменить') }}</button>
+    <p class="note">{{ fn('pll_e', 'Комментарии проходят модерацию') }}</p>
+  </form>
+</div>

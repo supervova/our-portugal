@@ -1,0 +1,295 @@
+
+{% set body_classes = 'is-real-estate' %}
+
+{% extends "base/base.twig" %}
+
+{% block content %}
+  {# HERO #}
+  {% include 'partial/hero-realty.twig' %}
+
+  {# BODY #}
+  <article class="main" itemscope itemtype="http://schema.org/Offer">
+    <div class="row justify-center">
+      <header class="main__header text-center">
+        <h1 class="main__eyebrow" itemprop="name">{{ post.title }}</h1>
+        {% if post.meta('property_deal') == 'sale' %}
+          <p class="main__title" itemprop="price">{{ post.meta('property_price')|number_format(0, ',', ' ') }}&nbsp;€<small>&nbsp;—&nbsp;{{ (post.meta('property_price') / post.meta('property_area'))|round|number_format(0, ',', ' ') }}&nbsp;€ за&nbsp;м&sup2;</small></p>
+        {% else %}
+          <p class="main__title" itemprop="price">{{ post.meta(property_rent)|number_format(0, ',', ' ') }}&nbsp;<span class="nobr">€ в мес.</span></p>
+        {% endif %}
+
+        <ul class="main__summary">
+          <li>
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-bed"></use>
+            </svg>
+            <b>{{ post.meta('property_bedrooms') }}</b>
+            {% if post.meta('property_bedrooms') == 1 %} спальня
+            {% elseif post.meta('property_bedrooms') > 1 and post.meta('property_bedrooms') < 5 %} спальни
+            {% else %} спален
+            {% endif %}
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-bath"></use>
+            </svg>
+            <b>{{ post.meta('property_bathrooms') }}</b>
+            {% if post.meta('property_bathrooms') == 1 %} санузел
+            {% elseif post.meta('property_bathrooms') > 1 and post.meta('property_bathrooms') < 5 %} санузла
+            {% else %} санузлов
+            {% endif %}
+          </li>
+          <li>
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-area"></use>
+            </svg>
+            <b>{{ post.meta('property_area') }}</b> м<sup>2</sup>
+          </li>
+        </ul>
+        <meta itemprop="priceCurrency" content="EUR">
+      </header>
+      {% if post.meta('property_carousel')|length == 1 %}
+        {#  #}
+        {% for img in post.meta('property_carousel') %}
+          <figure class="border is-extended mt-2">
+            <img src="{{ img|resize(816, 456) }}" alt="{{ post.title }}">
+          </figure>
+        {% endfor %}
+      {% elseif post.meta('property_carousel')|length > 1 %}
+        <div class="main__gallery carousel slide" id="property-gallery" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-viewport">
+              {% for img in post.meta('property_carousel') %}
+                {% if img is not empty %}
+                  <figure class="carousel-item{% if loop.first %} active{% endif %}">
+                    <img class="card__img" src="{{ img }}" itemprop="image" alt="{{ post.title }}">
+                  </figure>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <a class="carousel-control is-prev" href="#property-gallery" role="button" data-slide="prev" aria-label="Назад"></a>
+            <a class="carousel-control is-next" href="#property-gallery" role="button" data-slide="next" aria-label="Вперёд"></a>
+          </div>
+          <ol class="carousel__thumbnails carousel-indicators">
+            {% for img in post.meta('property_carousel') %}
+              {% if img is not empty %}
+                <li data-target="#property-gallery" data-slide-to="{{ loop.index - 1 }}"{% if loop.first %} class="active"{% endif %}>
+                  <img src="{{ img|resize(122, 72) }}" alt="{{ post.title }}">
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ol>
+        </div>
+      {% endif %}
+
+      <div class="main__body w-100 text-center">
+        <a class="btn is-primary is-stand-alone" href="#request">Оставьте заявку</a>
+      </div>
+
+      <div class="main__body pt-2" itemprop="articleBody">
+        {{ post.content }}
+
+        <div class="main__map">
+          <iframe src="https://www.google.com/maps/embed/v1/place?key={{ maps_api }}&q={% if post.meta('property_address').property_street %}{{ post.meta('property_address').property_street|url_encode }},{% endif %}{% if post.meta('property_locality') %}{{ post.meta('property_locality')|url_encode }},{% endif %}{{ post.meta('property_district')|url_encode }},Португалия&zoom=17" allowfullscreen aria-hidden="false" tabindex="0"></iframe>
+        </div>
+        {% if post.meta('property_address').property_street and not post.meta('property_address').property_hide_address %}
+          <p class="main__map-caption">Адрес: {{ post.meta('property_district') }}, {{ post.meta('property_locality') }}, {{ post.meta('property_address').property_street }}</p>
+        {% endif %}
+
+        <ul class="main__features">
+          {% if post.meta('property_year') %}<li>Год постройки&nbsp;— {{ post.meta('property_year') }}.</li>{% endif %}
+
+          <li>
+            {% if post.meta('property_condition') == 'new' %}
+              Новостройка
+            {% elseif post.meta('property_condition') == 'ok' %}
+              После капитального ремонта
+            {% elseif post.meta('property_condition') == 'good' %}
+              Ремонт не требуется
+            {% else %}
+              Требуется ремонт
+            {% endif %}
+          </li>
+
+          {% if post.meta('property_floor') and post.meta('property_floors') %}
+            <li>Этаж {{ post.meta('property_floor') }}&nbsp;из&nbsp;{{ post.meta('property_floors') }}.</li>
+          {% elseif post.meta('property_floors') %}
+            <li>{{ post.meta('property_floors') }}-этажное здание.</li>
+          {% endif %}
+          {% if post.meta('property_kitchen') %}
+            <li>Кухня {{ post.meta('property_kitchen') }} м<sup>2</sup>.</li>
+          {% endif %}
+
+          {% if post.meta('property_equipment') %}
+            {% set options = post.meta('property_equipment') %}
+            {% for option in options %}
+              {% if option == 'balcony' %}
+                <li>Балкон / терраса</li>
+              {% elseif option == 'cooling' %}
+                <li>Кондиционер</li>
+              {% elseif option == 'appliances' %}
+                <li>Встроенная кухонная техника</li>
+              {% elseif option == 'wardrobes' %}
+                <li>Встроенные шкафы</li>
+              {% elseif option == 'garage' %}
+                <li>Парковочное место / гараж</li>
+              {% elseif option == 'elevator' %}
+                <li>Лифт</li>
+              {% elseif option == 'garden' %}
+                <li>Сад / внутренний двор</li>
+              {% elseif option == 'pool' %}
+                <li>Бассейн</li>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </ul>
+
+        {% if post.meta('property_transport') or post.meta('property_places') or post.meta('property_shops') or post.meta('property_children') %}
+          <h2 class="h2 is-secondary text-center">Инфраструктура района</h2>
+          <dl>
+            {% if post.meta('property_transport') %}
+              <dt>Транспортная доступность.</dt>
+              <dd>{{ post.meta('property_transport') }}</dd>
+            {% endif %}
+            {% if post.meta('property_places') %}
+              <dt>Парки, места отдыха.</dt>
+              <dd>{{ post.meta('property_places') }}</dd>
+            {% endif %}
+            {% if post.meta('property_shops') %}
+              <dt>Кафе, рестораны, магазины.</dt>
+              <dd>{{ post.meta('property_shops') }}</dd>
+            {% endif %}
+            {% if post.meta('property_children') %}
+              <dt>Для детей и&nbsp;родителей.</dt>
+              <dd>{{ post.meta('property_children') }}</dd>
+            {% endif %}
+          </dl>
+        {% endif %}
+
+        <a class="main__share-link text-center" href="mailto:?subject={{ post.title|url_encode }}&amp;body={{ post.link|url_encode }}">
+          <svg class="icon" aria-hidden="true" focusable="false">
+            <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-email"></use>
+          </svg>
+          Поделиться ссылкой
+        </a>
+      </div>
+
+      {#
+        ПОХОЖИЕ ПРЕДЛОЖЕНИЯ
+        Чтобы не заморачиваться с каруселью, можно сделать медиаобъектами, как
+        в блоге. См. третий коммент: {% if posts|length > 1 %} …
+      #}
+      {# <aside>
+        <h2 class="h2 is-secondary text-center mb-1">Похожие предложения</h2>
+        <div class="carousel is-xs-sm has-3-properties slide" id="carouselRealty" data-ride="carousel" data-interval="false">
+          <div class="carousel-inner">
+            <div class="carousel-viewport">
+              {% set properties = {
+
+                item1: {
+                  image: 'realty-01',
+                  title: 'Студия в Портимао, 68м²',
+                  price: '120 000',
+                  desc: 'Район — Pestana Dom João II. Полностью оборудованная кухня, крытый бассейн, сауна и турецкая баня.',
+                  bedrooms: '<b>0</b> спален',
+                  bathrooms: '<b>1</b> ванная',
+                  active: true
+                },
+
+                item2: {
+                  image: 'realty-02',
+                  title: 'Квартира в Лиссабоне, 60м²',
+                  price: '330 000',
+                  desc: '4 этаж. Полезая площадь — 188м2. Год постройки — 1951.',
+                  bedrooms: '<b>1</b> спальня',
+                  bathrooms: '<b>1</b> ванная'
+                },
+
+                item3: {
+                  image: 'realty-03',
+                  title: 'Дом в Алмаде, 148м²',
+                  price: '330 000',
+                  desc: 'Район Botequim, Charneca da Caparica. Двор 65м², барбекю и веранда. Капитальнй ремонт сделан в июле 2020-го.',
+                  bedrooms: '<b>4</b> спальни',
+                  bathrooms: '<b>2</b> ванных',
+                  optional: true
+                },
+
+              } %}
+
+              {% for item in properties %}
+                <div class="carousel-item {% if item.optional %} is-optional{% endif %}{% if item.active %} active{% endif %}">
+                  <a class="link is-box-wrapper" href="#">
+                    <div class="card">
+                      <img class="card__img" src="/wp-content/themes/our-portugal-2020/img/placeholders/{{ item.image }}.jpg" alt="Португальская золотая виза">
+                      <div class="card__copy">
+                        <header>
+                          <h3 class="card__eyebrow">{{ item.title }}</h3>
+                          <p class="card__title">{{ item.price }} €</p>
+                        </header>
+                        <p class="card__summary">{{ item.desc }}</p>
+
+                        <ul class="card__footer">
+                          <li class="card__footer-item">
+                            <svg class="icon" aria-hidden="true" focusable="false">
+                              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-bed"></use>
+                            </svg>
+                            {{ item.bedrooms }}
+                          </li>
+                          <li class="card__footer-item">
+                            <svg class="icon" aria-hidden="true" focusable="false">
+                              <use href="/wp-content/themes/our-portugal-2020/img/base/graphics/sprite.svg#icon-bath"></use>
+                            </svg>
+                            {{ item.bathrooms }}
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
+            <a class="carousel-control is-prev" href="#carouselRealty" role="button" data-slide="prev" aria-label="Назад"></a>
+            <a class="carousel-control is-next" href="#carouselRealty" role="button" data-slide="next" aria-label="Вперёд"></a>
+          </div>
+
+          <ol class="carousel-indicators">
+            <li data-target="#carouselRealty" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselRealty" data-slide-to="1"></li>
+            <li data-target="#carouselRealty" data-slide-to="2"></li>
+          </ol>
+        </div>
+      </aside> #}
+
+      {# {% if posts|length > 1 %}
+        <aside class="recent">
+          <div class="recent__inner">
+            <div class="recent__body">
+              <h2 class="h2 is-secondary">Ещё в блоге: свежие статьи</h2>
+              <ul class="list-view">
+                {% for teaser in posts|slice(0, 2) %}
+                  {% if teaser.id != post.id %}
+                    {% include 'partial/teaser.twig' %}
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </aside>
+      {% endif %} #}
+
+      <div class="main__body pt-2" id="request">
+        <h2 class="h2 is-secondary text-center">Оставьте заявку</h2>
+        <p class="text-center is-note mb-1">Наши менеджеры ответят на&nbsp;любые ваши вопросы и&nbsp;помогут в&nbsp;заключении сделки с&nbsp;португалоговорящим продавцом и&nbsp;агентом</p>
+
+        {% filter shortcodes %}
+          [hf_form slug="contact-us"]
+        {% endfilter %}
+      </div>
+
+    </div>
+  </article>
+
+
+{% endblock %}
+

@@ -1,0 +1,54 @@
+// -----------------------------------------------------------------------------
+// MATERIAL DESIGN LIKE ANIMATED LABELS
+// -----------------------------------------------------------------------------
+
+// MARKUP
+// .form-group
+//   label(for='form-password') Password <span aria-hidden="true">*</span>
+//   input#form-password.form-control(type='password', required='')
+
+input,
+label {
+  position: relative;
+}
+
+label {
+  z-index: 1;
+}
+
+.form__label.is-text,
+%label {
+  color: $color-ink-2ry;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+  text-transform: uppercase;
+}
+
+.form__label.is-text {
+  @extend %text-truncate;
+
+  display: inline-block;
+  padding-top: .5rem;
+}
+
+.form__label.is-icon {
+  padding: 0;
+  position: absolute;
+  top: 1.3rem;
+  left: 1.2rem;
+  width: 2.4rem;
+  height: 2.4rem;
+
+  .icon {
+    fill: $color-ink-3ry;
+  }
+
+  &.is-for-textarea {
+    top: 1.3rem;
+  }
+}
+
+// compensate for column padding
+.row > .form__item .form__label.is-icon {
+  left: 1.2rem + $size-1;
+}

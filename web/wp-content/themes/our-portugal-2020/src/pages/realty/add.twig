@@ -1,0 +1,340 @@
+
+{% extends "/pages/base/base.twig" %}
+
+{% block config %}
+{{ parent() }}
+
+{% set post = {
+  lang: "ru",
+  title: "Разместить объявление о продаже | Недвижимость в Португалии",
+  description: site.description,
+  image: site.logo,
+  link: site.url ~ "/ru/real-estate/add",
+  body_classes: "is-real-estate"
+} %}
+{% endblock %}
+
+{% block html_head %}
+  {{ parent() }}
+
+  {# <style>
+  </style> #}
+{% endblock %}
+
+{% block header %}
+  {% include "/components/navbar/_navbar-simplified.twig" %}
+{% endblock %}
+
+{# MAIN CONTENT ------------------------------------------------------------- #}
+{% block content %}
+
+  <header class="hero">{# blue bg #}
+    <div class="hero__content">
+      <h1 class="hero__title">Разместить объявление</h1>
+      {% include "/components/language-switcher/_language-switcher.twig" %}
+    </div>
+    <div class="ribbon" role="presentation"></div>
+  </header>
+
+  <article class="main">
+    <div class="row justify-center">
+      <div class="main__body" id="request">
+        <h2>Предложение</h2>
+        <p class="is-note mb-1s">Мы&nbsp;принимаем только объявления о&nbsp;продаже жилой недвидимости в&nbsp;Португалии. Перед публикацией объявления проходят модерацию.</p>
+
+        <form class="is-should-be-validated pb-3" id="form-needs-validation" action="/" method="post" novalidate>
+
+          {% import "/base/form/_form.twig" as form %}
+
+          <fieldset>
+            <div class="form__item">
+              {# label, name, icon, values, selected, attributes, error, required=false #}
+              {{ form.select(
+                'Тип *',
+                'type',
+                'home',
+                {
+                  'apartment': 'Квартира',
+                  'townhouse': 'Таунхаус',
+                  'duplex': 'Дуплекс',
+                  'home': 'Дом',
+                }
+              ) }}
+            </div>
+
+            <div class="form__item">
+              {# label, name, icon, attributes, error, required=false, type='text', suffix=false, prefix=false, value='' #}
+              {{ form.input(
+                'Город / населенный пункт *',
+                'locality',
+                'map',
+                {'pattern': '[\p{L} -]+', 'minlength': 3, 'maxlength': 128},
+                'Введите название города или населенного пунта. Допускаются буквы, дефисы и пробелы.',
+                true
+              ) }}
+            </div>
+
+            <div class="row">
+              <div class="form__item col-sm-8">
+                {# label, name, icon, attributes, error, required=false, type='text', suffix=false, prefix=false, value='' #}
+                {{ form.input(
+                  'Улица *',
+                  'street',
+                  'location',
+                  {'pattern': '[\p{L} -]+', 'minlength': 3, 'maxlength': 128},
+                  'Введите название улицы. Допускаются буквы, дефисы и пробелы',
+                  true
+                ) }}
+              </div>
+              <div class="form__item col-sm-4">
+                {# label, name, icon, attributes, error, required=false, type='text', suffix=false, prefix=false, value='' #}
+                {{ form.input(
+                  '№ дома',
+                  'number',
+                  'eight',
+                  {'pattern': '[\d\p{L}]+', 'minlength': 1, 'maxlength': 4},
+                  'Введите номер дома. Допускаются только цифры и буквы'
+                ) }}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form__item has-price col-sm-8" data-validaion-parent>
+                {# label, name, icon, attributes, error, required=false, type='text', suffix=false, prefix=false, value='' #}
+                {{ form.input(
+                  'Цена *',
+                  'price',
+                  'coin',
+                  {'pattern': '[\d\s]+', 'minlength': 3, 'maxlength': 128, 'inputmode': 'numeric'},
+                  'Назначьте цену. Допускаются цифры и пробелы.',
+                  true,
+                  'text',
+                  '€'
+                ) }}
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend class="h2">Характеристики</legend>
+            <div class="row">
+              <div class="form__item col-sm-6" data-validaion-parent>
+                {# label, name, icon, attributes, error, required=false, type='text', suffix=false, prefix=false, value='' #}
+                {{ form.input(
+                  'Общая площадь *',
+                  'area',
+                  'area',
+                  {'pattern': '[\d]+', 'minlength': 2, 'maxlength': 10, 'inputmode': 'numeric'},
+                  'Укажите площадь. Допускаются только цифры.',
+                  true,
+                  'text',
+                  'м<sup>2</sup>'
+                ) }}
+              </div>
+              <div class="form__item col-sm-6" data-validaion-parent>
+                {# label, name, icon, attributes, error, required=false, type='text', suffix=false, prefix=false, value='' #}
+                {{ form.input(
+                  'Площадь кухни',
+                  'kitchen',
+                  'cafe',
+                  {'pattern': '[\d]+', 'minlength': 2, 'maxlength': 10, 'inputmode': 'numeric'},
+                  'Допускаются только цифры.',
+                  false,
+                  'text',
+                  'м<sup>2</sup>'
+                ) }}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6 mb-2s">
+                <div class="form__item has-number">
+                  {# label, name, value, min, max #}
+                  {{ form.number(
+                    'Спален',
+                    'bedroom',
+                    1,
+                    0,
+                    10
+                  ) }}
+                </div>
+              </div>
+              <div class="col-sm-6 mb-2s">
+                <div class="form__item has-number">
+                  {# label, name, value, min, max #}
+                  {{ form.number(
+                    'Санузлов',
+                    'bathroom',
+                    1,
+                    0,
+                    10
+                  ) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form__bar mb-2s px-20p">
+              <label class="form__label is-text" id="form-condition-label">Состояние</label>
+              <div class="d-flex" aria-labelledby="form-condition-label">
+                {# name, values, value #}
+                {{ form.radio(
+                  'condition',
+                  {
+                    'good': '<span class="d-sm-none">Хор.</span><span class="d-none d-sm-inline">Хорошее</span>',
+                    'repair-required': '<span class="d-sm-none">Нуж. рем.</span><span class="d-none d-sm-inline">Нужен ремонт</span>'
+                  },
+                  'good'
+                ) }}
+              </div>
+            </div>
+
+            <div class="form__bar mb-2s pl-20p">
+              <label class="form__label is-text" id="form-floor-label">Этаж</label>
+              <div class="d-flex" aria-labelledby="form-floor-label">
+                {# label, name, value, min, max #}
+                {{ form.number(
+                  null,
+                  'floor',
+                  1,
+                  1,
+                  50
+                ) }}
+                <span class="px-2s">из</span>
+                {{ form.number(
+                  null,
+                  'total-floors',
+                  5,
+                  1,
+                  50
+                ) }}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6 mb-2s">
+                <div class="form__item has-check">
+                  {# label, name, value, checked #}
+                  {{ form.checkbox(
+                    'Парковочное место / гараж',
+                    'garage'
+                  ) }}
+                </div>
+              </div>
+              <div class="col-sm-6 mb-2s">
+                <div class="form__item has-check">
+                  {# label, name, value, checked #}
+                  {{ form.checkbox(
+                    'Балкон / терраса',
+                    'balcony'
+                  ) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6 mb-2s">
+                <div class="form__item has-check">
+                  {# label, name, value, checked #}
+                  {{ form.checkbox(
+                    'Кондиционер',
+                    'air-conditioning'
+                  ) }}
+                </div>
+              </div>
+              <div class="col-sm-6 mb-2s">
+                <div class="form__item has-check">
+                  {# label, name, value, checked #}
+                  {{ form.checkbox(
+                    'Встроенные шкафы',
+                    'wardrobes'
+                  ) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6 mb-2s">
+                <div class="form__item has-check">
+                  {# label, name, value, checked #}
+                  {{ form.checkbox(
+                    'Общий бассейн',
+                    'pool'
+                  ) }}
+                </div>
+              </div>
+              <div class="col-sm-6 mb-2s">
+                <div class="form__item has-check">
+                  {# label, name, value, checked #}
+                  {{ form.checkbox(
+                    'Лифт',
+                    'elevator'
+                  ) }}
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form__item col-sm-6" data-validaion-parent>
+                {# label, name, icon, attributes, error, required=false, type='text', suffix=false, prefix=false, value='' #}
+                {{ form.input(
+                  'Название жилого комплекса',
+                  'housing-estate',
+                  'condominium'
+                ) }}
+              </div>
+              <div class="form__item col-sm-6" data-validaion-parent>
+                {# label, name, icon, attributes, error, required=false, type='text', suffix=false, prefix=false, value='' #}
+                {{ form.input(
+                  'Год постройки',
+                  'year-built',
+                  'calendar',
+                  {'pattern': '^\d{4}$', 'inputmode': 'numeric'},
+                  'Введите четыре цифры года.'
+                ) }}
+              </div>
+            </div>
+
+            <div class="form__item">
+              {# label, name, icon, attributes, value, error, required=false, rows=8, cols=40 #}
+              {{ form.textarea(
+                'Описание *',
+                'message',
+                'message',
+                null,
+                'Описание.* Расскажите о транспортной доступности, инфраструктуре района, об отоплении. В каком состоянии сантехника, паркет, сушилка и т.д.?',
+                'Добавьте описание: транспортной доступности, инфраструктуре района и т. д.',
+                true
+              ) }}
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend class="h2">Фотографии *</legend>
+            <p class="is-note mb-1s">Добавьте минимум одну фотографию. Одновременно можно выбрать и&nbsp;загрузить несколько снимков. Масимум&nbsp;— 12. Допустимые форматы: JPG и&nbsp;PNG. Минимальные размеры: 816×528px.</p>
+
+            <div class="form__item" data-validaion-parent>
+              <label class="form__file">
+                <input id="form-file" type="file" multiple aria-label="Выбрать файлы" required>
+                <span class="form__file-view"></span>
+              </label>
+              <div class="form__alert" role="alert">
+                <div>Выберите хотя бы одну фотографию</div>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="pt-1 pb-2">
+            <button class="btn is-primary is-stand-alone" id="form-submit" type="submit">
+              Подать объявление
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </article>
+
+{% endblock %}
+

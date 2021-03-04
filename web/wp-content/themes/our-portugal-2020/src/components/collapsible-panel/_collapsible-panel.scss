@@ -1,0 +1,36 @@
+.collapsible-panel-toggle {
+  background: $transparent;
+  border-radius: $border-radius;
+  display: inline-block;
+  padding-top: .6rem;
+  padding-bottom: .6rem;
+  padding-left: $size-2;
+  padding-right: $size-2;
+  white-space: nowrap;
+
+  &:focus {
+    background-color: $black-min;
+    outline: none;
+  }
+}
+
+.collapsible-panel {
+  overflow: hidden;
+  transition: height $duration;
+  height: 0;
+}
+
+.collapsible-panel.has-map.is-open {
+  @extend %border;
+
+  // Override %border display: table
+  display: block;
+  margin-bottom: $size-2;
+  height: $size-line * 25;
+}
+
+.collapsible-panel.has-map iframe {
+  border-radius: $border-radius;
+  width: 100%;
+  height: $size-line * 25;
+}

@@ -1,0 +1,27 @@
+.drawer {
+  background-color: $color-bg-accent;
+  box-shadow:
+    $box-shadow-contour,
+    $box-shadow-z3;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding: 1.9rem 1.6rem 2.1rem;
+  overflow-y: scroll;
+  transform: translateX(#{$width-sm});
+  transition: transform $duration $easing;
+  visibility: hidden;
+  width: $width-sm;
+  z-index: $zindex-drawer + 1;
+
+  @include media-breakpoint-up(md) {
+    transform: translateX(#{$width});
+    width: $width;
+  }
+}
+
+.drawer.is-open {
+  transform: translateX(0);
+  visibility: visible;
+}

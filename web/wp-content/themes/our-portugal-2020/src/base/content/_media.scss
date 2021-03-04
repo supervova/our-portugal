@@ -1,0 +1,233 @@
+.border,
+%border {
+  border-radius: $border-radius;
+
+  // inline-block should be avoided because it adds extra space around element
+  display: table;
+  position: relative;
+  overflow: hidden;
+
+  // Border
+  &::after {
+    border-radius: $border-radius;
+    box-shadow: inset 0 0 0 1px $color-ink-border;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &:empty {
+    display: none;
+  }
+}
+
+.border.is-extended {
+  @include media-breakpoint-up(md) {
+    margin-left: -10%;
+    margin-right: -10%;
+  }
+
+  @include media-breakpoint-up(mdl) {
+    margin-left: -12.5%;
+    margin-right: -12.5%;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    margin-left: -16.667%;
+    margin-right: -16.667%;
+  }
+}
+
+.border__addon.is-nothing {
+  background: rgba(255, 255, 255, .7);
+  backdrop-filter: blur(1rem);
+  border-radius: 2.4rem;
+  box-shadow:
+    0 0 0 .1rem rgba(0, 0, 0, .12),
+    $box-shadow-z3;
+  font-size: var(--font-size-hero-title);
+  line-height: 1;
+  padding: $size-2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+
+// -----------------------------------------------------------------------------
+// FIGURES & IFRAMES
+// -----------------------------------------------------------------------------
+
+figure,
+iframe {
+  margin-top: 0;
+  margin-bottom: $size-line;
+}
+
+figcaption {
+  color: $color-ink-2ry;
+  padding-top: var(--padding-top-base);
+  padding-bottom: var(--padding-bottom-base);
+}
+
+// BRANDED GRAPHICS
+
+.has-primary-img {
+  background-image: url('/wp-content/themes/our-portugal-2020/img/base/graphics/img-features/img-base.svg');
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  position: relative;
+  width: 400px;
+  height: 400px;
+
+  img {
+    border-radius: 50%;
+  }
+
+  &::after {
+    background-image: url('/wp-content/themes/our-portugal-2020/img/base/graphics/img-features/sparks.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 49px;
+  }
+}
+
+.has-primary-img.is-sm {
+  background-size: 296px 296px;
+  width: 296px;
+  height: 296px;
+}
+
+
+.has-primary-img.is-270-rotated::after {
+  top: auto;
+  bottom: 0;
+  transform: scaleY(-1);
+}
+
+// Blue ribbon
+.has-ribbon {
+  position: relative;
+
+  &::after {
+    background: url('/wp-content/themes/our-portugal-2020/img/base/graphics/img-features/blue-ribbon.svg') no-repeat 50% 0;
+    content: '';
+    position: absolute;
+    bottom: -4 * $size-line - 1.6rem;
+    left: 0;
+    width: 100%;
+    height: 18rem;
+
+    @include media-breakpoint-up(md) {
+      bottom: -4 * $size-line;
+    }
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+// RESPONSIVE MEDIA
+// -----------------------------------------------------------------------------
+
+.embed-responsive {
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  &::before {
+    content: '';
+    display: block;
+  }
+
+  .embed-responsive__item,
+  > iframe,
+  > embed,
+  > object,
+  > video {
+    border: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.embed-responsive.is-4by3 {
+  &::before {
+    padding-top: percentage(3 / 4);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// VIDEO BACKGROUND
+// -----------------------------------------------------------------------------
+
+// MARKUP
+// video.video.is-bg(autoplay, muted, loop, playsinline)
+//   source(data-src='/path/to/video.mp4', type='video/mp4')
+
+// To prevent download video on mobiles use base/content/content.js and data-src
+// instead of source src attribute
+
+.video.is-bg {
+  filter: brightness(50%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+// -----------------------------------------------------------------------------
+// MASKING
+// -----------------------------------------------------------------------------
+
+
+.img[class^='has-been-masked'] {
+  object-fit: cover;
+}
+
+
+// WITH BITMAP
+
+.img.has-been-masked-with-star {
+  mask-image: url('/a/img/star.png');
+  mask-size: cover;
+
+}
+
+// WITH SVG
+
+// Add svg graphics on the page with image. Add <mask> element inside the SVG
+// with ID
+// svg(width='0', height='0', viewbox='0 0 400 300')
+//   defs
+//     mask#mask
+//       rect(fill='#000000', x='0', y='0', width='400', height='300')
+//       circle(fill='#FFFFFF', cx='150', cy='150', r='100')
+//       circle(fill='#FFFFFF', cx='50', cy='50', r='150')
+
+// img.img.has-been-masked-with-cloud(src='/a/img/balloons.jpg', alt='')
+
+.img.has-been-masked-with-cloud {
+  mask-image: url('#mask');
+}

@@ -1,0 +1,170 @@
+// -----------------------------------------------------------------------------
+// Responsive table
+// -----------------------------------------------------------------------------
+
+@mixin responsive-table-wrapper {
+  -webkit-overflow-scrolling: touch;
+  box-shadow: $box-shadow-z2;
+  margin-bottom: var(--margin-top-bottom);
+  overflow-x: auto;
+
+
+  > table {
+    margin-bottom: 0;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Responsive table: fixed column #2
+// -----------------------------------------------------------------------------
+
+// #region
+
+// Responsive tables: other solutions
+// https://zurb.com/playground/responsive-tables
+// https://github.com/zurb/responsive-tables/
+
+// Applying
+// table {
+//   @include media-breakpoint-down(md) {
+//     @include table-has-fixed-col;
+//   }
+// }
+
+@mixin table-has-fixed-col {
+  display: flex;
+
+  thead {
+    border-right: solid $border-width $color-ink-border;
+  }
+
+  thead th,
+  thead td {
+    padding-left: 0;
+
+    &:last-child {
+      padding-right: $table-cell-padding-x;
+    }
+  }
+
+  tbody {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-right: solid $border-width $color-ink-border;
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+
+  tbody td,
+  tbody th {
+    display: block;
+
+    &:first-child {
+      padding-left: $table-cell-padding-x;
+    }
+
+    &:last-child {
+      padding-right: $table-cell-padding-x;
+    }
+  }
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// Responsive table: stack on mobile
+// -----------------------------------------------------------------------------
+
+// #region
+
+// Applying
+// table {
+//   @include media-breakpoint-down(md) {
+//     @include table-stack;
+//   }
+// }
+
+@mixin table-stack {
+  thead { display: none; }
+
+  tbody,
+  tr,
+  th,
+  td {
+    display: block;
+  }
+
+  th,
+  td {
+    overflow: visible;
+    white-space: normal;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+  }
+}
+// #endregion
+
+
+// -----------------------------------------------------------------------------
+// BORDERED VERSION
+// -----------------------------------------------------------------------------
+// #region
+
+@mixin table-bordered {
+  border: $border-width solid $color-ink-border;
+  border-radius: $border-radius-sm;
+
+  th,
+  td {
+    border: $border-width solid $color-ink-border;
+  }
+
+  thead {
+    th,
+    td {
+      border-bottom-width: (2 * $border-width);
+    }
+  }
+}
+
+// REMOVE BORDERS
+
+@mixin table-borderless {
+  th,
+  td,
+  thead th,
+  tbody + tbody {
+    border: 0;
+  }
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// ADD-ONS
+// -----------------------------------------------------------------------------
+
+// Fixed column using jQuery to clone td/th:first-child
+// https://codepen.io/pastel/pen/YwQWyW
+
+// Fixed table header
+// https://codyhouse.co/ds/components/app/table--sticky-header
+// https://codepen.io/nikhil8krishnan/pen/WvYPvv
+// https://github.com/salesforce-ux/design-system/blob/master/ui/components/data-tables/fixed-header/_index.scss
+
+// Editable cells
+// https://github.com/salesforce-ux/design-system/blob/master/ui/components/data-tables/inline-edit/_index.scss
+// https://ant.design/components/table/
+
+// Filter and sorter
+// Row selection using checkbox
+// Dragabble rows
+// Expandable row
+// Resizable columns
+// https://ant.design/components/table/
+

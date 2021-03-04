@@ -1,0 +1,18 @@
+
+{% set body_classes = 'is-blog' %}
+
+{% extends "base/base.twig" %}
+
+{% block content %}
+  {# HERO #}
+  <header class="hero is-empty">
+    <div class="ribbon" role="presentation"></div>
+  </header>
+
+  {# BODY #}
+  <article class="main is-post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="main__inner">
+    {% do action('epl_property_single') %}
+    </div>
+{% endblock %}
+

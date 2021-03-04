@@ -1,0 +1,41 @@
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {{ function('wp_head') }}
+
+{% if global.author.summary %}
+  <meta name="author" content="{{ global.author.summary }}">
+{% endif %}
+{# SEO deals w/ HTTPS #}
+  <meta name="referrer" content="origin">
+  <link rel="manifest" href="{{ site.theme.link }}/manifest.json">
+  <meta name="apple-mobile-web-app-title" content="{{ global.short_name }}">
+{% if global.icons %}
+  {# Apple touch icon. In most cases, one 192×192px touch icon named icon.png
+  is enough #}
+  <link rel="apple-touch-icon" href="{{ site.theme.link ~ global.icons.apple_touch }}">
+{% endif %}
+{% if global.facebook_cta_like %}
+  <link rel="preconnect" href="https://staticxx.facebook.com">
+{% endif %}
+{% if global.fonts.local %}
+{% for font in global.fonts.local %}
+  <link rel="preload" href="{{ site.theme.link ~  '/fonts/' ~ font }}.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="{{ site.theme.link ~  '/fonts/' ~ font }}.woff" as="font" type="font/woff" crossorigin="anonymous">
+{% endfor %}
+{% endif %}
+{% if post.head_style %}
+  <style>{{ post.head_style }}</style>
+{% elseif head_style %}
+  <style>{{ head_style }}</style>
+{% endif %}
+  <meta name="theme-color" content="{{ global.colors.browser }}">
+
+{# Google Tag Manager #}
+{% if global.gtm %}
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','{{ global.gtm }}');</script>
+{% endif %}

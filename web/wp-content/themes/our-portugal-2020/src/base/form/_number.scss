@@ -1,0 +1,14 @@
+.form__item.has-number {
+  @extend %form-bar;
+
+  padding: 0 0 0 2rem;
+}
+
+.form__number {
+  @extend %form-control;
+
+  text-align: center;
+  padding-left: $size-2;
+  padding-right: 0;
+  width: $size-8;
+}

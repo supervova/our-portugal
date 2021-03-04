@@ -1,0 +1,24 @@
+{% extends "base/base.twig" %}
+
+{% block content %}
+  {# HERO #}
+  <header class="hero">
+    <div class="hero__content">
+      <h1 class="hero__title">{{ post.title }}</h1>
+    </div>
+    <div class="ribbon" role="presentation"></div>
+  </header>
+
+  {# BODY #}
+  {% if post.is_freestyle %}
+    {{ post.content }}
+  {% else %}
+    <div class="main">
+      <div class="main__inner">
+        <div class="main__body">
+          {{ post.content }}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}

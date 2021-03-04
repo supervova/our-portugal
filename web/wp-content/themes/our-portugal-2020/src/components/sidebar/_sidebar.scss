@@ -1,0 +1,11 @@
+.sidebar.has-categories {
+  display: none;
+
+  @include media-breakpoint-up(mdl) {
+    display: block;
+    flex: 0 0 auto;
+    margin-left: percentage(1/12);
+    padding: 0 ($grid-gutter-width / 2);
+    width: 25%;
+  }
+}

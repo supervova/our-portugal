@@ -1,0 +1,1020 @@
+/* stylelint-disable selector-list-comma-newline-after, selector-max-id, selector-max-compound-selectors, selector-no-qualifying-type, no-duplicate-selectors */
+
+// -----------------------------------------------------------------------------
+// WPFORO HIDDEN STUFF
+// -----------------------------------------------------------------------------
+// #region
+#mceu_26,
+#mceu_30,
+.mce-top-part.mce-container.mce-stack-layout-item.mce-first,
+// #wpforo-description,
+#wpforo-footer,
+#wpforo-menu,
+// #wpforo-title,
+.fas.fa-circle,
+.wpf-404,
+.wpf-404 + .wpfcl-5,
+.wpf-action-link,
+.wpf-action.wpforo-quote,
+.wpf-action.wpforo-unapprove,
+.wpf-admincp,
+.wpf-breadcrumb,
+.wpf-extra-fields,
+.wpf-field-name-aim,
+.wpf-field-name-gtalk,
+.wpf-field-name-icq,
+.wpf-field-name-location .fas,
+.wpf-field-name-msn,
+.wpf-field-name-skype,
+.wpf-field-name-timezone,
+.wpf-field-name-yahoo,
+.wpf-field-name-html_soc_net .wpf-label,
+.wpf-field-name-occupation,
+.wpf-field-name-title > .wpf-label-wrap,
+.wpf-field-name-user_login .wpf-username,
+.wpf-field-name-user_nicename .wpf-desc,
+.wpf-field-type-usergroup .fas,
+.wpf-field-name-user_login .wpfcl-1,
+.wpf-field-name-user_email .wpf-label-wrap,
+.wpf-member-profile-buttons,
+.wpf-post-starter,
+.wpf-profile-plugin-menu,
+.wpf-profile-section-head,
+.wpf-sbtn.wpf-sb-bottom,
+.wpf-td.wpfw-3.row_1-col_0,
+.wpforo-category,
+.wpforo-feed,
+.wpforo-login-content > h3,
+.wpforo-post-content-top,
+.wpforo-post-head,
+.wpforo-profile-wrap .h-footer,
+.wpforo-profile-wrap .profile-stat-data-item:first-of-type,
+.wpforo-register-content > h3,
+.wpforo-revisions-wrap,
+.wpforo-topic-footer,
+.wpforo-topic-head,
+.wpforo-topic-stat-views {
+  display: none !important;
+}
+
+// #endregion
+
+// -----------------------------------------------------------------------------
+// WPFORO TYPOGRAPHY
+// -----------------------------------------------------------------------------
+// #region
+
+#wpforo #wpforo-wrap p {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+// SMALL
+.wpf-desc,
+.wpforo-forum-stat,
+.wpforo-topic-start-info,
+.wpforo-last-post-info,
+.wpforo-last-post-title,
+.wpforo-legal-checkbox
+.wpforo-post-content-bottom {
+  font-size: var(--font-size-small) !important;
+  line-height: var(--line-height-small) !important;
+}
+
+.wpforo-topic-stat-lastpost {
+  font-size: var(--font-size-small) !important;
+  line-height: 2.4rem !important;
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// WPFORO LAYOUT
+// -----------------------------------------------------------------------------
+// #region
+.wpfw-3 {
+  width: 100% !important;
+
+  @include media-breakpoint-up(sm) {
+    width: calc(33.333% - (#{$size-2} / 3)) !important;
+  }
+}
+
+.wpfw-3:not(:last-child) {
+  @include media-breakpoint-up(sm) {
+    margin-right: $size-1 !important;
+  }
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// WPFORO WRAPPERS
+// -----------------------------------------------------------------------------
+// #region
+.wpforo-404-content,
+.wpforo-404-wrap .wpf-search-box,
+.wpf-form-wrapper,
+.wpforo-login-wrap,
+.wpforo-login-content,
+.wpf-post-create,
+.wpforo-register-wrap,
+.wpforo-register-content {
+  @include clearfix();
+
+  border: 0 !important;
+  background-color: $transparent !important;
+  margin-bottom: $size-line * 2 !important;
+  padding: 0 !important;
+}
+
+.wpforo-login-table,
+.wpforo-register-table {
+  background-color: $transparent !important;
+  text-align: center;
+  margin: 0 auto !important;
+  min-width: auto !important;
+  padding: 0 !important;
+  width: 100% !important;
+
+  input[type='text'],
+  input[type='email'],
+  input[type='password'] {
+    text-align: center;
+  }
+
+  @include media-breakpoint-up(md) {
+    max-width: 51.2rem;
+  }
+}
+
+// #endregion
+
+// -----------------------------------------------------------------------------
+// WPFORO BUTTONS
+// -----------------------------------------------------------------------------
+// #region
+
+.wpf-button,
+#wpforo #wpforo-wrap input[type='submit'],
+#wpforo #wpforo-wrap input[type='button'],
+#wpforo #wpforo-wrap input[type='reset'],
+#wpforo-dialog input[type='submit'],
+#wpforo-dialog input[type='button'],
+#wpforo-dialog input[type='reset'] {
+  appearance: none;
+  border: 0 !important;
+  border-radius: $border-radius-lg !important;
+  box-shadow: none !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-family-accent;
+  font-weight: 600 !important;
+  font-size: var(--font-size-small) !important;
+  letter-spacing: .05rem;
+  line-height: 1 !important;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  user-select: none;
+  vertical-align: middle;
+  height: $size-6;
+
+  &:hover {
+    text-decoration: none;
+    box-shadow: $box-shadow-z2 !important;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+#wpforo #wpforo-wrap .wpf-button {
+  padding: .2rem $size-3 0 !important;
+}
+
+// Outline
+
+.wpf-head-bar .wpf-button {
+  background-color: $transparent !important;
+  box-shadow: inset 0 0 0 1px $color-primary !important;
+  transition:
+    background-color $duration-xs,
+    box-shadow $duration-xs;
+
+  &:hover,
+  &:focus {
+    background-color: $color-primary-lightest !important;
+    color: $color-primary;
+  }
+
+  &:hover {
+    box-shadow:
+      inset 0 0 0 1px $color-primary,
+      $box-shadow-z2;
+    filter: none;
+  }
+
+  &:focus {
+    box-shadow:
+      inset 0 0 0 1px $color-primary,
+      $box-shadow-focus-outline;
+  }
+
+  @include media-breakpoint-up(sm) {
+    margin-top: -.5rem !important;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-top: 1.5rem !important;
+  }
+}
+
+#wpforo #wpforo-wrap .wpf-head-bar .wpf-button {
+  color: $color-primary !important;
+}
+
+// GHOST BUTTONS
+
+.wpf-action {
+  border: 0 !important;
+  padding: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-right: $size-1;
+}
+
+.wpf-post-create input[type='submit'] {
+  float: right;
+}
+
+
+// #endregion
+
+// -----------------------------------------------------------------------------
+// WPFORO ICONS
+// -----------------------------------------------------------------------------
+// #region
+
+.wpfcl-0 { color: $color-primary !important; }
+
+.wpfl-2 .wpforo-forum-icon {
+  flex-shrink: 0;
+  font-size: var(--font-size-base) !important;
+  line-height: 1 !important;
+  text-align: left !important;
+  padding: ($size-1 + .1rem) 0 0 !important;
+  width: $size-4 !important;
+}
+
+// AVATAR
+.wpforo-last-post-avatar,
+.wpforo-post .author-avatar,
+.wpforo-topic-avatar {
+  @extend %border;
+
+  display: inline-block !important;
+  border-radius: 50%;
+  flex-shrink: 0;
+  float: none !important;
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+  padding: 0 !important;
+  position: relative;
+  width: $size-5 !important;
+  height: $size-5 !important;
+
+  &::after {
+    border-radius: 50%;
+  }
+}
+
+.wpforo-last-post-avatar,
+.wpforo-post .author-avatar {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.wpforo-topic-avatar {
+  margin-left: 0 !important;
+  margin-right: $size-2 !important;
+}
+
+.wpforo-post .avatar,
+.wpforo-last-post-avatar img,
+.wpforo-topic-avatar img {
+  border-radius: 50%;
+  border: 0 !important;
+  padding: 0 !important;
+  width: $size-5 !important;
+  height: $size-5 !important;
+}
+
+.wpforo-last-post-avatar {
+  float: none !important;
+  margin-left: $size-2 !important;
+  width: $size-8;
+}
+
+// #endregion
+
+// -----------------------------------------------------------------------------
+// WPFORO HEADERS
+// -----------------------------------------------------------------------------
+// #region
+
+.wpf-head-bar {
+  padding-bottom: 4.3rem !important;
+  @include media-breakpoint-up(sm) {
+    display: flex;
+  }
+}
+
+.wpf-head-bar-left,
+.wpf-head-bar-right {
+  float: none !important;
+  padding: 0 !important;
+  width: auto !important;
+
+  @include media-breakpoint-down(sm) {
+    text-align: center !important;
+  }
+}
+
+.wpf-head-bar-left {
+  flex-grow: 1;
+}
+
+// HEADINGS
+
+// %h2
+//   font-family: $font-family-accent;
+//   font-feature-settings: 'kern' 1, 'liga' 1;
+//   color: $color-ink-title;
+//   font-size: var(--font-size-h2);
+//   font-weight: var(--font-weight-h2);
+//   line-height: var(--line-height-h2);
+//   margin: 0;
+//   padding-top: var(--padding-top-h2);
+//   padding-bottom: var(--padding-bottom-h2);
+
+//   &:not(:first-child):not([class]) {
+//     margin-top: var(--margin-top-subhead);
+//   }
+
+// H2
+#wpforo-title {
+  color: $color-ink-title !important;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+  font-size: var(--font-size-h2) !important;
+  font-weight: var(--font-weight-h2) !important;
+  letter-spacing: 0 !important;
+  line-height: var(--line-height-h2) !important;
+  margin: 0 !important;
+  padding-bottom: var(--padding-bottom-h2) !important;
+  padding-top: var(--padding-top-h2) !important;
+}
+
+.wpft-login #wpforo-title,
+.wpft-register #wpforo-title {
+  text-align: center !important;
+}
+
+.wpf-reply-form-title {
+  font-family: $font-family-accent;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+  color: $color-ink-2ry !important;
+  font-size: var(--font-size-h2) !important;
+  line-height: var(--line-height-h2) !important;
+  margin: 0 !important;
+  padding-top: var(--padding-top-h2) !important;
+  padding-bottom: var(--padding-bottom-h2) !important;
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// WPFORO LISTS
+// -----------------------------------------------------------------------------
+// #region
+
+.wpforo-forum,
+.wpforo-topic {
+  background-color: $transparent !important;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 !important;
+  min-height: $size-2 !important;
+}
+
+.forum-wrap,
+.topic-wrap {
+  border: 0 !important;
+}
+
+.forum-wrap + .forum-wrap,
+.topic-wrap + .topic-wrap {
+  border-top: .1rem solid $color-ink-border !important;
+  margin-top: $size-line !important;
+  padding-top: calc(#{$size-2} - .1rem) !important;
+}
+
+// 1ST LEVEL - TOC
+
+.wpforo-forum-stat {
+  padding-top: .6rem !important;
+}
+
+.wpfl-2 .wpforo-last-post {
+  margin-right: $size-2;
+  float: none !important;
+  width: auto !important;
+}
+
+.wpforo-last-post-title {
+  padding-top: .7rem !important;
+}
+
+.wpforo-last-post-info {
+  white-space: nowrap;
+  padding-top: .9rem !important;
+}
+
+// 2ND LEVEL - CATEGORY
+
+.wpforo-topic-title {
+  @include multiline-truncate(2);
+}
+
+.wpforo-topic-title .far,
+.wpforo-topic-stat-lastpost .fa-chevron-right {
+  display: none !important;
+}
+
+.wpforo-topic-stat-lastpost {
+  padding-top: .7rem !important;
+}
+
+.wpforo-topic-start-info {
+  padding-top: .2rem !important;
+}
+
+.wpforo-topic-stat-posts {
+  background: rgba(0, 0, 0, 0) url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill-opacity%3D%22.38%22%20fill-rule%3D%22evenodd%22%20d%3D%22M12%2C3%20C17.5645161%2C3%2022%2C6.54185022%2022%2C10.9207048%20C22%2C15.722467%2016.9462366%2C19.1585903%2010.9516129%2C18.8061674%20C9.17741935%2C19.969163%206.91039427%2C21%205.79928315%2C21%20C4.99283154%2C21%204.75985663%2C20.3656388%205.2078853%2C19.8017621%20C5.60215054%2C19.30837%206.30107527%2C18.4008811%206.70430108%2C17.6431718%20C3.87275986%2C16.3215859%202%2C13.7929515%202%2C10.9207048%20C2%2C6.54185022%206.43548387%2C3%2012%2C3%20Z%20M12%2C5%20C9.71621669%2C5%207.65122013%2C5.70102527%206.16392783%2C6.8790656%20C4.86006232%2C7.91181898%204%2C9.32321246%204%2C10.9207048%20C4%2C11.9227165%204.33057826%2C12.8620338%204.89664134%2C13.6709405%20C5.52944362%2C14.5752177%206.45000631%2C15.3173638%207.55017712%2C15.8308546%20L7.55017712%2C15.8308546%20L9.45996423%2C16.7222235%20L8.9355%2C17.706%20L9.17066932%2C17.5659324%20C9.40483893%2C17.4234927%209.6346479%2C17.2780547%209.85516931%2C17.1335014%20C10.0401485%2C17.0122463%2010.2283055%2C16.8852471%2010.4163784%2C16.7542559%20C10.6317087%2C16.7781362%2010.8493089%2C16.7966997%2011.0689899%2C16.8096147%20C13.5912415%2C16.9578975%2015.9283461%2C16.3345614%2017.6164103%2C15.129755%20C19.0449586%2C14.1101706%2020%2C12.6557636%2020%2C10.9207048%20C20%2C9.32321246%2019.1399377%2C7.91181898%2017.8360722%2C6.8790656%20C16.3487799%2C5.70102527%2014.2837833%2C5%2012%2C5%20Z%22%2F%3E%3C%2Fsvg%3E') no-repeat 0 1.9rem;
+  float: none !important;
+  text-align: right !important;
+  padding-top: 1.9rem !important;
+  padding-left: $size-4 !important;
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// WPFORO THREAD
+// -----------------------------------------------------------------------------
+// #region
+
+.wpf-post-button-actions {
+  text-align: left !important;
+  padding-top: 1.8rem !important;
+}
+
+.wpforo-post-content-bottom {
+  border-top: 0 !important;
+  text-align: left !important;
+  margin-top: .9rem !important;
+
+  .wpfcl-0 {
+    color: $color-ink-3ry !important;
+  }
+}
+
+// #endregion
+
+// -----------------------------------------------------------------------------
+// FORM & TABLE FOOTERS
+// -----------------------------------------------------------------------------
+// #region
+
+.wpf-topic-sbs {
+  display: inline-block;
+}
+
+#wpforo #wpforo-wrap form .wpf-buttons-wrap {
+  float: right;
+  margin-top: -1.5rem;
+}
+
+// #endregion
+
+// -----------------------------------------------------------------------------
+// WPFORO FORMS
+// -----------------------------------------------------------------------------
+// #region
+
+// Fild wrappers
+.wpf-field-wrap {
+  width: 100% !important;
+
+  .wpforo-register-table &,
+  .wpforo-login-table & {
+    width: 100% !important;
+  }
+}
+
+.wpf-tr,
+.wpf-field-wrap {
+  position: relative;
+}
+
+.wpf-field {
+  background: $transparent !important;
+  border-bottom: 0 !important;
+  margin: 0 0 $size-1 !important;
+  padding: 0 !important;
+
+  @include media-breakpoint-up(md) {
+    margin: 0 0 $size-2 !important;
+  }
+}
+
+.wpfw-3 .wpf-field {
+  text-align: inherit !important;
+}
+
+.wpf-field-name-user_login {
+  display: flex;
+  flex-direction: column;
+
+  .wpf-label-wrap {
+    order: 1;
+  }
+}
+
+// LABELS
+
+.wpf-label-wrap {
+  display: block !important;
+  float: none !important;
+  padding-right: 0 !important;
+  width: auto !important;
+}
+
+.wpf-label {
+  font-size: var(--font-size-base) !important;
+}
+
+// INPUTS
+.wpf-field input[type='text'],
+.wpf-search-box input[type='text'],
+.wpf-field input[type='password'],
+.wpf-field input[type='email'],
+.wpf-field input[type='url'],
+.wpf-field select {
+  appearance: none;
+  background-clip: padding-box;
+  background-color: $color-bg-normal;
+  border-radius: $border-radius !important;
+  border: $border-width solid $color-ink-border !important;
+  box-shadow: none !important;
+  color: $color-ink-2ry !important;
+  display: block !important;
+  font-size: var(--font-size-base) !important;
+  line-height: var(--line-height-base) !important;
+  margin: 0 !important;
+  padding-top: var(--padding-y-input) !important;
+  padding-bottom: var(--padding-y-input) !important;
+  padding-left: $size-2 !important;
+  padding-right: $size-2 !important;
+  overflow: visible;
+  transition: border-color $duration-xs;
+
+  &:focus {
+    color: $color-ink-normal !important;
+    border-color: $color-primary !important;
+  }
+}
+
+.wpf-field select {
+  background-image: $chevron-down;
+  background-position: right $size-1 top 50%, 0 0;
+  background-repeat: no-repeat;
+}
+
+.wpforo-login-table {
+  .wpf-field input[type='text'],
+  .wpf-field input[type='password'],
+  .wpf-field input[type='email'] {
+    padding-left: $size-5 !important;
+    padding-right: $size-5 !important;
+  }
+}
+
+// TEXTAREA
+.mce-edit-area {
+  margin: 0 0 3rem .2rem !important;
+
+  iframe {
+    border: .1rem solid $color-ink-border !important;
+    border-radius: $border-radius;
+    padding-left: .6rem !important;
+    padding-right: .6rem !important;
+  }
+}
+
+// CHECKBOX
+#wpforo input[type='checkbox'],
+#wpforo input[type='radio'] {
+  appearance: none;
+  background-color: $color-bg-normal;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 1px solid $color-ink-border;
+  color-adjust: exact; // Keep themed appearance for print
+  // margin-right: $size-1 !important;
+  vertical-align: -.3rem;
+  width: $form-check-input-width !important;
+  min-width: $form-check-input-width !important;
+  height: $form-check-input-width;
+
+  &:focus {
+    outline: 0;
+    box-shadow: $box-shadow-focus-outline;
+  }
+
+  &:checked {
+    background-color: $color-primary;
+    border-color: $color-primary;
+
+    &[type='checkbox'] {
+      background-image: url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"%3e%3cpath fill="none" stroke="%23fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 10l3 3l6-6"/%3e%3c/svg%3e');
+    }
+
+    &[type='radio'] {
+      background-image: url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 8 8"%3e%3ccircle r="2" fill="%23fff"/%3e%3c/svg%3e');
+    }
+  }
+}
+
+#wpforo input[type='checkbox'] {
+  border-radius: $border-radius-sm !important;
+}
+
+#wpforo input[type='radio'] {
+  border-radius: $border-radius-sm;
+}
+
+// SERVICE MESSAGES AND LINKS
+.wpf-extra {
+  padding-top: .6rem !important;
+  padding-bottom: 1.4 !important;
+}
+
+.wpf-forgot-pass {
+  font-size: var(--font-size-base) !important;
+  line-height: var(--line-height-base) !important;
+  white-space: nowrap;
+}
+
+.wpf-field-reg,
+.wpf-field-login {
+  padding-top: 1rem !important;
+  > a {
+    border: 0 !important;
+    font-size: var(--font-size-base) !important;
+    line-height: var(--line-height-base) !important;
+    padding: 0 !important;
+  }
+}
+
+.wpforo-register-table .wpf-td.wpfw-1 {
+  color: $color-ink-2ry !important;
+  .wpf-reg-info {
+    display: none !important;
+  }
+}
+
+.wpf-contact-admin {
+  border: 0 !important;
+  float: none !important;
+  padding: 0 $size-2 0 0 !important;
+}
+
+// SEARCH
+.wpf-search-box p {
+  display: flex;
+}
+
+
+// #endregion
+
+// -----------------------------------------------------------------------------
+// WPFORO POSTS
+// -----------------------------------------------------------------------------
+// #region
+
+.post-wrap {
+  border-top: .1rem solid $color-ink-border !important;
+  padding-top: $size-line !important;
+  margin-bottom: $size-line !important;
+}
+
+.post-wrap.wpfp-first {
+  border-top: 0 !important;
+}
+
+.wpforo-post .wpf-left {
+  width: $size-line * 3 !important;
+}
+
+.wpforo-post .author-name a {
+  @extend %text-truncate;
+
+  display: inline-block;
+  max-width: $size-line * 3;
+}
+
+.wpforo-post .wpf-right {
+  background: $transparent !important;
+  margin-left: $size-line * 4 !important;
+}
+
+.wpforo-post-content {
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
+.wpforo-post-content-bottom {
+  padding: 0 !important;
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// WPFORO PROFILE
+// -----------------------------------------------------------------------------
+// #region
+
+// HEADER
+
+.wpforo-profile-head-wrap {
+  overflow: visible !important;
+}
+
+.wpforo-profile-head-bg {
+  background-image: none !important;
+  opacity: 1 !important;
+  padding: 0 !important;
+  width: 100%;
+}
+
+.wpforo-profile-head {
+  border-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+}
+
+.wpf-profile-info-wrap .h-picture {
+  padding: $size-2 !important;
+
+  @include media-breakpoint-up(sm) {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: $size-3 !important;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding: $size-4 !important;
+  }
+}
+
+// Avatar
+.wpforo-profile-wrap .avatar {
+  background: $transparent !important;
+  border: 4px solid $color-ink-inverse-normal !important;
+  box-shadow:
+    0 0 0 .1rem rgba(0, 0, 0, .12),
+    $box-shadow-z3 !important;
+  width: $size-line * 4;
+  height: $size-line * 4;
+}
+
+// Profile card
+.wpf-profile-info-wrap .wpf-profile-img-wrap,
+.wpf-profile-info-wrap .wpf-profile-data-wrap {
+  float: none !important;
+}
+
+.wpf-profile-info-wrap .wpf-profile-data-wrap {
+  @include media-breakpoint-up(sm) {
+    padding-left: $size-3 !important;
+  }
+}
+
+.wpforo-profile-wrap .profile-display-name {
+  color: $color-ink-title !important;
+  font-size: var(--font-size-h2) !important;
+  font-weight: 400 !important;
+  line-height: var(--line-height-h2) !important;
+  text-align: center !important;
+  text-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  @include media-breakpoint-up(sm) {
+    text-align: left !important;
+  }
+}
+
+.wpforo-profile-wrap .profile-stat-data-item {
+  color: $color-ink-2ry !important;
+  text-align: center !important;
+
+  @include media-breakpoint-up(sm) {
+    text-align: left !important;
+  }
+}
+
+.wpforo-profile-home .wpf-field-name-site {
+  text-align: center;
+}
+
+// STATS
+.wpf-profile-section-body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0 !important;
+  margin-left: -($size-1 / 2) !important;
+  margin-right: -($size-1 / 2) !important;
+}
+
+// Tiles
+.wpf-statbox {
+  border-radius: $border-radius;
+  float: none !important;
+  margin: 0 ($size-1 / 2) $size-1 !important;
+  padding: $size-2 !important;
+  width: calc(50% - ($size-1 / 2)) !important;
+  min-width: 0 !important;
+}
+
+.wpf-statbox-body {
+  padding: 0 !important;
+}
+
+// Icons
+.wpf-statbox-icon,
+.wpf-statbox .fas {
+  color: $color-primary !important;
+  font-size: var(--font-size-base) !important;
+  line-height: var(--line-height-base) !important;
+}
+
+// KPIs
+.wpf-statbox-value {
+  color: $color-ink-title !important;
+  font-size: var(--font-size-h2) !important;
+  line-height: var(--line-height-h2) !important;
+  margin-top: $size-1 !important;
+}
+
+// Captions
+.wpf-statbox-title {
+  @extend %text-truncate;
+
+  color: $color-ink-2ry !important;
+  font-size: var(--font-size-small) !important;
+  line-height: var(--line-height-small) !important;
+}
+
+// EDIT PROFILE
+
+.wpf-field-name-user_pass > .wpf-field-wrap > input,
+.wpf-field-name-user_pass > .wpf-field-wrap > div {
+  margin-bottom: $size-1 !important;
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: $size-2 !important;
+  }
+}
+
+.wpf-field-name-user_pass > .wpf-field-wrap > .wpf-show-password {
+  top: 1.8rem !important;
+  right: $size-2 !important;
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// WPFORO 404
+// -----------------------------------------------------------------------------
+// #region
+
+.wpforo-404-wrap .wpf-404-desc {
+  font-size: var(--font-size-base) !important;
+  text-align: left !important;
+  padding-top: 0 !important;
+}
+
+.wpforo-404-wrap .wpf-search-box {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: $size-line 0 0 !important;
+}
+
+.wpf-search-box .wpf-search {
+  margin-left: $size-1 !important;
+}
+
+// #endregion
+
+// -----------------------------------------------------------------------------
+// ALERTS
+// -----------------------------------------------------------------------------
+// #region
+
+#wpforo #wpforo-wrap .wpf-p-error {
+  background-color: $color-warning-bg;
+  border-radius: $border-radius;
+  box-shadow:
+    0 0 0 .1rem rgba(0, 0, 0, .06),
+    $box-shadow-z2;
+  color: $color-ink-normal;
+  font-size: var(--font-size-base);
+  padding: var(--padding-x-box);
+}
+// #endregion
+
+// -----------------------------------------------------------------------------
+// NATIVE STYLES
+// -----------------------------------------------------------------------------
+// #region
+
+.is-forum .hero {
+  z-index: 0;
+}
+
+// TABLE OF CONTENTS
+
+.table__topic-icon {
+  padding-right: 0;
+  width: $size-4;
+}
+
+.table__topic {
+  display: none;
+
+  @include media-breakpoint-up(mdl) {
+    display: table-cell;
+    width: 18rem;
+  }
+}
+
+.table__question > a {
+  display: block;
+
+  @include media-breakpoint-up(mdl) {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+.table__count,
+.table__update {
+  color: $color-ink-2ry;
+  text-align: right;
+}
+
+.table__count {
+  width: $size-8;
+
+  @include media-breakpoint-up(mdl) {
+    width: 8.8rem;
+  }
+}
+
+.table__count.is-sortable {
+  background: rgba(0, 0, 0, 0) url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill-opacity%3D%22.38%22%20fill-rule%3D%22evenodd%22%20d%3D%22M12%2C3%20C17.5645161%2C3%2022%2C6.54185022%2022%2C10.9207048%20C22%2C15.722467%2016.9462366%2C19.1585903%2010.9516129%2C18.8061674%20C9.17741935%2C19.969163%206.91039427%2C21%205.79928315%2C21%20C4.99283154%2C21%204.75985663%2C20.3656388%205.2078853%2C19.8017621%20C5.60215054%2C19.30837%206.30107527%2C18.4008811%206.70430108%2C17.6431718%20C3.87275986%2C16.3215859%202%2C13.7929515%202%2C10.9207048%20C2%2C6.54185022%206.43548387%2C3%2012%2C3%20Z%20M12%2C5%20C9.71621669%2C5%207.65122013%2C5.70102527%206.16392783%2C6.8790656%20C4.86006232%2C7.91181898%204%2C9.32321246%204%2C10.9207048%20C4%2C11.9227165%204.33057826%2C12.8620338%204.89664134%2C13.6709405%20C5.52944362%2C14.5752177%206.45000631%2C15.3173638%207.55017712%2C15.8308546%20L7.55017712%2C15.8308546%20L9.45996423%2C16.7222235%20L8.9355%2C17.706%20L9.17066932%2C17.5659324%20C9.40483893%2C17.4234927%209.6346479%2C17.2780547%209.85516931%2C17.1335014%20C10.0401485%2C17.0122463%2010.2283055%2C16.8852471%2010.4163784%2C16.7542559%20C10.6317087%2C16.7781362%2010.8493089%2C16.7966997%2011.0689899%2C16.8096147%20C13.5912415%2C16.9578975%2015.9283461%2C16.3345614%2017.6164103%2C15.129755%20C19.0449586%2C14.1101706%2020%2C12.6557636%2020%2C10.9207048%20C20%2C9.32321246%2019.1399377%2C7.91181898%2017.8360722%2C6.8790656%20C16.3487799%2C5.70102527%2014.2837833%2C5%2012%2C5%20Z%22%2F%3E%3C%2Fsvg%3E') no-repeat right 1.2rem center;
+  text-indent: 999rem;
+  white-space: nowrap;
+  overflow: hidden;
+
+  @include media-breakpoint-up(mdl) {
+    background: none;
+    text-indent: 0;
+    white-space: normal;
+    overflow: visible;
+  }
+}
+
+
+.table__update {
+  display: none;
+
+  @include media-breakpoint-up(sm) {
+    display: table-cell;
+    width: 12rem;
+  }
+}
+// #endregion

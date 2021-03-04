@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+  Vladimir Nikishin -- One-man band
+  http://nickysheen.ru
+  @supervova
+
+# THANKS
+
+  Polina Nikishina -- daughter, I <3 u
+
+# TECHNOLOGY
+
+  HTML, CSS, JS, WordPress

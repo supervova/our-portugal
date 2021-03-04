@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html {{ site.language_attributes }} prefix="og: http://ogp.me/ns#">
+<head>
+
+  {% block html_head %}
+    {% include "base/head.twig" %}
+  {% endblock %}
+</head>
+
+<body class="page{% if post.body_classes %} {{ post.body_classes }}{% elseif body_classes %} {{ body_classes }}{% endif %}">
+
+  {# Google Tag Manager (noscript) #}
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ global.gtm }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  {% include "partial/alert.twig" %}
+  <div class="wrapper">
+
+  {# NAVBAR ----------------------------------------------------------------- #}
+  {% block header %}
+    {% include "partial/navbar.twig" %}
+  {% endblock %}
+
+  <main>
+  {# CONTENT ---------------------------------------------------------------- #}
+  {% block content %}
+    {# Main content #}
+  {% endblock %}
+  </main>
+
+  {# FOOTER ----------------------------------------------------------------- #}
+  {% block footer %}
+    {% include "partial/footer.twig" %}
+  {% endblock %}
+  </div>{# / .wrapper #}
+
+  {# SCRIPTS ---------------------------------------------------------------- #}
+  {% block scripts %}
+    {% include "base/scripts.twig" %}
+  {% endblock %}
+</body>
+</html>

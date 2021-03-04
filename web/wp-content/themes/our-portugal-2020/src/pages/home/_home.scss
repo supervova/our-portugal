@@ -1,0 +1,43 @@
+.page.is-home .hero__content {
+  --hero-main-img: url('/wp-content/themes/our-portugal-2020/img/components/hero/girl-on-beach.png');
+
+  background-image:
+    url('/wp-content/themes/our-portugal-2020/img/components/hero/img-top.svg'),
+    var(--hero-main-img),
+    url('/wp-content/themes/our-portugal-2020/img/components/hero/img-base.svg');
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 395px 435px;
+
+  @include media-breakpoint-up(md) {
+    background-position: right var(--padding-x-section) top;
+  }
+
+  @include media-breakpoint-up(lg) {
+    background-position: right 64px top;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    --hero-main-img: url('/wp-content/themes/our-portugal-2020/img/components/hero/girl-on-beach-xl.png');
+    background-size: 499px 549px;
+    background-position: right #{$size-line * 8} top;
+  }
+}
+
+.page.is-home .has-kpi {
+  background-image: url('/wp-content/themes/our-portugal-2020/img/components/kpi/beach.jpg');
+  background-position: right bottom;
+  background-repeat: no-repeat;
+}
+
+// KPI SLIDER
+
+@include media-breakpoint-down(md) {
+  .page.is-home .has-kpi .row {
+    position: relative;
+  }
+
+  .page.is-home .has-kpi {
+    @include slider-slides(4, '.col-md-3');
+  }
+}

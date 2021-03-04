@@ -1,0 +1,123 @@
+{% block config %}
+
+{#
+Timber / WP vars
+{{ site.language_attributes }}
+{{ site.name }}
+{{ site.description }}
+{{ site.url }}
+{{ site.theme.link }}
+
+{{ post.title }}
+{{ post.link }}
+{{ post.tags }}
+{{ post.content }}
+{{ post.thumbnail.src }}
+#}
+
+{#
+In the Timber theme, variables are added to functions.php as a one-dimensional
+array, so here the array is also one-dimensional. Excluding WordPress core
+variables
+TODO: Попробовать записывать переменные в functions.php как
+$context['site'] = $this;
+$context['site']['icons']['apple_touch'] = '/base/graphics/icon.png';
+
+#}
+{% set site = {
+  language_attributes: "ru",
+  name: {
+    ru: "Наша Португалия",
+    pt: "",
+  },
+  description: "Жизнь и отдыж в Португалии: золотая виза, недвижимость — помощь в оформлении и управлении",
+  url: "https://www.our-portugal.ru",
+  theme: {
+    link: "/wp-content/themes/our-portugal"
+  },
+
+  languages: {
+    en: "en",
+  },
+  short_name: "Наша Португалия",
+  logo: "",
+  image: "",
+  icons: {
+    apple_touch: "/img/base/graphics/icon.png",
+    svg: "/img/base/graphics/icon.svg",
+  },
+  colors: {
+    primary: "#4a90e2",
+    browser: "#f2f5f8",
+  },
+
+  street: "",
+  postal_code: "",
+  country: "",
+  locality: "город",
+  region: "область, община",
+  phone: "+351 21 034 3300",
+  telegram: "our-portugal",
+  facebook: "our-portugal",
+  email: "",
+  area_served: "RU",
+
+  fonts: {
+    google: "Inter:wght@300;400;600",
+    local: ["SFPD-Semibold"]
+  },
+  gtm: false,
+  facebook_admins: false,
+  facebook_app_id: false,
+  facebook_cta_like: false,
+  vk_api: false,
+
+  author: {
+    summary: "Vladimir Nikishin, www.super-mark.ru",
+    twitter: "@supervova",
+  },
+} %}
+{% endblock %}
+
+<!DOCTYPE html>
+<html lang="{{ site.language_attributes }}" prefix="og: http://ogp.me/ns#">
+<head>
+
+  {% block html_head %}
+    {% include "/pages/base/head.twig" %}
+  {% endblock %}
+</head>
+
+<body class="page{% if post.body_classes %} {{ post.body_classes }}"{% endif %}>
+
+  {# Google Tag Manager (noscript) #}
+  {# <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site_details.google_tag_manager }}"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> #}
+
+  {% include "/components/alert/_alert.twig" %}
+  <div class="wrapper">
+
+  {# NAVBAR ----------------------------------------------------------------- #}
+  {% block header %}
+    {% include "/components/navbar/_navbar.twig" %}
+  {% endblock %}
+
+  <main>
+  {# CONTENT ---------------------------------------------------------------- #}
+  {% block content %}
+    {# Main content #}
+  {% endblock %}
+  </main>
+
+  {# FOOTER ----------------------------------------------------------------- #}
+  {% block footer %}
+    {% include "/components/footer/_footer.twig" %}
+  {% endblock %}
+  </div>{# / .container #}
+
+  {# SCRIPTS ---------------------------------------------------------------- #}
+  {% block scripts %}
+    {% include "/pages/base/scripts.twig" %}
+  {% endblock %}
+</body>
+</html>

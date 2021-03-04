@@ -1,0 +1,133 @@
+
+{% set body_classes = 'is-blog' %}
+
+{% extends "base/base.twig" %}
+
+{% block content %}
+  {# HERO #}
+  <header class="hero is-empty">
+    <div class="ribbon" role="presentation"></div>
+  </header>
+
+  {# BODY #}
+  <article class="main is-post" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="main__inner">
+      <header class="main__header">
+        <ul class="main__eyebrow">
+          {% if post.terms %}
+            <li>
+              <span class="main__eyebrow-link" itemprop="articleSection">
+                {% if post.terms[0].name != 'Русский' %}
+                  {{ post.terms[0].name }}
+                {% elseif post.terms[1].name %}
+                  {{ post.terms[1].name }}
+                {% endif %}
+              </span>
+            </li>
+          {% endif %}
+          <li>
+            <button class="main__eyebrow-categories" id="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-tag"></use>
+              </svg>
+              {{ __('Все рубрики блога', 'our_portugal') }}
+              <svg class="icon is-chevron" aria-hidden="true" focusable="false">
+                <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-chevron-xs"></use>
+              </svg>
+            </button>
+          </li>
+        </ul>
+        <h1 class="main__title" itemprop="headline">
+          {{ post.title }}
+        </h1>
+        <time class="main__time" datetime="{{ post.post_date|date('c') }}">{{ post.post_date|date('d M Y') }}</time>
+      </header>
+
+      {# {% set carousel = post.meta('carousel') %}
+      {% if (carousel.img_01 is not empty) or (carousel.img_02 is not empty) %} #}
+
+      {% set carousel = false %}
+      {% for img in post.meta('carousel') %}
+        {% if img %}{% set carousel = true %}{% endif %}
+      {% endfor %}
+      {% if carousel %}
+        <div class="main__carousel carousel slide" id="postCarousel" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-viewport">
+              {% for img in post.meta('carousel') %}
+                {% if img is not empty %}
+                  <figure class="carousel-item{% if loop.first %} active{% endif %}">
+                    <img class="card__img" src="{{ img }}" itemprop="image" alt="{{ post.title }}">
+                  </figure>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <a class="carousel-control is-prev" href="#postCarousel" role="button" data-slide="prev" aria-label="Назад"></a>
+            <a class="carousel-control is-next" href="#postCarousel" role="button" data-slide="next" aria-label="Вперёд"></a>
+          </div>
+          <ol class="carousel-indicators">
+            {% for img in post.meta('carousel') %}
+              {% if img is not empty %}
+                <li data-target="#postCarousel" data-slide-to="{{ loop.index - 1 }}"{% if loop.first %} class="active"{% endif %}></li>
+              {% endif %}
+            {% endfor %}
+          </ol>
+        </div>
+      {% endif %}
+
+      <div class="main__body" itemprop="articleBody">
+        {{ post.content }}
+
+        {% if post.meta('writer').name %}
+          <footer class="main__byline" itemprop="author">
+            Автор: <a href="{{ post.meta('writer').link }}" itemprop="url" target="_blank" rel="author noopener"><span itemprop="name">{{ post.meta('writer').name }}</span></a>
+          </footer>
+        {% endif %}
+
+        {# <section class="main__comments">
+          <h2 class="main__comments-title">{{ __('Комментарии', 'our_portugal') }}</h2>
+          <div class="main__comments-list">
+            {% if post.comments %}
+              {% for cmt in post.comments %}
+                {% include "partial/comment.twig" with {comment:cmt} %}
+              {% endfor %}
+            {% endif %}
+          </div>
+
+          {% if post.comment_status == "closed" %}
+            <p>{{ __('Комментарии закрыты', 'our_portugal') }}</p>
+          {% else %}
+            <!-- comment form -->
+            {% include "partial/comment-form.twig" %}
+          {% endif %}
+        </section> #}
+      </div>
+    </div>
+  </article>
+
+  {% if posts|length > 1 %}
+    <aside class="recent">
+      <div class="recent__inner">
+        <div class="recent__body">
+          <h2 class="h2 is-secondary">Ещё в блоге: свежие статьи</h2>
+          <ul class="list-view">
+            {% set current_post = post.id %}
+            {% for post in posts %}
+              {% if post.id != current_post %}
+                {% include 'partial/teaser.twig' %}
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </aside>
+  {% endif %}
+
+  {% if global.term %}
+    <div class="drawer" id="drawer" aria-hidden="true">
+      {% include 'partial/categories.twig' %}
+    </div>
+    <div class="backdrop" id="backdrop"></div>
+  {% endif %}
+{% endblock %}
+

@@ -1,0 +1,21 @@
+<header class="header">
+  <nav class="navbar">
+    <a href="/" class="navbar__logo" aria-label="Главная страница веб-сайта">
+      <picture>
+        <source media="(max-width: 767px)" srcset="/wp-content/themes/our-portugal-2020/img/components/logo/logo-sm.svg">
+        <source media="(min-width: 768px)" srcset="/wp-content/themes/our-portugal-2020/img/components/logo/logo.svg">
+        <img src="/wp-content/themes/our-portugal-2020/img/components/logo/logo.svg" alt="Логотип «Нашей Португалии»">
+      </picture>
+    </a>
+
+    <div class="navbar__menu has-language-switcher">
+      {% include "/components/language-switcher/_language-switcher.twig" %}
+      <a class="link is-phone" href="tel:{{ site.phone|replace({' ': ''}) }}">
+        <svg class="icon" aria-hidden="true" focusable="false">
+          <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-phone"></use>
+        </svg>
+        {{ site.phone }}
+      </a>
+    </div>
+  </nav>
+</header>

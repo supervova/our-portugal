@@ -1,0 +1,182 @@
+{% extends "/pages/base/base.twig" %}
+
+{% block config %}
+  {{ parent() }}
+
+  {% set post = {
+  lang: "ru",
+  title: "Блог: всё о Португалии",
+  description: site.description,
+  image: site.logo,
+  link: site.url ~ "/ru/blog",
+  body_classes: "is-blog"
+} %}
+{% endblock %}
+
+{% block html_head %}
+  {{ parent() }}
+
+  {# <style>
+    </style> #}
+{% endblock %}
+
+
+{# MAIN CONTENT ------------------------------------------------------------- #}
+{% block content %}
+
+  {# HEADER #}
+  <header class="hero is-empty">
+    <div class="ribbon" role="presentation"></div>
+  </header>
+
+  <div class="main pb-3">
+    <div class="row justify-center">
+      <div class="col-md-10 col-mdl-8 col-xxl-6">
+        <header class="main__header has-button">
+          <h1>Блог<span class="d-none d-sm-inline">: всё о Португалии</span></h1>
+          <button class="main__eyebrow-categories is-for-index" id="drawer-toggle" type="button" aria-expanded="false" aria-controls="drawer">
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-tag"></use>
+            </svg>
+            Рубрики
+            <svg class="icon is-chevron" aria-hidden="true" focusable="false">
+              <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-chevron-xs"></use>
+            </svg>
+          </button>
+        </header>
+
+        <ul class="list-view pt-0">
+          {% set teasers = {
+
+              item1: {
+                img: 'blog-01',
+                tag: 'История',
+                title: 'Лиссабон древнее Рима',
+                lead: 'И вторая самая древняя столица в Европе после Афин. Старше Рима более чем на 400 лет. Историки',
+                datetime: '2020-10-18',
+                date: '18 окт 2020',
+              },
+
+              item2: {
+                img: 'blog-02',
+                tag: 'Вино',
+                title: 'Вина Португалии из Порту и Доуру',
+                lead: 'Это одно из самых популярных вин. В год продается более 120 млн. бутылок. Существует четыре вида Портвейна…',
+                datetime: '2020-10-17',
+                date: '17 окт 2020',
+              },
+
+              item3: {
+                img: 'blog-03',
+                tag: 'Рыбалка',
+                title: 'Ловись брима большая и малень…',
+                lead: 'На побережье провинции Алгарве рыбаку действительно есть где развернуться, что в плане места для…',
+                datetime: '2020-10-16',
+                date: '16 окт 2020',
+              },
+
+              item4: {
+                img: 'blog-01',
+                tag: 'История',
+                title: 'Лиссабон древнее Рима',
+                lead: 'И вторая самая древняя столица в Европе после Афин. Старше Рима более чем на 400 лет. Историки',
+                datetime: '2020-10-18',
+                date: '18 окт 2020',
+              },
+
+              item5: {
+                img: 'blog-02',
+                tag: 'Вино',
+                title: 'Вина Португалии из Порту и Доуру',
+                lead: 'Это одно из самых популярных вин. В год продается более 120 млн. бутылок. Существует четыре вида Портвейна…',
+                datetime: '2020-10-17',
+                date: '17 окт 2020',
+              },
+
+              item6: {
+                img: 'blog-03',
+                tag: 'Рыбалка',
+                title: 'Ловись брима большая и малень…',
+                lead: 'На побережье провинции Алгарве рыбаку действительно есть где развернуться, что в плане места для…',
+                datetime: '2020-10-16',
+                date: '16 окт 2020',
+              },
+
+              item7: {
+                img: 'blog-01',
+                tag: 'История',
+                title: 'Лиссабон древнее Рима',
+                lead: 'И вторая самая древняя столица в Европе после Афин. Старше Рима более чем на 400 лет. Историки',
+                datetime: '2020-10-18',
+                date: '18 окт 2020',
+              },
+
+              item8: {
+                img: 'blog-02',
+                tag: 'Вино',
+                title: 'Вина Португалии из Порту и Доуру',
+                lead: 'Это одно из самых популярных вин. В год продается более 120 млн. бутылок. Существует четыре вида Портвейна…',
+                datetime: '2020-10-17',
+                date: '17 окт 2020',
+              },
+
+              item9: {
+                img: 'blog-03',
+                tag: 'Рыбалка',
+                title: 'Ловись брима большая и малень…',
+                lead: 'На побережье провинции Алгарве рыбаку действительно есть где развернуться, что в плане места для…',
+                datetime: '2020-10-16',
+                date: '16 окт 2020',
+              },
+
+              item10: {
+                img: 'blog-03',
+                tag: 'Рыбалка',
+                title: 'Ловись брима большая и малень…',
+                lead: 'На побережье провинции Алгарве рыбаку действительно есть где развернуться, что в плане места для…',
+                datetime: '2020-10-16',
+                date: '16 окт 2020',
+              },
+
+          } %}
+
+          {% for item in teasers %}
+            <li class="list-item">
+              <a class="list-item__block-link" href="#">
+                <figure class="list-item__figure">
+                  <img src="/wp-content/themes/our-portugal-2020/img/placeholders/{{ item.img }}.jpg" alt="Португальская золотая виза">
+                </figure>
+
+                <div class="list-item__body">
+                  <header class="list-item__header">
+                    <span class="list-item__eyebrow">{{ item.tag }}</span>
+                    <h3 class="list-item__title">
+                      <span>{{ item.title }}</span>
+                    </h3>
+                  </header>
+                  <p>{{ item.lead }}</p>
+                  <time datetime="{{ item.datetime }}">{{ item.date }}</time>
+                </div>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="sidebar has-categories">
+        {% include '/pages/blog/_categories.twig' %}
+      </div>
+    </div>
+
+    {% include "/components/pagination/_pagination.twig" %}
+  </div>
+
+  <!-- googleoff: all-->
+  <!-- noindex-->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    {% include '/pages/blog/_categories.twig' %}
+  </div>
+   <!-- /noindex-->
+  <!-- googleon: all-->
+  <div class="backdrop" id="backdrop"></div>
+
+{% endblock %}

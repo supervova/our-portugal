@@ -1,0 +1,14 @@
+<header class="hero">
+  <div class="hero__content">
+    {% if post.hasArticle %}
+      <p class="hero__title">{{ post.title }}</p>
+    {% else %}
+      <h1 class="hero__title">{{ post.title }}</h1>
+    {% endif %}
+
+    {% if post.subtitle %}
+      <p class="hero__subtitle">{{ post.subtitle }}</p>
+    {% endif %}
+  </div>
+  <div class="ribbon" role="presentation"></div>
+</header>
