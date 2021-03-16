@@ -466,6 +466,10 @@
   padding-top: 1.9rem !important;
   padding-left: $size-4 !important;
 }
+
+.wpforo-forum-info {
+  flex-grow: 1;
+}
 // #endregion
 
 // -----------------------------------------------------------------------------
@@ -747,6 +751,8 @@
 .wpforo-post-content-bottom {
   padding: 0 !important;
 }
+
+
 // #endregion
 
 // -----------------------------------------------------------------------------

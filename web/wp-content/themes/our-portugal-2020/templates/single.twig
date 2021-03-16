@@ -131,3 +131,12 @@
   {% endif %}
 {% endblock %}
 
+{% block scripts %}
+  <a class="btn is-floating-back" id="btn-back" href="/blog/">
+    <svg class="icon is-xs" aria-hidden="true" focusable="false">
+      <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-chevron-xs"></use>
+    </svg>
+    На главную блога
+  </a>
+  {{ parent() }}
+{% endblock %}

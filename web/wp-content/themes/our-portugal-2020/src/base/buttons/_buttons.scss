@@ -192,6 +192,62 @@
   }
 }
 
+// FLOATING
+.btn.is-floating-back {
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  bottom: $size-line * 2;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity $duration-md;
+}
+
+.btn.is-floating-back.is-visible {
+  background-color: rgba(255, 255, 255, .9);
+  box-shadow:
+    inset 0 0 0 1px $color-ink-border,
+    $box-shadow-z3;
+  color: $color-ink-2ry;
+  opacity: 1;
+  pointer-events: all;
+
+
+  &:hover,
+  &:focus {
+    color: $color-primary;
+  }
+
+  &:hover {
+    filter: none;
+  }
+
+  &:focus {
+    box-shadow:
+      inset 0 0 0 1px $color-primary,
+      $box-shadow-focus-outline;
+  }
+
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    background-color: rgba(255, 255, 255, .5);
+    backdrop-filter: blur(1rem);
+  }
+}
+
+// Chevron
+
+.btn.is-floating-back .icon {
+  fill: $color-ink-3ry;
+  // Fix centering text blur
+  margin-right: .5rem;
+  transform: scaleX(-1);
+}
+
+
+
+
+
+
 // -----------------------------------------------------------------------------
 // ACCESSIBLE TOGGLE BUTTON
 // -----------------------------------------------------------------------------

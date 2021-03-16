@@ -111,11 +111,10 @@
     </div>
   </article>
 
-  <aside class="section">
-    <div class="row justify-center">
-      <div class="col-mdl-10 col-lg-8 col-xxl-6">
-        <h2 class="h2 is-secondary">Ещё в блоге: свежие статьи</h2>
-
+  <aside class="recent">
+		<div class="recent__inner">
+			<div class="recent__body">
+				<h2 class="h2 is-secondary">Ещё в блоге: свежие статьи</h2>
         <ul class="list-view pt-0">
           {% set teasers = {
 
@@ -169,13 +168,23 @@
             </li>
           {% endfor %}
         </ul>
-      </div>
-    </div>
-  </aside>
+			</div>
+		</div>
+	</aside>
 
   <div class="drawer" id="drawer" aria-hidden="true">
     {% include '/pages/blog/_categories.twig' %}
   </div>
   <div class="backdrop" id="backdrop"></div>
 
+{% endblock %}
+
+{% block scripts %}
+  <a class="btn is-floating-back" id="btn-back" href="/blog/">
+    <svg class="icon is-xs" aria-hidden="true" focusable="false">
+      <use href="{{ site.theme.link }}/img/base/graphics/sprite.svg#icon-chevron-xs"></use>
+    </svg>
+    На главную блога
+  </a>
+  {{ parent() }}
 {% endblock %}

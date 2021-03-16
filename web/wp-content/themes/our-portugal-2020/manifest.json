@@ -1,4 +1,6 @@
 {
+  "short_name": "Наша Португалия",
+  "name": "Наша Португалия",
   "icons": [{
     "src": "/wp-content/themes/our-portugal-2020/img/base/graphics/icon.png",
     "sizes": "192x192",
